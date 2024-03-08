@@ -10,5 +10,10 @@ brew install awscli
 brew install kustomize
 brew install node
 
+# install psql command line utility
+brew install libpq 
+# install json processor
+brew install jq
+
 
 export JAVA_HOME=`/usr/libexec/java_home -v 11`
