@@ -18,3 +18,7 @@ brew install jq
 
 
 export JAVA_HOME=`/usr/libexec/java_home -v 11`
+
+### VS Code config
+https://github.com/speedingplanet/class-setup/blob/master/vs-code-extensions.md
+
