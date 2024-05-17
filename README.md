@@ -1,5 +1,6 @@
 # env-config
-### GIT config
+## GIT
+### GIT Config
 1. Set username and email
 ```
 $ git config --global user.name "John Doe"
@@ -14,15 +15,15 @@ $ git config --global fetch.prune true
 git config --global --add --bool push.autoSetupRemote true
 ```
 
-# HomeBrew 
+## HomeBrew 
 brew install --cask dbeaver-community
 brew install awscli
 brew install kustomize
 brew install node
 
-# install psql command line utility
+### install psql command line utility
 brew install libpq 
-# install json processor
+### install json processor
 brew install jq
 
 
