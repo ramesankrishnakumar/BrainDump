@@ -1,5 +1,7 @@
 # env-config
 ## GIT config
+Set username and email
+-
 ```
 $ git config --global user.name "John Doe"
 ```
