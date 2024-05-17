@@ -1,9 +1,17 @@
 # env-config
-# GIT config
+## GIT config
+```
 $ git config --global user.name "John Doe"
+```
+```
 $ git config --global user.email johndoe@example.com
+```
+```
 $ git config --global fetch.prune true
+```
+```
 git config --global --add --bool push.autoSetupRemote true
+```
 
 # HomeBrew 
 brew install --cask dbeaver-community
