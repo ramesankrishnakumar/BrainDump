@@ -5,10 +5,11 @@
 $ git config --global user.name "John Doe"
 $ git config --global user.email johndoe@example.com
 ```
-
+2. Execute git fetch and pull with `--prune` flag
 ```
 $ git config --global fetch.prune true
 ```
+3. Auto setup remote branch
 ```
 git config --global --add --bool push.autoSetupRemote true
 ```
