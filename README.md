@@ -15,6 +15,8 @@ $ git config --global fetch.prune true
 git config --global --add --bool push.autoSetupRemote true
 ```
 
+### GIT Commands
+
 ## HomeBrew 
 brew install --cask dbeaver-community
 brew install awscli
