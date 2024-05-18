@@ -79,4 +79,16 @@ git stash branch branch-name
 git stash -u | git stash --all
 ```
 
+# How to enstash
+> If you checkout a commit sha directly, it puts you into a "detached head" state, which basically just means that the current sha that your working copy has checked out, doesn't have a branch pointing at it.
+
+> If you haven't made any commits yet, you can leave detached head state by simply checking out whichever branch you were on before checking out the commit sha:
+
+> git checkout <branch>
+> If you did make commits while you were in the detached head state, you can save your work by simply attaching a branch before or while you leave detached head state:
+
+># Checkout a new branch at current detached head state:
+>git checkout -b newBranch
+>You can read more about detached head state at the official Linux Kernel Git docs for checkout.
+
 
