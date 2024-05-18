@@ -1,62 +1,77 @@
 # env-config
-## GIT
-### GIT Config
-1. Set username and email
-```
-$ git config --global user.name "John Doe"
-$ git config --global user.email johndoe@example.com
-```
-2. Execute git fetch and pull with `--prune` flag
-```
-$ git config --global fetch.prune true
-```
-3. Auto setup remote branch
-```
-git config --global --add --bool push.autoSetupRemote true
-```
-
-### GIT Commands
-1. Log
-```
-git log --oneline
-```
-2. [RefLog](https://www.atlassian.com/git/tutorials/rewriting-history/git-reflog)
-> By default, reflogs keep track of each HEAD position throughout the last 90 days. Furthermore, the reflog history is exclusive to the repository and is not accessible remotely. Apart from branch tip reflogs, there is a separate reflog for the Git stash.
-```
-git reflog
-
-```
-* By default it's current branch, to specify a different branch or STASH
-``` 
-git reflog  otherbranch |  git reflog  stash
-
-```
-* use reference of these pointers in other git command
-```
-git diff stash@{0} otherbranch@{0}
-```
-
-* use timed reflog
-```
-# diff beftween main branch current head to 1 day ago
-git diff main@{0} main@{1.day.ago} 
-```
-
-
 ## HomeBrew 
-brew install --cask dbeaver-community
-brew install awscli
+- awscli
+```console
+brew install awscli 
+```
+- kustomize
+``` console
 brew install kustomize
-brew install node
-
-### install psql command line utility
+```
+- podman
+```console
+brew install podman
+```
+- psql command line utility
+```console
 brew install libpq 
-### install json processor
+```
+- node js
+```console
+brew install node
+```
+- json processor
+```console
 brew install jq
+```
+- Dbeaver
+```console
+brew install --cask dbeaver-community 
+```
 
-
+## set JAVA_HOME
+```
 export JAVA_HOME=`/usr/libexec/java_home -v 11`
+```
 
-### VS Code config
-https://github.com/speedingplanet/class-setup/blob/master/vs-code-extensions.md
+## Visual Studio Code Extensions
 
+A list of Visual Studio Code extensions we use in courses. Not intended to be exhaustive. All of these are optional.
+
+### General
+
+These will actually make your experience in VS Code better:
+
+- [Path Intellisense](https://marketplace.visualstudio.com/items?itemName=christian-kohler.path-intellisense)
+- [Visual Studio IntelliCode](https://marketplace.visualstudio.com/items?itemName=VisualStudioExptTeam.vscodeintellicode)
+- [open in browser](https://marketplace.visualstudio.com/items?itemName=techer.open-in-browser) Handy lightweight utility for opening files in a browser. Does not use a web server, unlike Live Preview or similar extensions.
+- [GitLens](https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens) Fancy, if overly complicated, git interface; great for comparing branches
+
+
+### Themes
+
+- [Cobalt2 Theme Official](https://marketplace.visualstudio.com/items?itemName=wesbos.theme-cobalt2)
+- [One Dark Pro](https://marketplace.visualstudio.com/items?itemName=zhuangtongfa.Material-theme) 
+- [Overnight](https://marketplace.visualstudio.com/items?itemName=cev.overnight)
+- [LubnaDev-Theme](https://marketplace.visualstudio.com/items?itemName=lubnadev.lubnadev-theme)
+- [Tomorrow Night Blue](https://marketplace.visualstudio.com/items?itemName=gerane.Theme-TomorrowNightBlue) 
+
+## Decoration
+
+These make the experience of using VS Code nicer. Not required.
+
+- [Peacock](https://marketplace.visualstudio.com/items?itemName=johnpapa.vscode-peacock) Colors VS Code according to your project (red for Angular, blue for React, etc.; can customize according to prefs)
+- [vscode-icons](https://marketplace.visualstudio.com/items?itemName=vscode-icons-team.vscode-icons)
+
+### JavaScript
+
+- [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) code style enforcer (and also formatter)
+- [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) code formatter
+
+### React configuration
+
+- [React Dev Tools](https://beta.reactjs.org/learn/react-developer-tools)
+
+### Redux Toolkit
+
+- [Redux DevTools](https://github.com/reduxjs/redux-devtools)
