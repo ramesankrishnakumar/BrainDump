@@ -40,3 +40,43 @@ git diff stash@{0} otherbranch@{0}
 # diff beftween main branch current head to 1 day ago
 git diff main@{0} main@{1.day.ago} 
 ```
+
+### Diff
+- find the diff between the stagged and the HEAD
+```
+git diff --stagged
+```
+- find the diff between commits
+```
+git diff commit-id-1 commit-id-2 | git diff commit-id-1..commit-id-2
+
+```
+- find the diff between branches
+```
+git diff branch1 branch2 | git diff branch1..branch2
+
+```
+
+### Stash
+- set aside the current changes without commiting them, giving a message will help in identifying the stash
+  - stash created in one branch and be applied to any branch
+```
+git stash -m "stashed work for XYZ project"
+
+```
+- make use of a stash
+  - **pop** will remove the stash, **apply** will retain the stash   
+```
+git stash pop | git stash apply
+```
+- create a stash and apply the changes to a branch
+  > cre­ates a new branch at the HEAD where the stash was cre­at­ed, checks that branch out, applies the stash to it, and then deletes the stash.
+```
+git stash branch branch-name
+```
+- stash untracked files
+```
+git stash -u | git stash --all
+```
+
+
