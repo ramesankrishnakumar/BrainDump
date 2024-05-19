@@ -142,8 +142,11 @@ pick 11ce0ab34 fix: Fix spelling.
 ### Reset
 ![reset](git_reset.svg)
 > You should never use git reset  when any snapshots after have been pushed to a public repository. After publishing a commit, you have to assume that other developers are reliant upon it.
+
 > If you need to fix a public commit, the git revert command was designed specifically for this purpose.
+
 > The default invocation of git reset has implicit arguments of --mixed and HEAD. This means executing git reset is equivalent to executing git reset --mixed HEAD. In this form HEAD is the specified commit. Instead of HEAD any Git SHA-1 commit hash can be used.
+
 - hard
 Changes are made to the commit ref, staging area and working directory. The branch is reset to the state of the commit (HEAD in this case), changes in staging are and working directory are lost
 ```
