@@ -97,6 +97,10 @@ fetch the file **server.json** from the branch **john** to the current branch
 ```
 git checkout john -- data/server.json
 ```
+- go back to the previous branch
+```
+git checkout -
+```
 
 ### Commit
 - change a commit message of the latest commit 
@@ -124,8 +128,10 @@ git rebase main
 ```
 <p>This automatically rebases the current branch onto main, **refer the image**</p>
 
-- edit / reword / squash previous commits
+- edit / reword / squash / fixup previous commits
 **Go to a commit that is parent of the commit to which you want to modify**
+> Note that the commits are listed from earliest to latest, so the most recent commits are shown at the bottom of the list. This is the opposite direction to the way most git graph visualizations show the most recent commits at the top of the graph.
+> The difference between squash and fixup, is that squash let's you edit the resulting commit log message; fixup, on the other hand, defaults to using the previous commit's log message.
 ```
 git rebase -i HEAD~5
 ```
