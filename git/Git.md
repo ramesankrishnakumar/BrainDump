@@ -169,6 +169,12 @@ Changes are made only to commit ref, staging area and working directory are left
 git reset --soft
 ```
 
+### Cherry Pick
+
+### Bisect
+
+### Aliases
+
 
 
 
