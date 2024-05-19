@@ -92,6 +92,11 @@ git checkout <branch> | git switch -
 ```
 git checkout -- <path/to/file> | git restore <path/to/file>
 ```
+- pull files from a different branch
+fetch the file **server.json** from the branch **john** to the current branch
+```
+git checkout john -- data/server.json
+```
 
 ### Commit
 - change a commit message of the latest commit 
@@ -110,6 +115,53 @@ git commit --amend --no-edit
 ```
 
 ### Rebase
+![rebase](git_rebase.svg)
+> The primary reason for rebasing is to maintain a linear project history. For example, consider a situation where the main branch has progressed since you started working on a feature branch. You want to get the latest updates to the main branch in your feature branch, but you want to keep your branch's history clean so it appears as if you've been working off the latest main branch. This gives the later benefit of a clean merge of your feature branch back into the main branch.
+
+- rebase from main to the working branch
+```
+git rebase main
+```
+<p>This automatically rebases the current branch onto main, **refer the image**</p>
+
+- edit / reword / squash previous commits
+**Go to a commit that is parent of the commit to which you want to modify**
+```
+git rebase -i HEAD~5
+```
+```
+pick 43f8707f9 fix: update dependency json5 to ^2.1.1
+pick cea1fb88a fix: update dependency verdaccio to ^4.3.3
+pick aa540c364 fix: update dependency webpack-dev-server to ^3.8.2
+pick c5e078656 chore: update dependency flow-bin to ^0.109.0
+pick 11ce0ab34 fix: Fix spelling.
+
+# Rebase 7e59e8ead..11ce0ab34 onto 7e59e8ead (5 commands)
+```
+
+### Reset
+![reset](git_reset.svg)
+> You should never use git reset  when any snapshots after have been pushed to a public repository. After publishing a commit, you have to assume that other developers are reliant upon it.
+> If you need to fix a public commit, the git revert command was designed specifically for this purpose.
+> The default invocation of git reset has implicit arguments of --mixed and HEAD. This means executing git reset is equivalent to executing git reset --mixed HEAD. In this form HEAD is the specified commit. Instead of HEAD any Git SHA-1 commit hash can be used.
+- hard
+Changes are made to the commit ref, staging area and working directory. The branch is reset to the state of the commit (HEAD in this case), changes in staging are and working directory are lost
+```
+git reset --hard
+```
+- mixed which is the default
+Changes are made to the commit ref and the staging area. The commit ref is modifed to the specified commit (HEAD in this case) and the changes in the staging area are moved to the working directory ref
+```
+git reset | git reset --mixed
+```
+- soft
+Changes are made only to commit ref, staging area and working directory are left untouched
+```
+git reset --soft
+```
+
+
+
 
 
 
