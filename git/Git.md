@@ -156,6 +156,10 @@ pick 11ce0ab34 fix: Fix spelling.
 # Rebase 7e59e8ead..11ce0ab34 onto 7e59e8ead (5 commands)
 ```
 
+### Rebase vs Merge
+[Reference](https://www.youtube.com/watch?v=0chZFIZLR_0)
+
+
 ### Reset
 ![reset](git_reset.svg)
 > You should never use git reset  when any snapshots after have been pushed to a public repository. After publishing a commit, you have to assume that other developers are reliant upon it.
