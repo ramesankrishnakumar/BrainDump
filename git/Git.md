@@ -6,8 +6,13 @@ $ git config --global user.name "John Doe"
 $ git config --global user.email johndoe@example.com
 ```
 2. Execute git fetch and pull with `--prune` flag
+This removed the remote reference if the associated remote branch is deleted. but the local branch stays on
 ```
 $ git config --global fetch.prune true
+```
+To delete the local branch run the below command
+```
+git branch -vv | awk '/: gone]/{print $1}' | xargs git branch -D
 ```
 3. Auto setup remote branch
 ```
