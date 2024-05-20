@@ -157,8 +157,7 @@ pick 11ce0ab34 fix: Fix spelling.
 ```
 
 ### Rebase vs Merge
-[Reference](https://www.youtube.com/watch?v=0chZFIZLR_0)
-
+[![Reference](https://markdown-videos-api.jorgenkh.no/url?url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3D0chZFIZLR_0)](https://www.youtube.com/watch?v=0chZFIZLR_0)
 
 ### Reset
 ![reset](git_reset.svg)
