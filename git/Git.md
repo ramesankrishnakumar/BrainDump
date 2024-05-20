@@ -21,8 +21,14 @@ git config --global --add --bool push.autoSetupRemote true
 
 ## Helpful Commands
 ### Log
+- clean oneline commit info
 ```
 git log --oneline
+```
+- See comits that are in one branch but not the other
+gives the list of commits that are in master but not feature
+```
+git log --oneline feature..master
 ```
 ### [RefLog](https://www.atlassian.com/git/tutorials/rewriting-history/git-reflog)
 > By default, reflogs keep track of each HEAD position throughout the last 90 days. Furthermore, the reflog history is exclusive to the repository and is not accessible remotely. Apart from branch tip reflogs, there is a separate reflog for the Git stash.
@@ -175,6 +181,12 @@ git reset --soft
 ```
 
 ### Cherry Pick
+- Instead of merging / rebasing the entire branch, cherry pick helps to pick a particular commit form a branch
+```
+git cherry-pick <SHA>
+```
+
+### 
 
 ### Bisect
 
