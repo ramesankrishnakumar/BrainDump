@@ -186,9 +186,20 @@ git reset --soft
 git cherry-pick <SHA>
 ```
 
-### 
-
 ### Bisect
+- uses binary search to find a bad commit
+[reference](https://stackoverflow.com/questions/4713088/how-do-i-use-git-bisect)
+```
+git bisect start
+# let git know a good and bad commit window
+# choosing HEAD as the bad
+git bisect bad
+# chooing a particular commit where we are sure there were no issue
+git bisect good <SHA>
+# this starts the bisect process which checksout commits and we need to tell git if that particulat commit is good or bad
+git bisec good | git biscet bad
+# this will help us idenity the first bad commit that introduced the issue
+```
 
 ### Aliases
 
