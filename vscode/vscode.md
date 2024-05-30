@@ -53,6 +53,8 @@ These make the experience of using VS Code nicer. Not required.
     ![Example](multiline4.gif)
     5. Use Opt + CMD + [ ⬆️ or ⬇️ ]<br>
     ![Example](multiline5.gif)
+    6. Inser cursor the end of the selection select the texts and press Opt + Shift + I
+    ![Example](multiline5.gif)
    
 
 
