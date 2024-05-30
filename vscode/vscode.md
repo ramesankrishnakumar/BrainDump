@@ -43,16 +43,16 @@ These make the experience of using VS Code nicer. Not required.
 ### Productivity
 
 *  MultiLine Cursor
-    1. Using Option Key and Mouse Click to add multiple cursors
-        - Use Shift + [ ⬅️ or ➡️ ] to select texts at multiple cursors
+    1. Using Option Key + Mouse Click to add multiple cursors, Use Shift + [ ⬅️ or ➡️ ] to select texts at multiple cursors
     ![Example](multiline1.gif)
-    2. Holding Option & Shift Key and click at the last line where you want to include multiline cursor
+    2. Holding Option + Shift Key and click at the last line where you want to include multiline cursor
     ![Example](multiline2.gif)
     3. Select a word and click CMD + D to insert multiline cursor at the matching text 
     ![Example](multiline3.gif)
-    4. Select a word and click CMD + Shift + L to insert multiline cursor at all the matching text 
+    4. Select a word and click CMD + Shift + L to insert multiline cursor at all the matching text
     ![Example](multiline4.gif)
-    5. Use Opt + CMD + [⬆️ or ⬇️] 
+    5. Use Opt + CMD + [ ⬆️ or ⬇️ ]<br>
     ![Example](multiline5.gif)
+   
 
 
