@@ -50,5 +50,9 @@ These make the experience of using VS Code nicer. Not required.
     ![Example](multiline2.gif)
     3. Select a word and click CMD + D to insert multiline cursor at the matching text 
     ![Example](multiline3.gif)
+    4. Select a word and click CMD + Shift + L to insert multiline cursor at all the matching text 
+    ![Example](multiline4.gif)
+    5. Use Opt + CMD + [⬆️ or ⬇️] 
+    ![Example](multiline5.gif)
 
 
