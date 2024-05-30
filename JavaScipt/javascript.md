@@ -8,9 +8,8 @@
 |                         	|                                                                        	|
 
 
-
-[![CommonJS vs ESM](https://markdown-videos-api.jorgenkh.no/url?url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3D6_JNPmjSevo)](https://www.youtube.com/watch?v=6_JNPmjSevo)<br>
-[![Destructuring](https://markdown-videos-api.jorgenkh.no/url?url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DUHZcJyVXtLo)](https://www.youtube.com/watch?v=UHZcJyVXtLo)<br>
+1. [Common-JS vs ESM](https://www.youtube.com/watch?v=6_JNPmjSevo)
+2. [Destructuring](https://www.youtube.com/watch?v=UHZcJyVXtLo)
 ```js
 // destructuring =  extract values from arrays and objects,
 //                              then assign them to variables in a convenient way
