@@ -39,3 +39,16 @@ These make the experience of using VS Code nicer. Not required.
 ### Redux Toolkit
 
 - [Redux DevTools](https://github.com/reduxjs/redux-devtools)
+
+### Productivity
+
+*  MultiLine Cursor
+    1. Using Option Key and Mouse Click to add multiple cursors
+        - Use Shift + [ ⬅️ or ➡️ ] to select texts at multiple cursors
+    ![Example](multiline1.gif)
+    2. Holding Option & Shift Key and click at the last line where you want to include multiline cursor
+    ![Example](multiline2.gif)
+    3. Select a word and click CMD + D to insert multiline cursor at the matching text 
+    ![Example](multiline3.gif)
+
+
