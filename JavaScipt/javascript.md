@@ -10,7 +10,11 @@
 
 1. [Common-JS vs ESM](https://www.youtube.com/watch?v=6_JNPmjSevo)
 2. [Destructuring](https://www.youtube.com/watch?v=UHZcJyVXtLo)
-3. <a href="http://example.com/" target="_blank">Hello, world!</a>
+3. ```markdown
+
+[Link Text](https//www.google.com target="_blank")
+
+```
 ```js
 // destructuring =  extract values from arrays and objects,
 //                              then assign them to variables in a convenient way
