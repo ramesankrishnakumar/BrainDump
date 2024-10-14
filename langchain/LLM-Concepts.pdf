@@ -1,2818 +1,0 @@
-%PDF-1.3
-%ÿÿÿÿ
-9 0 obj
-<<
-/Type /ExtGState
-/ca 1
->>
-endobj
-11 0 obj
-<<
-/S /URI
-/URI (https://storm.genie.stanford.edu/article/104871)
->>
-endobj
-12 0 obj
-<<
-/Subtype /Link
-/A 11 0 R
-/Type /Annot
-/Rect [83.288 264.08999 372.276 279.48999]
-/Border [0 0 0]
-/F 4
->>
-endobj
-8 0 obj
-<<
-/Type /Page
-/Parent 1 0 R
-/MediaBox [0 0 595.280029 841.890015]
-/Contents 6 0 R
-/Resources 7 0 R
-/UserUnit 1
-/Annots [12 0 R]
->>
-endobj
-7 0 obj
-<<
-/ProcSet [/PDF /Text /ImageB /ImageC /ImageI]
-/ExtGState <<
-/Gs1 9 0 R
->>
-/Font <<
-/F1 10 0 R
->>
->>
-endobj
-16 0 obj
-<<
-/S /URI
-/URI (https://addlly.ai/blog/what-is-few-shot-prompting/)
->>
-endobj
-17 0 obj
-<<
-/Subtype /Link
-/A 16 0 R
-/Type /Annot
-/Rect [207.888 796.490015 211.78 811.890015]
-/Border [0 0 0]
-/F 4
->>
-endobj
-18 0 obj
-<<
-/S /URI
-/URI (https://addlly.ai/blog/what-is-few-shot-prompting/)
->>
-endobj
-19 0 obj
-<<
-/Subtype /Link
-/A 18 0 R
-/Type /Annot
-/Rect [211.78 796.490015 219.564 811.890015]
-/Border [0 0 0]
-/F 4
->>
-endobj
-20 0 obj
-<<
-/S /URI
-/URI (https://addlly.ai/blog/what-is-few-shot-prompting/)
->>
-endobj
-21 0 obj
-<<
-/Subtype /Link
-/A 20 0 R
-/Type /Annot
-/Rect [219.564 796.490015 223.456 811.890015]
-/Border [0 0 0]
-/F 4
->>
-endobj
-22 0 obj
-<<
-/S /URI
-/URI (https://www.educative.io/courses/all-you-need-to-know-about-prompt-engineering/few-shot-prompting)
->>
-endobj
-23 0 obj
-<<
-/Subtype /Link
-/A 22 0 R
-/Type /Annot
-/Rect [223.456 796.490015 227.348 811.890015]
-/Border [0 0 0]
-/F 4
->>
-endobj
-24 0 obj
-<<
-/S /URI
-/URI (https://www.educative.io/courses/all-you-need-to-know-about-prompt-engineering/few-shot-prompting)
->>
-endobj
-25 0 obj
-<<
-/Subtype /Link
-/A 24 0 R
-/Type /Annot
-/Rect [227.348 796.490015 235.132 811.890015]
-/Border [0 0 0]
-/F 4
->>
-endobj
-26 0 obj
-<<
-/S /URI
-/URI (https://www.educative.io/courses/all-you-need-to-know-about-prompt-engineering/few-shot-prompting)
->>
-endobj
-27 0 obj
-<<
-/Subtype /Link
-/A 26 0 R
-/Type /Annot
-/Rect [235.132 796.490015 239.024 811.890015]
-/Border [0 0 0]
-/F 4
->>
-endobj
-28 0 obj
-<<
-/S /URI
-/URI (https://roadmap.sh/prompt-engineering/prompts/prompting-techniques/few-shot-prompting)
->>
-endobj
-29 0 obj
-<<
-/Subtype /Link
-/A 28 0 R
-/Type /Annot
-/Rect [475.531276 765.690015 479.423276 781.090015]
-/Border [0 0 0]
-/F 4
->>
-endobj
-30 0 obj
-<<
-/S /URI
-/URI (https://roadmap.sh/prompt-engineering/prompts/prompting-techniques/few-shot-prompting)
->>
-endobj
-31 0 obj
-<<
-/Subtype /Link
-/A 30 0 R
-/Type /Annot
-/Rect [479.423276 765.690015 487.207276 781.090015]
-/Border [0 0 0]
-/F 4
->>
-endobj
-32 0 obj
-<<
-/S /URI
-/URI (https://roadmap.sh/prompt-engineering/prompts/prompting-techniques/few-shot-prompting)
->>
-endobj
-33 0 obj
-<<
-/Subtype /Link
-/A 32 0 R
-/Type /Annot
-/Rect [487.207276 765.690015 491.099276 781.090015]
-/Border [0 0 0]
-/F 4
->>
-endobj
-34 0 obj
-<<
-/S /URI
-/URI (https://www.nightfall.ai/ai-security-101/few-shot-prompting)
->>
-endobj
-35 0 obj
-<<
-/Subtype /Link
-/A 34 0 R
-/Type /Annot
-/Rect [491.099276 765.690015 494.991276 781.090015]
-/Border [0 0 0]
-/F 4
->>
-endobj
-36 0 obj
-<<
-/S /URI
-/URI (https://www.nightfall.ai/ai-security-101/few-shot-prompting)
->>
-endobj
-37 0 obj
-<<
-/Subtype /Link
-/A 36 0 R
-/Type /Annot
-/Rect [494.991276 765.690015 502.775276 781.090015]
-/Border [0 0 0]
-/F 4
->>
-endobj
-38 0 obj
-<<
-/S /URI
-/URI (https://www.nightfall.ai/ai-security-101/few-shot-prompting)
->>
-endobj
-39 0 obj
-<<
-/Subtype /Link
-/A 38 0 R
-/Type /Annot
-/Rect [502.775276 765.690015 506.466652 781.090015]
-/Border [0 0 0]
-/F 4
->>
-endobj
-40 0 obj
-<<
-/S /URI
-/URI (https://www.promptingguide.ai/techniques/fewshot.en)
->>
-endobj
-41 0 obj
-<<
-/Subtype /Link
-/A 40 0 R
-/Type /Annot
-/Rect [505.192 734.890015 509.084 750.290015]
-/Border [0 0 0]
-/F 4
->>
-endobj
-42 0 obj
-<<
-/S /URI
-/URI (https://www.promptingguide.ai/techniques/fewshot.en)
->>
-endobj
-43 0 obj
-<<
-/Subtype /Link
-/A 42 0 R
-/Type /Annot
-/Rect [509.084 734.890015 516.868 750.290015]
-/Border [0 0 0]
-/F 4
->>
-endobj
-44 0 obj
-<<
-/S /URI
-/URI (https://www.promptingguide.ai/techniques/fewshot.en)
->>
-endobj
-45 0 obj
-<<
-/Subtype /Link
-/A 44 0 R
-/Type /Annot
-/Rect [516.868 734.890015 520.76 750.290015]
-/Border [0 0 0]
-/F 4
->>
-endobj
-46 0 obj
-<<
-/S /URI
-/URI (https://www.whytryai.com/p/chain-of-thought-prompting)
->>
-endobj
-47 0 obj
-<<
-/Subtype /Link
-/A 46 0 R
-/Type /Annot
-/Rect [520.76 734.890015 524.652 750.290015]
-/Border [0 0 0]
-/F 4
->>
-endobj
-48 0 obj
-<<
-/S /URI
-/URI (https://www.whytryai.com/p/chain-of-thought-prompting)
->>
-endobj
-49 0 obj
-<<
-/Subtype /Link
-/A 48 0 R
-/Type /Annot
-/Rect [524.652 734.890015 532.436 750.290015]
-/Border [0 0 0]
-/F 4
->>
-endobj
-50 0 obj
-<<
-/S /URI
-/URI (https://www.whytryai.com/p/chain-of-thought-prompting)
->>
-endobj
-51 0 obj
-<<
-/Subtype /Link
-/A 50 0 R
-/Type /Annot
-/Rect [532.436 734.890015 536.328 750.290015]
-/Border [0 0 0]
-/F 4
->>
-endobj
-52 0 obj
-<<
-/S /URI
-/URI (https://addlly.ai/blog/what-is-few-shot-prompting/)
->>
-endobj
-53 0 obj
-<<
-/Subtype /Link
-/A 52 0 R
-/Type /Annot
-/Rect [394.48 657.890015 398.372 673.290015]
-/Border [0 0 0]
-/F 4
->>
-endobj
-54 0 obj
-<<
-/S /URI
-/URI (https://addlly.ai/blog/what-is-few-shot-prompting/)
->>
-endobj
-55 0 obj
-<<
-/Subtype /Link
-/A 54 0 R
-/Type /Annot
-/Rect [398.372 657.890015 406.156 673.290015]
-/Border [0 0 0]
-/F 4
->>
-endobj
-56 0 obj
-<<
-/S /URI
-/URI (https://addlly.ai/blog/what-is-few-shot-prompting/)
->>
-endobj
-57 0 obj
-<<
-/Subtype /Link
-/A 56 0 R
-/Type /Annot
-/Rect [406.156 657.890015 410.048 673.290015]
-/Border [0 0 0]
-/F 4
->>
-endobj
-58 0 obj
-<<
-/S /URI
-/URI (https://www.techtarget.com/searchEnterpriseAI/definition/chain-of-thought-prompting)
->>
-endobj
-59 0 obj
-<<
-/Subtype /Link
-/A 58 0 R
-/Type /Annot
-/Rect [410.048 657.890015 413.94 673.290015]
-/Border [0 0 0]
-/F 4
->>
-endobj
-60 0 obj
-<<
-/S /URI
-/URI (https://www.techtarget.com/searchEnterpriseAI/definition/chain-of-thought-prompting)
->>
-endobj
-61 0 obj
-<<
-/Subtype /Link
-/A 60 0 R
-/Type /Annot
-/Rect [413.94 657.890015 421.724 673.290015]
-/Border [0 0 0]
-/F 4
->>
-endobj
-62 0 obj
-<<
-/S /URI
-/URI (https://www.techtarget.com/searchEnterpriseAI/definition/chain-of-thought-prompting)
->>
-endobj
-63 0 obj
-<<
-/Subtype /Link
-/A 62 0 R
-/Type /Annot
-/Rect [421.724 657.890015 425.616 673.290015]
-/Border [0 0 0]
-/F 4
->>
-endobj
-64 0 obj
-<<
-/S /URI
-/URI (https://www.whytryai.com/p/chain-of-thought-prompting)
->>
-endobj
-65 0 obj
-<<
-/Subtype /Link
-/A 64 0 R
-/Type /Annot
-/Rect [245.156 627.090015 249.048 642.490015]
-/Border [0 0 0]
-/F 4
->>
-endobj
-66 0 obj
-<<
-/S /URI
-/URI (https://www.whytryai.com/p/chain-of-thought-prompting)
->>
-endobj
-67 0 obj
-<<
-/Subtype /Link
-/A 66 0 R
-/Type /Annot
-/Rect [249.048 627.090015 256.832 642.490015]
-/Border [0 0 0]
-/F 4
->>
-endobj
-68 0 obj
-<<
-/S /URI
-/URI (https://www.whytryai.com/p/chain-of-thought-prompting)
->>
-endobj
-69 0 obj
-<<
-/Subtype /Link
-/A 68 0 R
-/Type /Annot
-/Rect [256.832 627.090015 260.724 642.490015]
-/Border [0 0 0]
-/F 4
->>
-endobj
-70 0 obj
-<<
-/S /URI
-/URI (https://www.prompthub.us/blog/chain-of-thought-prompting-guide)
->>
-endobj
-71 0 obj
-<<
-/Subtype /Link
-/A 70 0 R
-/Type /Annot
-/Rect [228.888 550.090015 232.78 565.490015]
-/Border [0 0 0]
-/F 4
->>
-endobj
-72 0 obj
-<<
-/S /URI
-/URI (https://www.prompthub.us/blog/chain-of-thought-prompting-guide)
->>
-endobj
-73 0 obj
-<<
-/Subtype /Link
-/A 72 0 R
-/Type /Annot
-/Rect [232.78 550.090015 240.564 565.490015]
-/Border [0 0 0]
-/F 4
->>
-endobj
-74 0 obj
-<<
-/S /URI
-/URI (https://www.prompthub.us/blog/chain-of-thought-prompting-guide)
->>
-endobj
-75 0 obj
-<<
-/Subtype /Link
-/A 74 0 R
-/Type /Annot
-/Rect [240.564 550.090015 244.456 565.490015]
-/Border [0 0 0]
-/F 4
->>
-endobj
-76 0 obj
-<<
-/S /URI
-/URI (https://www.techtarget.com/searchEnterpriseAI/definition/chain-of-thought-prompting)
->>
-endobj
-77 0 obj
-<<
-/Subtype /Link
-/A 76 0 R
-/Type /Annot
-/Rect [244.456 550.090015 248.348 565.490015]
-/Border [0 0 0]
-/F 4
->>
-endobj
-78 0 obj
-<<
-/S /URI
-/URI (https://www.techtarget.com/searchEnterpriseAI/definition/chain-of-thought-prompting)
->>
-endobj
-79 0 obj
-<<
-/Subtype /Link
-/A 78 0 R
-/Type /Annot
-/Rect [248.348 550.090015 256.132 565.490015]
-/Border [0 0 0]
-/F 4
->>
-endobj
-80 0 obj
-<<
-/S /URI
-/URI (https://www.techtarget.com/searchEnterpriseAI/definition/chain-of-thought-prompting)
->>
-endobj
-81 0 obj
-<<
-/Subtype /Link
-/A 80 0 R
-/Type /Annot
-/Rect [256.132 550.090015 260.024 565.490015]
-/Border [0 0 0]
-/F 4
->>
-endobj
-82 0 obj
-<<
-/S /URI
-/URI (https://ar5iv.labs.arxiv.org/html/2201.11903)
->>
-endobj
-83 0 obj
-<<
-/Subtype /Link
-/A 82 0 R
-/Type /Annot
-/Rect [473.888 473.090015 477.78 488.490015]
-/Border [0 0 0]
-/F 4
->>
-endobj
-84 0 obj
-<<
-/S /URI
-/URI (https://ar5iv.labs.arxiv.org/html/2201.11903)
->>
-endobj
-85 0 obj
-<<
-/Subtype /Link
-/A 84 0 R
-/Type /Annot
-/Rect [477.78 473.090015 485.564 488.490015]
-/Border [0 0 0]
-/F 4
->>
-endobj
-86 0 obj
-<<
-/S /URI
-/URI (https://ar5iv.labs.arxiv.org/html/2201.11903)
->>
-endobj
-87 0 obj
-<<
-/Subtype /Link
-/A 86 0 R
-/Type /Annot
-/Rect [485.564 473.090015 489.456 488.490015]
-/Border [0 0 0]
-/F 4
->>
-endobj
-88 0 obj
-<<
-/S /URI
-/URI (https://bakingai.com/blog/ai-prompt-chaining-guide/)
->>
-endobj
-89 0 obj
-<<
-/Subtype /Link
-/A 88 0 R
-/Type /Annot
-/Rect [489.456 473.090015 493.348 488.490015]
-/Border [0 0 0]
-/F 4
->>
-endobj
-90 0 obj
-<<
-/S /URI
-/URI (https://bakingai.com/blog/ai-prompt-chaining-guide/)
->>
-endobj
-91 0 obj
-<<
-/Subtype /Link
-/A 90 0 R
-/Type /Annot
-/Rect [493.348 473.090015 508.916 488.490015]
-/Border [0 0 0]
-/F 4
->>
-endobj
-92 0 obj
-<<
-/S /URI
-/URI (https://bakingai.com/blog/ai-prompt-chaining-guide/)
->>
-endobj
-93 0 obj
-<<
-/Subtype /Link
-/A 92 0 R
-/Type /Annot
-/Rect [508.916 473.090015 512.808 488.490015]
-/Border [0 0 0]
-/F 4
->>
-endobj
-94 0 obj
-<<
-/S /URI
-/URI (https://addlly.ai/blog/what-is-few-shot-prompting/)
->>
-endobj
-95 0 obj
-<<
-/Subtype /Link
-/A 94 0 R
-/Type /Annot
-/Rect [404.644 201.290027 408.536 216.690027]
-/Border [0 0 0]
-/F 4
->>
-endobj
-96 0 obj
-<<
-/S /URI
-/URI (https://addlly.ai/blog/what-is-few-shot-prompting/)
->>
-endobj
-97 0 obj
-<<
-/Subtype /Link
-/A 96 0 R
-/Type /Annot
-/Rect [408.536 201.290027 416.32 216.690027]
-/Border [0 0 0]
-/F 4
->>
-endobj
-98 0 obj
-<<
-/S /URI
-/URI (https://addlly.ai/blog/what-is-few-shot-prompting/)
->>
-endobj
-99 0 obj
-<<
-/Subtype /Link
-/A 98 0 R
-/Type /Annot
-/Rect [416.32 201.290027 420.212 216.690027]
-/Border [0 0 0]
-/F 4
->>
-endobj
-100 0 obj
-<<
-/S /URI
-/URI (https://www.educative.io/courses/all-you-need-to-know-about-prompt-engineering/few-shot-prompting)
->>
-endobj
-101 0 obj
-<<
-/Subtype /Link
-/A 100 0 R
-/Type /Annot
-/Rect [420.212 201.290027 424.104 216.690027]
-/Border [0 0 0]
-/F 4
->>
-endobj
-102 0 obj
-<<
-/S /URI
-/URI (https://www.educative.io/courses/all-you-need-to-know-about-prompt-engineering/few-shot-prompting)
->>
-endobj
-103 0 obj
-<<
-/Subtype /Link
-/A 102 0 R
-/Type /Annot
-/Rect [424.104 201.290027 431.888 216.690027]
-/Border [0 0 0]
-/F 4
->>
-endobj
-104 0 obj
-<<
-/S /URI
-/URI (https://www.educative.io/courses/all-you-need-to-know-about-prompt-engineering/few-shot-prompting)
->>
-endobj
-105 0 obj
-<<
-/Subtype /Link
-/A 104 0 R
-/Type /Annot
-/Rect [431.888 201.290027 435.78 216.690027]
-/Border [0 0 0]
-/F 4
->>
-endobj
-106 0 obj
-<<
-/S /URI
-/URI (https://medium.com/@abhishekranjandev/unraveling-the-magic-of-prompt-chaining-in-chat-gpt-784ea2651dd7)
->>
-endobj
-107 0 obj
-<<
-/Subtype /Link
-/A 106 0 R
-/Type /Annot
-/Rect [435.78 201.290027 439.672 216.690027]
-/Border [0 0 0]
-/F 4
->>
-endobj
-108 0 obj
-<<
-/S /URI
-/URI (https://medium.com/@abhishekranjandev/unraveling-the-magic-of-prompt-chaining-in-chat-gpt-784ea2651dd7)
->>
-endobj
-109 0 obj
-<<
-/Subtype /Link
-/A 108 0 R
-/Type /Annot
-/Rect [439.672 201.290027 455.24 216.690027]
-/Border [0 0 0]
-/F 4
->>
-endobj
-110 0 obj
-<<
-/S /URI
-/URI (https://medium.com/@abhishekranjandev/unraveling-the-magic-of-prompt-chaining-in-chat-gpt-784ea2651dd7)
->>
-endobj
-111 0 obj
-<<
-/Subtype /Link
-/A 110 0 R
-/Type /Annot
-/Rect [455.24 201.290027 459.132 216.690027]
-/Border [0 0 0]
-/F 4
->>
-endobj
-112 0 obj
-<<
-/S /URI
-/URI (https://addlly.ai/blog/what-is-few-shot-prompting/)
->>
-endobj
-113 0 obj
-<<
-/Subtype /Link
-/A 112 0 R
-/Type /Annot
-/Rect [477.71 81.690063 481.602 97.090063]
-/Border [0 0 0]
-/F 4
->>
-endobj
-114 0 obj
-<<
-/S /URI
-/URI (https://addlly.ai/blog/what-is-few-shot-prompting/)
->>
-endobj
-115 0 obj
-<<
-/Subtype /Link
-/A 114 0 R
-/Type /Annot
-/Rect [481.602 81.690063 489.386 97.090063]
-/Border [0 0 0]
-/F 4
->>
-endobj
-116 0 obj
-<<
-/S /URI
-/URI (https://addlly.ai/blog/what-is-few-shot-prompting/)
->>
-endobj
-117 0 obj
-<<
-/Subtype /Link
-/A 116 0 R
-/Type /Annot
-/Rect [489.386 81.690063 493.278 97.090063]
-/Border [0 0 0]
-/F 4
->>
-endobj
-118 0 obj
-<<
-/S /URI
-/URI (https://www.educative.io/courses/all-you-need-to-know-about-prompt-engineering/few-shot-prompting)
->>
-endobj
-119 0 obj
-<<
-/Subtype /Link
-/A 118 0 R
-/Type /Annot
-/Rect [493.278 81.690063 497.17 97.090063]
-/Border [0 0 0]
-/F 4
->>
-endobj
-120 0 obj
-<<
-/S /URI
-/URI (https://www.educative.io/courses/all-you-need-to-know-about-prompt-engineering/few-shot-prompting)
->>
-endobj
-121 0 obj
-<<
-/Subtype /Link
-/A 120 0 R
-/Type /Annot
-/Rect [497.17 81.690063 504.954 97.090063]
-/Border [0 0 0]
-/F 4
->>
-endobj
-122 0 obj
-<<
-/S /URI
-/URI (https://www.educative.io/courses/all-you-need-to-know-about-prompt-engineering/few-shot-prompting)
->>
-endobj
-123 0 obj
-<<
-/Subtype /Link
-/A 122 0 R
-/Type /Annot
-/Rect [504.954 81.690063 508.846 97.090063]
-/Border [0 0 0]
-/F 4
->>
-endobj
-124 0 obj
-<<
-/S /URI
-/URI (https://www.educative.io/courses/all-you-need-to-know-about-prompt-engineering/few-shot-prompting)
->>
-endobj
-125 0 obj
-<<
-/Subtype /Link
-/A 124 0 R
-/Type /Annot
-/Rect [288.57 50.890063 292.462 66.290063]
-/Border [0 0 0]
-/F 4
->>
-endobj
-126 0 obj
-<<
-/S /URI
-/URI (https://www.educative.io/courses/all-you-need-to-know-about-prompt-engineering/few-shot-prompting)
->>
-endobj
-127 0 obj
-<<
-/Subtype /Link
-/A 126 0 R
-/Type /Annot
-/Rect [292.462 50.890063 300.246 66.290063]
-/Border [0 0 0]
-/F 4
->>
-endobj
-128 0 obj
-<<
-/S /URI
-/URI (https://www.educative.io/courses/all-you-need-to-know-about-prompt-engineering/few-shot-prompting)
->>
-endobj
-129 0 obj
-<<
-/Subtype /Link
-/A 128 0 R
-/Type /Annot
-/Rect [300.246 50.890063 304.138 66.290063]
-/Border [0 0 0]
-/F 4
->>
-endobj
-15 0 obj
-<<
-/Type /Page
-/Parent 1 0 R
-/MediaBox [0 0 595.280029 841.890015]
-/Contents 13 0 R
-/Resources 14 0 R
-/UserUnit 1
-/Annots [17 0 R 19 0 R 21 0 R 23 0 R 25 0 R 27 0 R 29 0 R 31 0 R 33 0 R 35 0 R 37 0 R 39 0 R 41 0 R 43 0 R 45 0 R 47 0 R 49 0 R 51 0 R 53 0 R 55 0 R 57 0 R 59 0 R 61 0 R 63 0 R 65 0 R 67 0 R 69 0 R 71 0 R 73 0 R 75 0 R 77 0 R 79 0 R 81 0 R 83 0 R 85 0 R 87 0 R 89 0 R 91 0 R 93 0 R 95 0 R 97 0 R 99 0 R 101 0 R 103 0 R 105 0 R 107 0 R 109 0 R 111 0 R 113 0 R 115 0 R 117 0 R 119 0 R 121 0 R 123 0 R 125 0 R 127 0 R 129 0 R]
->>
-endobj
-14 0 obj
-<<
-/ProcSet [/PDF /Text /ImageB /ImageC /ImageI]
-/ExtGState <<
-/Gs1 9 0 R
->>
-/Font <<
-/F1 10 0 R
->>
->>
-endobj
-133 0 obj
-<<
-/S /URI
-/URI (https://medium.com/@abhishekranjandev/unraveling-the-magic-of-prompt-chaining-in-chat-gpt-784ea2651dd7)
->>
-endobj
-134 0 obj
-<<
-/Subtype /Link
-/A 133 0 R
-/Type /Annot
-/Rect [40 718.690014 555.280029 738.490013]
-/Border [0 0 0]
-/F 4
->>
-endobj
-135 0 obj
-<<
-/S /URI
-/URI (https://www.prompthub.us/blog/chain-of-thought-prompting-guide)
->>
-endobj
-136 0 obj
-<<
-/Subtype /Link
-/A 135 0 R
-/Type /Annot
-/Rect [76.932 573.690027 80.824 589.090027]
-/Border [0 0 0]
-/F 4
->>
-endobj
-137 0 obj
-<<
-/S /URI
-/URI (https://www.prompthub.us/blog/chain-of-thought-prompting-guide)
->>
-endobj
-138 0 obj
-<<
-/Subtype /Link
-/A 137 0 R
-/Type /Annot
-/Rect [80.824 573.690027 88.608 589.090027]
-/Border [0 0 0]
-/F 4
->>
-endobj
-139 0 obj
-<<
-/S /URI
-/URI (https://www.prompthub.us/blog/chain-of-thought-prompting-guide)
->>
-endobj
-140 0 obj
-<<
-/Subtype /Link
-/A 139 0 R
-/Type /Annot
-/Rect [88.608 573.690027 92.5 589.090027]
-/Border [0 0 0]
-/F 4
->>
-endobj
-141 0 obj
-<<
-/S /URI
-/URI (https://www.prompthub.us/blog/prompt-chaining-guide)
->>
-endobj
-142 0 obj
-<<
-/Subtype /Link
-/A 141 0 R
-/Type /Annot
-/Rect [92.5 573.690027 96.392 589.090027]
-/Border [0 0 0]
-/F 4
->>
-endobj
-143 0 obj
-<<
-/S /URI
-/URI (https://www.prompthub.us/blog/prompt-chaining-guide)
->>
-endobj
-144 0 obj
-<<
-/Subtype /Link
-/A 143 0 R
-/Type /Annot
-/Rect [96.392 573.690027 111.96 589.090027]
-/Border [0 0 0]
-/F 4
->>
-endobj
-145 0 obj
-<<
-/S /URI
-/URI (https://www.prompthub.us/blog/prompt-chaining-guide)
->>
-endobj
-146 0 obj
-<<
-/Subtype /Link
-/A 145 0 R
-/Type /Annot
-/Rect [111.96 573.690027 115.852 589.090027]
-/Border [0 0 0]
-/F 4
->>
-endobj
-147 0 obj
-<<
-/S /URI
-/URI (https://roadmap.sh/prompt-engineering/prompts/prompting-techniques/few-shot-prompting)
->>
-endobj
-148 0 obj
-<<
-/Subtype /Link
-/A 147 0 R
-/Type /Annot
-/Rect [316.43 390.290027 320.322 405.690027]
-/Border [0 0 0]
-/F 4
->>
-endobj
-149 0 obj
-<<
-/S /URI
-/URI (https://roadmap.sh/prompt-engineering/prompts/prompting-techniques/few-shot-prompting)
->>
-endobj
-150 0 obj
-<<
-/Subtype /Link
-/A 149 0 R
-/Type /Annot
-/Rect [320.322 390.290027 328.106 405.690027]
-/Border [0 0 0]
-/F 4
->>
-endobj
-151 0 obj
-<<
-/S /URI
-/URI (https://roadmap.sh/prompt-engineering/prompts/prompting-techniques/few-shot-prompting)
->>
-endobj
-152 0 obj
-<<
-/Subtype /Link
-/A 151 0 R
-/Type /Annot
-/Rect [328.106 390.290027 331.998 405.690027]
-/Border [0 0 0]
-/F 4
->>
-endobj
-153 0 obj
-<<
-/S /URI
-/URI (https://www.nightfall.ai/ai-security-101/few-shot-prompting)
->>
-endobj
-154 0 obj
-<<
-/Subtype /Link
-/A 153 0 R
-/Type /Annot
-/Rect [331.998 390.290027 335.89 405.690027]
-/Border [0 0 0]
-/F 4
->>
-endobj
-155 0 obj
-<<
-/S /URI
-/URI (https://www.nightfall.ai/ai-security-101/few-shot-prompting)
->>
-endobj
-156 0 obj
-<<
-/Subtype /Link
-/A 155 0 R
-/Type /Annot
-/Rect [335.89 390.290027 343.674 405.690027]
-/Border [0 0 0]
-/F 4
->>
-endobj
-157 0 obj
-<<
-/S /URI
-/URI (https://www.nightfall.ai/ai-security-101/few-shot-prompting)
->>
-endobj
-158 0 obj
-<<
-/Subtype /Link
-/A 157 0 R
-/Type /Annot
-/Rect [343.674 390.290027 347.566 405.690027]
-/Border [0 0 0]
-/F 4
->>
-endobj
-159 0 obj
-<<
-/S /URI
-/URI (https://www.techtarget.com/searchEnterpriseAI/definition/chain-of-thought-prompting)
->>
-endobj
-160 0 obj
-<<
-/Subtype /Link
-/A 159 0 R
-/Type /Annot
-/Rect [437.474 286.090033 441.366 301.490033]
-/Border [0 0 0]
-/F 4
->>
-endobj
-161 0 obj
-<<
-/S /URI
-/URI (https://www.techtarget.com/searchEnterpriseAI/definition/chain-of-thought-prompting)
->>
-endobj
-162 0 obj
-<<
-/Subtype /Link
-/A 161 0 R
-/Type /Annot
-/Rect [441.366 286.090033 449.15 301.490033]
-/Border [0 0 0]
-/F 4
->>
-endobj
-163 0 obj
-<<
-/S /URI
-/URI (https://www.techtarget.com/searchEnterpriseAI/definition/chain-of-thought-prompting)
->>
-endobj
-164 0 obj
-<<
-/Subtype /Link
-/A 163 0 R
-/Type /Annot
-/Rect [449.15 286.090033 453.042 301.490033]
-/Border [0 0 0]
-/F 4
->>
-endobj
-165 0 obj
-<<
-/S /URI
-/URI (https://www.techtarget.com/searchEnterpriseAI/definition/chain-of-thought-prompting)
->>
-endobj
-166 0 obj
-<<
-/Subtype /Link
-/A 165 0 R
-/Type /Annot
-/Rect [40 256.290028 555.280029 276.090027]
-/Border [0 0 0]
-/F 4
->>
-endobj
-167 0 obj
-<<
-/S /URI
-/URI (https://www.techtarget.com/searchEnterpriseAI/definition/chain-of-thought-prompting)
->>
-endobj
-168 0 obj
-<<
-/Subtype /Link
-/A 167 0 R
-/Type /Annot
-/Rect [40 216.490028 555.280029 236.290028]
-/Border [0 0 0]
-/F 4
->>
-endobj
-169 0 obj
-<<
-/S /URI
-/URI (https://www.techtarget.com/searchEnterpriseAI/definition/chain-of-thought-prompting)
->>
-endobj
-170 0 obj
-<<
-/Subtype /Link
-/A 169 0 R
-/Type /Annot
-/Rect [40 176.690029 555.280029 196.490028]
-/Border [0 0 0]
-/F 4
->>
-endobj
-171 0 obj
-<<
-/S /URI
-/URI (https://www.techtarget.com/searchEnterpriseAI/definition/chain-of-thought-prompting)
->>
-endobj
-172 0 obj
-<<
-/Subtype /Link
-/A 171 0 R
-/Type /Annot
-/Rect [40 136.890034 555.280029 156.690033]
-/Border [0 0 0]
-/F 4
->>
-endobj
-132 0 obj
-<<
-/Type /Page
-/Parent 1 0 R
-/MediaBox [0 0 595.280029 841.890015]
-/Contents 130 0 R
-/Resources 131 0 R
-/UserUnit 1
-/Annots [134 0 R 136 0 R 138 0 R 140 0 R 142 0 R 144 0 R 146 0 R 148 0 R 150 0 R 152 0 R 154 0 R 156 0 R 158 0 R 160 0 R 162 0 R 164 0 R 166 0 R 168 0 R 170 0 R 172 0 R]
->>
-endobj
-131 0 obj
-<<
-/ProcSet [/PDF /Text /ImageB /ImageC /ImageI]
-/ExtGState <<
-/Gs1 9 0 R
->>
-/Font <<
-/F1 10 0 R
->>
->>
-endobj
-176 0 obj
-<<
-/S /URI
-/URI (https://www.nightfall.ai/ai-security-101/few-shot-prompting)
->>
-endobj
-177 0 obj
-<<
-/Subtype /Link
-/A 176 0 R
-/Type /Annot
-/Rect [104.582 765.690015 108.474 781.090015]
-/Border [0 0 0]
-/F 4
->>
-endobj
-178 0 obj
-<<
-/S /URI
-/URI (https://www.nightfall.ai/ai-security-101/few-shot-prompting)
->>
-endobj
-179 0 obj
-<<
-/Subtype /Link
-/A 178 0 R
-/Type /Annot
-/Rect [108.474 765.690015 116.258 781.090015]
-/Border [0 0 0]
-/F 4
->>
-endobj
-180 0 obj
-<<
-/S /URI
-/URI (https://www.nightfall.ai/ai-security-101/few-shot-prompting)
->>
-endobj
-181 0 obj
-<<
-/Subtype /Link
-/A 180 0 R
-/Type /Annot
-/Rect [116.258 765.690015 120.15 781.090015]
-/Border [0 0 0]
-/F 4
->>
-endobj
-182 0 obj
-<<
-/S /URI
-/URI (https://thomaswong.me/prompt-chaining)
->>
-endobj
-183 0 obj
-<<
-/Subtype /Link
-/A 182 0 R
-/Type /Annot
-/Rect [120.15 765.690015 124.042 781.090015]
-/Border [0 0 0]
-/F 4
->>
-endobj
-184 0 obj
-<<
-/S /URI
-/URI (https://thomaswong.me/prompt-chaining)
->>
-endobj
-185 0 obj
-<<
-/Subtype /Link
-/A 184 0 R
-/Type /Annot
-/Rect [124.042 765.690015 139.61 781.090015]
-/Border [0 0 0]
-/F 4
->>
-endobj
-186 0 obj
-<<
-/S /URI
-/URI (https://thomaswong.me/prompt-chaining)
->>
-endobj
-187 0 obj
-<<
-/Subtype /Link
-/A 186 0 R
-/Type /Annot
-/Rect [139.61 765.690015 143.502 781.090015]
-/Border [0 0 0]
-/F 4
->>
-endobj
-188 0 obj
-<<
-/S /URI
-/URI (https://www.nightfall.ai/ai-security-101/few-shot-prompting)
->>
-endobj
-189 0 obj
-<<
-/Subtype /Link
-/A 188 0 R
-/Type /Annot
-/Rect [218.192 734.890015 222.084 750.290015]
-/Border [0 0 0]
-/F 4
->>
-endobj
-190 0 obj
-<<
-/S /URI
-/URI (https://www.nightfall.ai/ai-security-101/few-shot-prompting)
->>
-endobj
-191 0 obj
-<<
-/Subtype /Link
-/A 190 0 R
-/Type /Annot
-/Rect [222.084 734.890015 229.868 750.290015]
-/Border [0 0 0]
-/F 4
->>
-endobj
-192 0 obj
-<<
-/S /URI
-/URI (https://www.nightfall.ai/ai-security-101/few-shot-prompting)
->>
-endobj
-193 0 obj
-<<
-/Subtype /Link
-/A 192 0 R
-/Type /Annot
-/Rect [229.868 734.890015 233.76 750.290015]
-/Border [0 0 0]
-/F 4
->>
-endobj
-194 0 obj
-<<
-/S /URI
-/URI (https://www.promptingguide.ai/techniques/fewshot.en)
->>
-endobj
-195 0 obj
-<<
-/Subtype /Link
-/A 194 0 R
-/Type /Annot
-/Rect [422.097821 613.090012 425.989821 628.490012]
-/Border [0 0 0]
-/F 4
->>
-endobj
-196 0 obj
-<<
-/S /URI
-/URI (https://www.promptingguide.ai/techniques/fewshot.en)
->>
-endobj
-197 0 obj
-<<
-/Subtype /Link
-/A 196 0 R
-/Type /Annot
-/Rect [425.989821 613.090012 433.773821 628.490012]
-/Border [0 0 0]
-/F 4
->>
-endobj
-198 0 obj
-<<
-/S /URI
-/URI (https://www.promptingguide.ai/techniques/fewshot.en)
->>
-endobj
-199 0 obj
-<<
-/Subtype /Link
-/A 198 0 R
-/Type /Annot
-/Rect [433.773821 613.090012 437.665821 628.490012]
-/Border [0 0 0]
-/F 4
->>
-endobj
-200 0 obj
-<<
-/S /URI
-/URI (https://www.whytryai.com/p/chain-of-thought-prompting)
->>
-endobj
-201 0 obj
-<<
-/Subtype /Link
-/A 200 0 R
-/Type /Annot
-/Rect [448.674 582.290012 452.566 597.690012]
-/Border [0 0 0]
-/F 4
->>
-endobj
-202 0 obj
-<<
-/S /URI
-/URI (https://www.whytryai.com/p/chain-of-thought-prompting)
->>
-endobj
-203 0 obj
-<<
-/Subtype /Link
-/A 202 0 R
-/Type /Annot
-/Rect [452.566 582.290012 460.35 597.690012]
-/Border [0 0 0]
-/F 4
->>
-endobj
-204 0 obj
-<<
-/S /URI
-/URI (https://www.whytryai.com/p/chain-of-thought-prompting)
->>
-endobj
-205 0 obj
-<<
-/Subtype /Link
-/A 204 0 R
-/Type /Annot
-/Rect [460.35 582.290012 464.242 597.690012]
-/Border [0 0 0]
-/F 4
->>
-endobj
-206 0 obj
-<<
-/S /URI
-/URI (https://ar5iv.labs.arxiv.org/html/2201.11903)
->>
-endobj
-207 0 obj
-<<
-/Subtype /Link
-/A 206 0 R
-/Type /Annot
-/Rect [40 448.289997 555.280029 468.089996]
-/Border [0 0 0]
-/F 4
->>
-endobj
-208 0 obj
-<<
-/S /URI
-/URI (https://www.promptingguide.ai/techniques/fewshot.en)
->>
-endobj
-209 0 obj
-<<
-/Subtype /Link
-/A 208 0 R
-/Type /Annot
-/Rect [40 408.489998 555.280029 428.289997]
-/Border [0 0 0]
-/F 4
->>
-endobj
-210 0 obj
-<<
-/S /URI
-/URI (https://www.whytryai.com/p/chain-of-thought-prompting)
->>
-endobj
-211 0 obj
-<<
-/Subtype /Link
-/A 210 0 R
-/Type /Annot
-/Rect [40 310.689991 555.280029 330.48999]
-/Border [0 0 0]
-/F 4
->>
-endobj
-212 0 obj
-<<
-/S /URI
-/URI (https://www.whytryai.com/p/chain-of-thought-prompting)
->>
-endobj
-213 0 obj
-<<
-/Subtype /Link
-/A 212 0 R
-/Type /Annot
-/Rect [40 270.889992 555.280029 290.689991]
-/Border [0 0 0]
-/F 4
->>
-endobj
-214 0 obj
-<<
-/S /URI
-/URI (https://www.entrypointai.com/blog/pre-training-vs-fine-tuning-vs-in-context-learning-of-large-language-models/)
->>
-endobj
-215 0 obj
-<<
-/Subtype /Link
-/A 214 0 R
-/Type /Annot
-/Rect [40 231.089993 555.280029 250.889992]
-/Border [0 0 0]
-/F 4
->>
-endobj
-216 0 obj
-<<
-/S /URI
-/URI (https://ar5iv.labs.arxiv.org/html/2201.11903)
->>
-endobj
-217 0 obj
-<<
-/Subtype /Link
-/A 216 0 R
-/Type /Annot
-/Rect [40 191.289993 555.280029 211.089993]
-/Border [0 0 0]
-/F 4
->>
-endobj
-218 0 obj
-<<
-/S /URI
-/URI (https://arxiv.org/html/2401.02038v2)
->>
-endobj
-219 0 obj
-<<
-/Subtype /Link
-/A 218 0 R
-/Type /Annot
-/Rect [181.4 52.889954 185.292 68.289954]
-/Border [0 0 0]
-/F 4
->>
-endobj
-220 0 obj
-<<
-/S /URI
-/URI (https://arxiv.org/html/2401.02038v2)
->>
-endobj
-221 0 obj
-<<
-/Subtype /Link
-/A 220 0 R
-/Type /Annot
-/Rect [185.292 52.889954 200.86 68.289954]
-/Border [0 0 0]
-/F 4
->>
-endobj
-222 0 obj
-<<
-/S /URI
-/URI (https://arxiv.org/html/2401.02038v2)
->>
-endobj
-223 0 obj
-<<
-/Subtype /Link
-/A 222 0 R
-/Type /Annot
-/Rect [200.86 52.889954 204.752 68.289954]
-/Border [0 0 0]
-/F 4
->>
-endobj
-175 0 obj
-<<
-/Type /Page
-/Parent 1 0 R
-/MediaBox [0 0 595.280029 841.890015]
-/Contents 173 0 R
-/Resources 174 0 R
-/UserUnit 1
-/Annots [177 0 R 179 0 R 181 0 R 183 0 R 185 0 R 187 0 R 189 0 R 191 0 R 193 0 R 195 0 R 197 0 R 199 0 R 201 0 R 203 0 R 205 0 R 207 0 R 209 0 R 211 0 R 213 0 R 215 0 R 217 0 R 219 0 R 221 0 R 223 0 R]
->>
-endobj
-174 0 obj
-<<
-/ProcSet [/PDF /Text /ImageB /ImageC /ImageI]
-/ExtGState <<
-/Gs1 9 0 R
->>
-/Font <<
-/F1 10 0 R
->>
->>
-endobj
-227 0 obj
-<<
-/S /URI
-/URI (https://medium.com/@bijit211987/the-evolution-of-language-models-pre-training-fine-tuning-and-in-context-learning-b63d4c161e49)
->>
-endobj
-228 0 obj
-<<
-/Subtype /Link
-/A 227 0 R
-/Type /Annot
-/Rect [409.404 781.090015 413.296 796.490015]
-/Border [0 0 0]
-/F 4
->>
-endobj
-229 0 obj
-<<
-/S /URI
-/URI (https://medium.com/@bijit211987/the-evolution-of-language-models-pre-training-fine-tuning-and-in-context-learning-b63d4c161e49)
->>
-endobj
-230 0 obj
-<<
-/Subtype /Link
-/A 229 0 R
-/Type /Annot
-/Rect [413.296 781.090015 428.864 796.490015]
-/Border [0 0 0]
-/F 4
->>
-endobj
-231 0 obj
-<<
-/S /URI
-/URI (https://medium.com/@bijit211987/the-evolution-of-language-models-pre-training-fine-tuning-and-in-context-learning-b63d4c161e49)
->>
-endobj
-232 0 obj
-<<
-/Subtype /Link
-/A 231 0 R
-/Type /Annot
-/Rect [428.864 781.090015 432.756 796.490015]
-/Border [0 0 0]
-/F 4
->>
-endobj
-233 0 obj
-<<
-/S /URI
-/URI (https://bakingai.com/blog/ai-prompt-chaining-guide/)
->>
-endobj
-234 0 obj
-<<
-/Subtype /Link
-/A 233 0 R
-/Type /Annot
-/Rect [40 709.290012 555.280029 729.090012]
-/Border [0 0 0]
-/F 4
->>
-endobj
-235 0 obj
-<<
-/S /URI
-/URI (https://bakingai.com/blog/ai-prompt-chaining-guide/)
->>
-endobj
-236 0 obj
-<<
-/Subtype /Link
-/A 235 0 R
-/Type /Annot
-/Rect [40 669.490013 555.280029 689.290012]
-/Border [0 0 0]
-/F 4
->>
-endobj
-237 0 obj
-<<
-/S /URI
-/URI (https://arxiv.org/html/2401.02038v2)
->>
-endobj
-238 0 obj
-<<
-/Subtype /Link
-/A 237 0 R
-/Type /Annot
-/Rect [379.810741 550.890021 383.667353 566.290021]
-/Border [0 0 0]
-/F 4
->>
-endobj
-239 0 obj
-<<
-/S /URI
-/URI (https://arxiv.org/html/2401.02038v2)
->>
-endobj
-240 0 obj
-<<
-/Subtype /Link
-/A 239 0 R
-/Type /Annot
-/Rect [383.667353 550.890021 399.164576 566.290021]
-/Border [0 0 0]
-/F 4
->>
-endobj
-241 0 obj
-<<
-/S /URI
-/URI (https://arxiv.org/html/2401.02038v2)
->>
-endobj
-242 0 obj
-<<
-/Subtype /Link
-/A 241 0 R
-/Type /Annot
-/Rect [399.164576 550.890021 403.021187 566.290021]
-/Border [0 0 0]
-/F 4
->>
-endobj
-243 0 obj
-<<
-/S /URI
-/URI (https://bakingai.com/blog/ai-prompt-chaining-guide/)
->>
-endobj
-244 0 obj
-<<
-/Subtype /Link
-/A 243 0 R
-/Type /Annot
-/Rect [155.822 411.490027 159.714 426.890027]
-/Border [0 0 0]
-/F 4
->>
-endobj
-245 0 obj
-<<
-/S /URI
-/URI (https://bakingai.com/blog/ai-prompt-chaining-guide/)
->>
-endobj
-246 0 obj
-<<
-/Subtype /Link
-/A 245 0 R
-/Type /Annot
-/Rect [159.714 411.490027 175.282 426.890027]
-/Border [0 0 0]
-/F 4
->>
-endobj
-247 0 obj
-<<
-/S /URI
-/URI (https://bakingai.com/blog/ai-prompt-chaining-guide/)
->>
-endobj
-248 0 obj
-<<
-/Subtype /Link
-/A 247 0 R
-/Type /Annot
-/Rect [175.282 411.490027 179.174 426.890027]
-/Border [0 0 0]
-/F 4
->>
-endobj
-249 0 obj
-<<
-/S /URI
-/URI (https://bakingai.com/blog/ai-prompt-chaining-guide/)
->>
-endobj
-250 0 obj
-<<
-/Subtype /Link
-/A 249 0 R
-/Type /Annot
-/Rect [141.78 380.690027 145.672 396.090027]
-/Border [0 0 0]
-/F 4
->>
-endobj
-251 0 obj
-<<
-/S /URI
-/URI (https://bakingai.com/blog/ai-prompt-chaining-guide/)
->>
-endobj
-252 0 obj
-<<
-/Subtype /Link
-/A 251 0 R
-/Type /Annot
-/Rect [145.672 380.690027 161.24 396.090027]
-/Border [0 0 0]
-/F 4
->>
-endobj
-253 0 obj
-<<
-/S /URI
-/URI (https://bakingai.com/blog/ai-prompt-chaining-guide/)
->>
-endobj
-254 0 obj
-<<
-/Subtype /Link
-/A 253 0 R
-/Type /Annot
-/Rect [161.24 380.690027 165.132 396.090027]
-/Border [0 0 0]
-/F 4
->>
-endobj
-255 0 obj
-<<
-/S /URI
-/URI (https://arxiv.org/html/2404.01077v1)
->>
-endobj
-256 0 obj
-<<
-/Subtype /Link
-/A 255 0 R
-/Type /Annot
-/Rect [165.132 380.690027 169.024 396.090027]
-/Border [0 0 0]
-/F 4
->>
-endobj
-257 0 obj
-<<
-/S /URI
-/URI (https://arxiv.org/html/2404.01077v1)
->>
-endobj
-258 0 obj
-<<
-/Subtype /Link
-/A 257 0 R
-/Type /Annot
-/Rect [169.024 380.690027 184.592 396.090027]
-/Border [0 0 0]
-/F 4
->>
-endobj
-259 0 obj
-<<
-/S /URI
-/URI (https://arxiv.org/html/2404.01077v1)
->>
-endobj
-260 0 obj
-<<
-/Subtype /Link
-/A 259 0 R
-/Type /Annot
-/Rect [184.592 380.690027 188.484 396.090027]
-/Border [0 0 0]
-/F 4
->>
-endobj
-261 0 obj
-<<
-/S /URI
-/URI (https://addlly.ai/blog/what-is-few-shot-prompting/)
->>
-endobj
-262 0 obj
-<<
-/Subtype /Link
-/A 261 0 R
-/Type /Annot
-/Rect [76.543999 313.890039 520.890007 329.290039]
-/Border [0 0 0]
-/F 4
->>
-endobj
-263 0 obj
-<<
-/S /URI
-/URI (https://www.educative.io/courses/all-you-need-to-know-about-prompt-engineering/few-shot-prompting)
->>
-endobj
-264 0 obj
-<<
-/Subtype /Link
-/A 263 0 R
-/Type /Annot
-/Rect [76.543999 293.490046 523.05999 308.890045]
-/Border [0 0 0]
-/F 4
->>
-endobj
-265 0 obj
-<<
-/S /URI
-/URI (https://roadmap.sh/prompt-engineering/prompts/prompting-techniques/few-shot-prompting)
->>
-endobj
-266 0 obj
-<<
-/Subtype /Link
-/A 265 0 R
-/Type /Annot
-/Rect [76.543999 273.090052 275.805992 288.490051]
-/Border [0 0 0]
-/F 4
->>
-endobj
-267 0 obj
-<<
-/S /URI
-/URI (https://www.nightfall.ai/ai-security-101/few-shot-prompting)
->>
-endobj
-268 0 obj
-<<
-/Subtype /Link
-/A 267 0 R
-/Type /Annot
-/Rect [76.543999 252.690027 396.136009 268.090027]
-/Border [0 0 0]
-/F 4
->>
-endobj
-269 0 obj
-<<
-/S /URI
-/URI (https://www.promptingguide.ai/techniques/fewshot.en)
->>
-endobj
-270 0 obj
-<<
-/Subtype /Link
-/A 269 0 R
-/Type /Annot
-/Rect [76.543999 232.290003 380.036003 247.690002]
-/Border [0 0 0]
-/F 4
->>
-endobj
-271 0 obj
-<<
-/S /URI
-/URI (https://www.whytryai.com/p/chain-of-thought-prompting)
->>
-endobj
-272 0 obj
-<<
-/Subtype /Link
-/A 271 0 R
-/Type /Annot
-/Rect [76.543999 211.889978 496.838005 227.289978]
-/Border [0 0 0]
-/F 4
->>
-endobj
-273 0 obj
-<<
-/S /URI
-/URI (https://www.techtarget.com/searchEnterpriseAI/definition/chain-of-thought-prompting)
->>
-endobj
-274 0 obj
-<<
-/Subtype /Link
-/A 273 0 R
-/Type /Annot
-/Rect [76.543999 191.489954 527.679985 206.889954]
-/Border [0 0 0]
-/F 4
->>
-endobj
-275 0 obj
-<<
-/S /URI
-/URI (https://www.prompthub.us/blog/chain-of-thought-prompting-guide)
->>
-endobj
-276 0 obj
-<<
-/Subtype /Link
-/A 275 0 R
-/Type /Annot
-/Rect [76.543999 171.08993 389.653984 186.489929]
-/Border [0 0 0]
-/F 4
->>
-endobj
-277 0 obj
-<<
-/S /URI
-/URI (https://ar5iv.labs.arxiv.org/html/2201.11903)
->>
-endobj
-278 0 obj
-<<
-/Subtype /Link
-/A 277 0 R
-/Type /Annot
-/Rect [76.543999 150.689905 534.077995 166.089905]
-/Border [0 0 0]
-/F 4
->>
-endobj
-279 0 obj
-<<
-/S /URI
-/URI (https://bakingai.com/blog/ai-prompt-chaining-guide/)
->>
-endobj
-280 0 obj
-<<
-/Subtype /Link
-/A 279 0 R
-/Type /Annot
-/Rect [84.327999 130.289881 515.976009 145.68988]
-/Border [0 0 0]
-/F 4
->>
-endobj
-281 0 obj
-<<
-/S /URI
-/URI (https://medium.com/@abhishekranjandev/unraveling-the-magic-of-prompt-chaining-in-chat-gpt-784ea2651dd7)
->>
-endobj
-282 0 obj
-<<
-/Subtype /Link
-/A 281 0 R
-/Type /Annot
-/Rect [84.327999 109.889856 419.683987 125.289856]
-/Border [0 0 0]
-/F 4
->>
-endobj
-283 0 obj
-<<
-/S /URI
-/URI (https://www.prompthub.us/blog/prompt-chaining-guide)
->>
-endobj
-284 0 obj
-<<
-/Subtype /Link
-/A 283 0 R
-/Type /Annot
-/Rect [84.327999 89.489832 229.829998 104.889832]
-/Border [0 0 0]
-/F 4
->>
-endobj
-285 0 obj
-<<
-/S /URI
-/URI (https://thomaswong.me/prompt-chaining)
->>
-endobj
-286 0 obj
-<<
-/Subtype /Link
-/A 285 0 R
-/Type /Annot
-/Rect [84.327999 69.089808 415.805996 84.489807]
-/Border [0 0 0]
-/F 4
->>
-endobj
-287 0 obj
-<<
-/S /URI
-/URI (https://www.entrypointai.com/blog/pre-training-vs-fine-tuning-vs-in-context-learning-of-large-language-models/)
->>
-endobj
-288 0 obj
-<<
-/Subtype /Link
-/A 287 0 R
-/Type /Annot
-/Rect [82.921997 48.689783 545.280029 64.089783]
-/Border [0 0 0]
-/F 4
->>
-endobj
-289 0 obj
-<<
-/S /URI
-/URI (https://arxiv.org/html/2401.02038v2)
->>
-endobj
-290 0 obj
-<<
-/Subtype /Link
-/A 289 0 R
-/Type /Annot
-/Rect [50 30.000015 50 43.689759]
-/Border [0 0 0]
-/F 4
->>
-endobj
-226 0 obj
-<<
-/Type /Page
-/Parent 1 0 R
-/MediaBox [0 0 595.280029 841.890015]
-/Contents 224 0 R
-/Resources 225 0 R
-/UserUnit 1
-/Annots [228 0 R 230 0 R 232 0 R 234 0 R 236 0 R 238 0 R 240 0 R 242 0 R 244 0 R 246 0 R 248 0 R 250 0 R 252 0 R 254 0 R 256 0 R 258 0 R 260 0 R 262 0 R 264 0 R 266 0 R 268 0 R 270 0 R 272 0 R 274 0 R 276 0 R 278 0 R 280 0 R 282 0 R 284 0 R 286 0 R 288 0 R 290 0 R]
->>
-endobj
-225 0 obj
-<<
-/ProcSet [/PDF /Text /ImageB /ImageC /ImageI]
-/ExtGState <<
-/Gs1 9 0 R
->>
-/Font <<
-/F1 10 0 R
->>
->>
-endobj
-294 0 obj
-<<
-/S /URI
-/URI (https://arxiv.org/html/2401.02038v2)
->>
-endobj
-295 0 obj
-<<
-/Subtype /Link
-/A 294 0 R
-/Type /Annot
-/Rect [83.684483 796.490015 545.280033 811.890015]
-/Border [0 0 0]
-/F 4
->>
-endobj
-296 0 obj
-<<
-/S /URI
-/URI (https://medium.com/@bijit211987/the-evolution-of-language-models-pre-training-fine-tuning-and-in-context-learning-b63d4c161e49)
->>
-endobj
-297 0 obj
-<<
-/Subtype /Link
-/A 296 0 R
-/Type /Annot
-/Rect [83.277431 776.090015 545.280025 791.490015]
-/Border [0 0 0]
-/F 4
->>
-endobj
-298 0 obj
-<<
-/S /URI
-/URI (https://arxiv.org/html/2404.01077v1)
->>
-endobj
-299 0 obj
-<<
-/Subtype /Link
-/A 298 0 R
-/Type /Annot
-/Rect [84.327999 755.690016 503.585995 771.090015]
-/Border [0 0 0]
-/F 4
->>
-endobj
-293 0 obj
-<<
-/Type /Page
-/Parent 1 0 R
-/MediaBox [0 0 595.280029 841.890015]
-/Contents 291 0 R
-/Resources 292 0 R
-/UserUnit 1
-/Annots [295 0 R 297 0 R 299 0 R]
->>
-endobj
-292 0 obj
-<<
-/ProcSet [/PDF /Text /ImageB /ImageC /ImageI]
-/ExtGState <<
-/Gs1 9 0 R
->>
-/Font <<
-/F1 10 0 R
->>
->>
-endobj
-301 0 obj
-(react-pdf)
-endobj
-302 0 obj
-(react-pdf)
-endobj
-303 0 obj
-(D:20240923233149Z)
-endobj
-300 0 obj
-<<
-/Producer 301 0 R
-/Creator 302 0 R
-/CreationDate 303 0 R
->>
-endobj
-10 0 obj
-<<
-/Type /Font
-/BaseFont /Helvetica
-/Subtype /Type1
-/Encoding /WinAnsiEncoding
->>
-endobj
-4 0 obj
-<<
->>
-endobj
-3 0 obj
-<<
-/Type /Catalog
-/Pages 1 0 R
-/Names 2 0 R
-/ViewerPreferences 5 0 R
->>
-endobj
-1 0 obj
-<<
-/Type /Pages
-/Count 6
-/Kids [8 0 R 15 0 R 132 0 R 175 0 R 226 0 R 293 0 R]
->>
-endobj
-2 0 obj
-<<
-/Dests <<
-  /Names [
-]
->>
->>
-endobj
-5 0 obj
-<<
-/DisplayDocTitle true
->>
-endobj
-291 0 obj
-<<
-/Length 551
-/Filter /FlateDecode
->>
-stream
-xœÕ•ÍnÔ0€ïy
-¿@S=?´Ê¡*q@ZvoˆCÉªÔ"¡•àõ™±“M@»P6ŞMâñxfì™/çµ]€ŞBï\÷P}dpÑÛo˜…`³²Y¢ÿP³É.__îºáíÍ•ë•Ïã‡îSuys ÷ñ s¶Çy'bºÚ¯l®†öjù•zF·«wú!õñ¶uäİ&øà[çß»ıëêå^]×„u©„»ÍÎ·ù¹„±æ„˜â²Î_XWÉÇ& qâ HªZ#€0Š§”B¤Ğ¨ˆ›ïÕşÆV.Ümx`d’ Q!÷½KğØië³’ÄeÃ²H_b10ò¤ä%°L<HäF¸uTTw\zZwm«+"Ø»LVY]MZrÌ+a«jj:Ì)ä(§H5òQ}XO½˜ióbqp4'ò«Û­ûK‚mC¿jİjŞªy<wï×Y¼Şıyw×oªİTKKû‘ ¶(9üXäŒğLÉÁ‰œ¹ìyÔ¢¤RÃà%n¢…¥Ì–éS2ıLâÇİš0òÅ°VpèOÖ|§8¿«Î‚­
-ÎM×`­u\’×/!1¯Sû3¤p­ûûRÊø }-]Oy\LÃÖùÌq±«Ñr“\×ùêYŸ¹:U”‰v:Lß÷QB¡Jg~‡0ÉtH TTòY•lh0Ë,§I€¦Ö)çI˜Æÿ	sû7E
-endstream
-endobj
-6 0 obj
-<<
-/Length 1867
-/Filter /FlateDecode
->>
-stream
-xœÕZÛ7}÷WÌDÑ°ğCÒ6@
-l³oE²cOQ )P,Ğş~IJš«4NÒÆvâd³iÆæyxHIu_¯şV‰¥T®ë?şÊ/ÅTgdge(•¤¿|qœgEü­„§±×ßÿş½?ÿüîM×¿$Ï{éÿ<¼~÷¢ºß^ğŞÇñşÊyó4>{1ô„OşAuÚvOÃá—8şàïAjéOŞi	ÎŸ½õ4°^Ñ;¼j}Àk†gX?€ôÑ0x—?’¡ø”c§ñ ~(N3xË x3^øµ{úñğı~íòÅ¬ÓÂ8İ1U46CJ
-Ùp=˜@‚öƒ?YĞ=ÚMæ)z¿ŞgŒÄ| ³ë÷9ÉøLC|œTÂßA{a·£Nà‡Ñ0Ø4|%g2É™2(5ƒÙw@) Ó¤WZÚ_§*FB¨1š‹şÒğ#OY†œŠBEüËĞ“­CŒ¥‰Z94Hƒu8UX¥À[.®ñ’Ëi_Xg0Ó)Æ|OX&¯+¸şŒnæè'˜*ˆ*x.9XGÊ!¢Ò¯™KvnÒ×à+UÑ`p’¹ù?EîôŠøb=Œ@D°k›kvÃıl#/'Q…EÓó.tÕR0bÎ™[#Ñ×eb„ùU}{+mIC>QB1stñç#%Ò)ÅÄ…Û#;"Ò–Û{+”Şuû:2ööÈ4rëÉdË	v‘SÒ¯cÎ©c‚©#Dÿù˜øÛc2 ¢¢¡2?yÎ¤
-ô‚°¶xkµ•(QÄ;4]•µ•˜P!ıåPa%–µšuieââ”1šñ0-\Æ«E½+`fÚ£'SÉñÉà(R„K2¤PN¤·¯6BÙ"pJ¢:TH7ÂRÕwÈ¶K¦OÌ±'·¯ŸO)à…×›Lû-Ğl±uÆ'˜yR±3ú.IêœU;ß`£/K¦¹="öT¬MU%e“ı`ÌÊ‰.¨¥£ˆ¦ŠF%n‚ihÏÛÇM= &!²¨{êPHt·IAßB„ìI´ s|H™Vx ÛKW%Óo'<â”X&’§¹[b¦Úìğ™h…‘Ÿœz°ÁÇ3n!Ü]93ïœÆ²v¯!@õeòô;`†RùÊ©T TööZê0v¥êå ‡•ıd©ÛĞ^R!œa$FN¹L99‰¢S»nå˜—V¢¢²ÂúÿÃw §-K¾æ²h& P[Ã‡I[W!À¸TæhªæÛ#PLfÂ*¤À¬„ó^ÑÑP‚®QPTèÊe©¬í½ÈbÔ<¹ËöÜj]¡K3òîÚ†Å ’ñø’`Ì=èI %+.3Mr¡ÄÁŞ@t¡Ïcß¿tğ.ôÒ½X@é!7İl	ÃíÈÁ(#5iFÕY#¸}¥UmO ´Å‘sF*yŸÃ2İõg(_ç¥}§Ù}÷ñ`ŒFÅïÓÛ?æ¦½}ÿå.ñşíO‡÷Õ°!ê°°Èòs©ğÁÅ•ÉÄşÜzN!W³æR•Q”ÇhCÉ‘œ<vg:?Öç£§qæï'B2|{öUVU}êW]Ï£ëU7SF¼dsó ùPhÚ’Ò+°u@Ao 6ïÆ¡ÿ¦ØuSâæ- Ú{ÒÔ]ˆSŞ²R,ÙKóÜ?g¦sÓÅé8D‘ˆ¡­|eo†Î´È	TñXûqÎ˜@›”7‘Tn˜”ì%XWå½¿YEëN]À—±±äâ)±¶ ˆ¨²¨'´ÚP{tu®­Õjë„Öî8Ÿwµ˜®‡,NÎ©ñÜœš2Ês-¥´Ô.œƒËÊLƒ‹ôœMß8-ç}—Æ*XmE0ÛE˜pÜYYí„ô»ûmÈ´ù†¯‹[n˜2Í~‰EH€¤m~¥n)ûøk?.Åkq…Ã·x¦ãåÁª»:„û¸­C•›7CóçÍ>£‘©\lmá×w]Ö¶’xñŸÛ^¤­¯phaÉ\ûYŸÁoú~Ùg ÚXtğB$”ò9Ó8SÏœ”Z©¤€°>Ê,Æ‡GF¾b.ÂÏ·¥JÇÙ*íYŒx÷­’Âro²ŞÈr.bÑ
-
-âŠ^¾FõØE¯‚¢~òü]vÊÜA,=ˆÖl\ˆ3/‚ísâ¦¾OóÙ–%vg}"°OûTërşéaç©œ½Biı]øôq®¬)ÚtnAP¨²újŞ1˜hfl÷ 1ä^9V1×z^¦éÕ¨ı]Rî©„°z{lºz÷´Êa™ï]`*\L¹9Å"bº[m(§C×èiÎ¸Ÿ’ö,)ÚS”Og\tV›‰Š˜Ùnëîœ U94Å])¿½âUOó š#õ‡ö²°&àiS9”öiw„ò¬ÍNj¸z4%j™SI¼?şLøRœÎP•Ufxª5s0~ş˜ìJù¶}Î1Ja º
- “P,¯ÛäW
-endstream
-endobj
-130 0 obj
-<<
-/Length 2791
-/Filter /FlateDecode
->>
-stream
-xœí\ÍÜ¸¾÷Sô˜Ëâ?c»IÈ!€cß‚vú'	°0¿~ªŠ¤DvSìÇšÑ =íq$JEVÉ_{‰Ÿ€ÿ"D)ÁîO»ßó¸ ìµ¤ùB9	ôÅçÊü5ÂĞ¹ŸşpúÏ?§¿şúóşğu'©£ë‚SŞX,*€wÆK‚ÒVE<åb[lÿõğïİO¿~…ı?¾¢˜O“¨N•şRU£ºô+ó'¬¬Û9ïşöÑ€—^ºƒ‹N;ğ¿Ïîäµ’ÜÉ%õÿ>r)ëõÃ^ş}ÿåÏ»?~Á
-LmJÈÚÿ‰«ö‰¿íh%lÄŸp¥%%\GK|ı6Ùä&»²ŞGgö
-¿½Ç&í?ª£×¨ç³7{+ĞÚ8<+ë#Ô•Bıù< uœ_¾¤²Å²È‡=Ö²ÔÃÅ^¦¨IËuÇª¨‡ı#ùAhpoÑ¤é$UÀ|ÜjST
-°œÅÿURyÅ NqÔgQ}=MßR%V9%‘ÿ’×*|ÒA»~jÁ
-¤¤î5ûjí‹*¼'ºÈv°ÜİÎÎ)ÉfÑY$«›c©+fÇÃ¢Oø6ê¹Ù{ëu€Z5ÀEMTŠo%Ÿ°èİ`ØİµV§®’TÔÂ)5k¨ê©6gİşí´0TK™òı{û,9­ÕY'Ô6GÌŒfû%¤4Ie›­º}‹K!qFØvííB—_<òöXèGO»t•şU7í—Ïßß´Ï¿üe÷97é[-ái§ğH­*®’ğ´Óh7µVó®?ı@ 	İ¿?Ø£yÚ9ĞäEÓNƒäqŞâly,–ÇhúçË	õ{‘öÂ¨ÊûZ3VxBAoƒl†¦Kj§»…‹òôtğ^Æ9Šg¯ô”	.œ	.Í¡&Kh'Ïhx?^³Õl§kZ0M”g;„+d®ô7	g,’ÎÌÓãâô/…†ÆBo6÷—	<Ã(‹z3t¨…Y¿@%ÙcX²|L^ê³æ,yr² ìÌŞ›ÊYG?‘!y»&YÅ×	.`Ébû3£A6\Öf–—j¥d3r†(‡@XGÓ&ºVÓ=QŸ5º;d¬¤}µaœQ×ª>â¶Î×ôò5‚¶UIsyŸvˆ6aÕêĞÊĞAX´.Ÿë 9Š—õy¶Ì0xêap4Ğ Á÷¡İt¨£ª¶æi+wC=­Bš&{;hÖµœİŠŒ¶,­’j~‰I®¤.*^à\çæN7ÔôÈ½Ú»ÒPÓê‹®0ÖÊë>Ò×aà­D5(9xÊuAÎÇ´´Š‹57/±æ÷{¿{nÏêç°0Ä[ˆgãf-=½MÃõYÄ«®¯º`œ	$Ls§f„a=Aó'ÂÆ€D±ĞœÙA1åïj.L¤„J°(¡(^Çÿ/XjÂ<TíË>q4Uõ‚/ù’•LŒÂ×3‘ÉKíö¬7İøZ&"jC“êQ3„ò •g†æçI1	ÚXÆ€šñ`1ŠAN"J2n±dßÙÑd†aôÅØ¨Ø*aÏÙÎô8ªØ,hAÅAHÛÓ°ƒ„èÛ³!¾&ÎGÁÜDlvì6Gœ¨3ç³½e›r/‹o½ê:t«î±sn–62Câå=hı=;hÕµXb7^ûûÌJ£ßÅ]Õãbö›¸¬o»<$‚ÁáúigĞ×FG+q{µ„“a]•ˆ§UÂ®*n€ÂœÀ’ëŠ«D<í<ˆèV•WI@qV»Vû.i7=![DËŞĞÏ€î”Ñ0UÅC³EüÅ*š#¤]!ì³W™œ˜«SÁ“³Øú«a|[$ƒïRXQõ(,¬ıkrXy¥ñ\J´şŠ÷=–õÆ	ËÿíJ}'æÍ•îçÅˆa[êCçZ)^…¥»È²<Ù=¯¦úµ%¢é._@ú²ÄìĞìÊÇ+~}ë¡Å•ˆ9@ÙÄGk¸gY4i ş•C¹W,ßF,\/:¡¼áfèMD'Œ.^Êñï¢
-ß¨}ÌËÌLõâú0”Gœ­QqTt1«cùôp=¼C†½ã!@ÌÃğY†GIâ/8àÆ“ÏÃg5ëàO
-7J(^Šë×IcÅ³‰¢7¼tÆÿïJÑÇøÉ£UlÃ9™nâPÌŞòí°šŸ:ñ):†I¦tG¤A·¯h	B™‰ot¹è¼++ÁÊs:Êı±°Bœs¶XVsøPâ 1kşXÎ.ßÇR5ñ$¶T2'IEïÊø0¸aĞ<¯¥gÏË÷§´–-Fz@û§yÔµ·Úù§’8R¨ã„@6 Ğ5P½Ï‘\@¨ÍSÄúùK	FsÓgV²„¨4ÕJÓ¯b
-)pÊ½’F’n”Z˜¹;‰§ÁÁØô”—™ÉJ«
-³™GİA” ôT¾	Ê·Ğ»¬XSºæjĞ5—ƒîD½«É&:8ğ,2ÛŸğ¨ù¶wŠÁ—kÉĞÕ0nòôqN½uq@"¸.zİ5¼˜ÎQ8ô4d»¼:Caù¤£9´y®KArÑÇÊ^ln4åViõ¸J²*ÁÑÕwë©¢óD|âUgZrØ€A§ÀŞ3Eâ|ŞpMİ`¨CÖĞ~Z¥ ê¤´³^<ŸT–¼YµK	KŞ	£÷gß1…ÛWûó¿;Ì‚Ã˜ÿ‡Yi,})á_¨¼œ]›FÄÌáª Â½UIãF‰äº<u#EF´)gU‘µiÑ+KœEP¢´Î¯½idH/o®èwFï°òîİ%d[™X’¼ª•„2™t)Ù	Şp’GâŒ»Q-Œ­Ğv_IÎpÖzPoœ]R‡d ğ¦‘äy5~˜ˆ*=æEG‰Ú±Jršˆÿé‚ùÁÛ*÷7CoÏ\¥i™ı~6Œ‡6áèí¨¾k"©¬:ó•j[!âŒ«…äa:…	:“Vßl• ¸{œÔj®vñ5k–´y²ÄIòK“…°.“%x¯ÂÄò,§{¡¡/Ù X'•ó¿İGÈKfîê•cMä<Ûò3«§ñÆ·† XVÖæ9oy­Éİ´åcf‰­Ó)6ÈµÛUş&¸.\3òîÀÄv¥¡FaÊpd¯©í8[ İ²PsÛÌTwW«¤EíÛmyiÑã7~ßñš£.¼¯9Ö[s6ãÆìáS½n,‰F•IãÖÊg(´À	õ5±±Uí¶»ô¹,(ï»’_Wr ‰ußlšã;Ú“Œ¸OÂº›’k¸ºO»É_cWrÛKuä.céÂ÷îıöU¿wï{÷ş1İÛÇæıA÷î½…ªß»÷½{ÿ˜î…¦şmîı{;U¿÷ï{ÿşïrÑ¾»Ø”9ætmà ˆvÇÂšêu5ınb‚0ñVHÊ+¿·{“¤ûDû9¥>ê–	û‹7ÙTÑ*‡n)	:'‡9íÛÖœŠÉogâ}CSšvCéW[ño¾ßp)3Œ²¦ı~ñª´¹¿&Ïëdõ|íÌñÀ”­ØØ œ-vÒØsD5‘üùÍSŠùeğïxù~Ág'ıb5İvsÑuÎÉ‰¢¾ìğš³ùıéÏó6üÊp%0R…\«*%¥Ÿ.#ˆ)tWR°ù	Û@x“Õ9GgNù]è5‹)Öğó²›ì;ÇœêÏhMJË
-endstream
-endobj
-173 0 obj
-<<
-/Length 2851
-/Filter /FlateDecode
->>
-stream
-xœí\Ûn$·}Ÿ¯˜Xš÷ èÁcÀœÕ[‡ÕhÆ00Èş¾«Šd7ÙCr¤uzÔÚÌj!ˆİ$‹,^ªêğ°ÅÃÏ¿¼ÌÎ…Ùw¤AÄ^qüŸ^ä‡ŠjËd|Ÿò½ñÌã³ïşvüïo‡ã?ú~ø¼ãôşóá÷İw?}û_?C™_¦r6|ÿPÔY¼z€šÿÒõşá´û×ö(¹ÓÖ[#¹=Ø“uğLYa>9	ia6¸OV@¾ 9øÆÚTîääñN;Ïåı^òı3NC
-jqÊ(§pœr€DH
-©Pÿé~­»sîÚ{1VCµ†*QN€ §’C–ï~Şıø :È½ÔÁ2ÎíıK¥Ò¬æú©Óñé•­A% œØKÔu…b¯OĞgŠw¨(PôÔ
-¥¾T,åPT€rMTœ„áÊÊó4‚~®WÜã¼s(ïiHŠšÀÂ bM!÷€“Æ ÿĞ¦§@{,¼gFµ†Â
-fÏŸúŸ^g(H­Êa¨@§š°š/c'cÂs¤0 ;é´"Lá`¹ñ^*#<²¡Î¶B_Ìc³í
-²o½éJ7›î˜ózãM7OïVëïyÂÕ^©Â0»ñÖ¿zÎ¬´ûÉã=îÂ\H|‡;øœÒ’†åÃ:‹uhŠ­†¨Ÿ/–A=µÍVtTc’móÉ^*ÜÎ»¹ÑvŞ“‡Võ”-í .Ìk£tr”¥¶Mö%êCİ³®0ß­ãgnÃ­qÙ£ü²K&Lh0¯Ï;ë™v:¦şSÎ¶>~ıBùøÃ?vS¾T"wü.ãWXŠxŞy¨Õ¬*¯ â4ãZ®+¯ñ¼à'‰Uåw‚+føZ¬§­àæŠÎ¸@Ï/m.¹¹äğ®4<ñLjaOërNj•ö-£GÙâŠO›œãn^ğİ"Ñ¡Vª0Şª#¥ã°@Ü;û"ã®Õ/†µcç€O¹¡Fò†obÔhÇ™‹u˜/Ì*®wØÊÌÓ ï!)WÆA
-ãælD`Â²ö$ÓçO…äññõ&=FÏdã Šƒ´„ß‹xNà'ª”â@9ıîø^Î3±y×ñ={½ÿGaÒŠ.ï¸K[ä"mbâÙ*zÉ¸_×ªd ÈÀ¼]×“ªd€È ˜³«™şhş+4ÔOë4¶‰Ğm`‚û4Áy´=µ¥‡MTÄ’…ÿpí=T¡—W@—Mı	ÍàğOéI^>ëuÚ¦NÏ%X|¡Œ†Ş#Œ8¢‰@0¾%TTs2ÉÁZÂ.CÂŸ#VŒæ
-–#ğ²†<Ï* ‹™ÅŒµĞ¸eo) İ‡ŠcU…mÇ²3öÙ³ò<0í}9På8Èk÷uøLŠF=Fw,¡ù‚ğûô7
-A¸®9cÒÖÒ°&¿T/¡c‚¨x£ ª¬}¶¤É@g¸99‚ë®7Å9l>M,bß†+¥Õ5=)r…˜“^iÁ’"U¿Óe
-'n‘zZ–S–q°êÆF_´HF/»ÙÏ<jB\šI'¬	è¶WM•4£zl¥JŠ”vM¼¼/µè·o¡êc¿— õ[wªòÚa[å ‡*%^<IôP"_IQò4˜l|0Îš)‰¾Sè6@Ÿû ±u7}•:[Cƒ!yL‰‘ŒÓR±s
-Cş¯lù+¦´u1$g92ì«&A,ÿêVñè×O¯|X¨¬I'£µóAçx¸'¤3Ÿa’ÿQš*r)x:.V‘ãX`ÊM`<]/ù ÖDÙIH:ëÆ=†ìğ#e“s47e	éh\ÙG¬ 30`İÔvO¶3k%«…q’Í)pÀ	Yu$d¦—3ªª[—n@`İÌ‰m0¨f'G¹‚»Õ~ùS¦¤§Áí¬æÍgl`\Q˜$b¿ñHÿã+æ†¯üÅvĞ‘b=ãÍœ4¸¢Îğî¢@jPÜÓsõƒœGØ«{ ‡ğ¢iÀ2ó$¢ÅÊJ€‡ò†¦'+Á,K1 ‘§V¼ƒ‚³Ö¬'ø-I>´·(PÒÌ“©HNö_ä@H8!D	”Ë¡s<ôdÄİŞSlLÛü0/Áók#<dvO%ëRGÏ2R-İ-Ô ş‚õw¡ÄæiŸè”İW¸¯ñTü_Á³K%.3·ÁVìA3á)“ó…>f¢/è	€äÎ
-§«c¬CòG©lÑ]²<íÂím¸gÖmŞR¾cÿÄŞü“ÿòšóŸ|\gáÉjj!a¯Zëd$‰,e€HÉ™Z—×RŠ@A®ÆlinHînLNÚ´Më&¶»inãôÒ GÊA(öÎtÜn¢c«25­å¸ZÎ¸Õûñù„ĞL‚‚ÄÙ•ëÿ$ğ ”Xÿj"ÀMç2/::3A'pjôF'Ş¿Z˜µKsál"V×¶mÎ3˜Kû÷K@gõIJ"s?Gä¥Ş#œ»¼@)èˆxS É;ğ”—78È%¦ñïÇY=Ÿø$ß—'º2E”LF‰aaÂPÉ`÷ĞÇ2imoëĞ‡ÖöàÀĞUë\r‚±ñÎRÜ!Š+Ó)XHˆST`I¹™·‘qŠˆ–HÇ§˜ JÀÖÄ›9±ÊYnGûeó¦9Üô›N‚+2VŞkÛæİz¦”nuhFMÛ¬RŠÙ…/¯r•V+§ÿ¨ç(ŸóO7Oah{Æ†q¾Y÷25]…¶5cÊ7{À]ãBíy~}5…¬DpËâ[J¬äw°ë¢³±¦¼RÄó|PNÕ:ëŸz•‚ïéşËKø¶¼ß¾é`ş¶¼oËûâònØu-Á]».§Ğşı˜Á>9B—Dt[0ªR”ùTóçKLÉ(¥|AÔ©^«æ\‰7f&¾>ÄÀf‘‰aÅœrŠ‚Ç‰B(2U°W7¨oH*:Óö § ·÷^»èLr4P€ÂîS»0TR…C}Ná]©tb¢ Î¼€¾–AÇ!€«O\ß0éëÛní™êDµÀoúVšŞ°o–üfÉoúmyß–÷my§SúÀ®n[ŞÛiº+ˆišl»õïaKH­»¾	Ï;ã&×ê^oië¥å¾-ßJş-,ŞoÙ:7¢l«9ñ4ÔÙm])šxĞÛÏ&yvqÕÈ'úzÁÍÏë!'@÷'õİ@?ÍLƒ|qR¶×"N_BÚ,R’‘ óÖH[©¦Şçã9şDjœÙÈOĞ3‡0²çæk¿SI}3!çĞMŞDœÍ0ç«¯´v %ÇœÜo€ÖÑ¾q{FÓhÜõ­>Š™(1g—š#”F„¸	7‰4“RŠ,X¥5¯!—ì^T
-r»×vó¨	ÒáDäN·p&Z*í@_H1ñ[¤ñ{I²HÓ\ôi.õ´OÃö8-€-†ĞÜbÂ¦:CìŞ|ĞŞâ›Ô™­7:¬­§’Õ¿YjfRÍnÜEª½àâ¼é
-JÒô¨Ñùë¸dÉ,èÖ'G|yâë”œ©Ùía’yİäĞlá¢^¼ÉOCQöô¿¸ù|Èö{>Š33Í¦íF‚´ÍzÀß ù[ôNÁoŸ¼|ÿ;îĞZGKÛø3:<‡¶F3á&«7vE&ÃBUŠx“å½d´ƒoX+0ˆ¦i?ëÛkqÕå/õhÃdX÷3„•iÁª¬K/E @ÍœY—şí&²N
-endstream
-endobj
-224 0 obj
-<<
-/Length 3223
-/Filter /FlateDecode
->>
-stream
-xœí]Kä¸¾×¯¨?0Z½@c»IÈ!Àfúä0í*/ÈXùû!)É–\–ºº3îrojzçaëM‘ù‘òŠ#‡ŸşğZ08æ8|9ü~UGÅñ¿T_
-hê\|›ßAGY|÷ÃŸÎÿùm8ÿıçÃ×§ò¯Ã¿?üüUı
-m~™Ú­ÌàÇÇ²Ï¹èzşŒ­ãáv°Æ
-'??Hs|°gà·ûxTÌx8>H^>9Õ•}rêãº{C§®rÆ*ëÛ5°¯N{î$LOÃœ”ÓWÌÌ[ÓëL¥jz§;ıÀ°5v„Ñ;õp>½•õèb@sR8«g)	sÂ)y$E— Ø¥°°ŸëÃîv	L$³'ê‹ø?=üùx+sƒpÄÁ¿TÜù·~'¸y;†%Œ’Û´gÈÈ´wÀWKî,ùz²MdÊ‰é‰6B
-k=%òä¿¨Iµq'§{v‘U'Ñ€îà­ÕPQ—Ì‡¦	`E”x4Èí«{ l`šë¸º2á¹
-RØJé´6Lá¬vÜx/•Ác6ÔÕ6Ø
-ó´>y¨.w>u%”]¼0†İùìÍé…„ßHåù¹yÔŠ"H¦óñ÷í™\h8 ¿@Œ˜6>ş«\ÁOŸ^OüO?ıíğ)Mã[=é=óVo;d9	4 ñßhÈø³°94g.à¯¥å!ü.¹46q—õ¢QÑš¤ÅƒäÃ¨‘“®F;ÁLŠÕRÍ¬‡¨¥aËA+ÖJnÈ¼'‡¼µÎOµÏó?Ü:osË”Ÿ™{•âN2Ïá—*MÃe=<7çòâ­er—ûìÒSû†ñıX~RûëFäŒ»óÙ7Ô~AøÌaß(İÀG_±”6ÒpÅ_ä¦Ã#€:…}“[-¯ş©¥T…J©ŞÅ{S¿‹÷]¼_+Ş+Ç8øL¡Œë÷f9!f¿Áä1³%4Ä¿’‰ô™ª¤¢Ñ®[òBi¦Ÿ³vD-2É·„¶&³ ¸	xçÙÏÀ€2cáW|oM„šÊr—ìÄè±g1CeäåŸ2İÀú´™˜?%:÷S%šÚ±ò¤° Îy€yJ¸B„Æªû?Ci5ÁÕ½ÒÎ3§u¹Yå^È5–İh'lâ?Â½4Â#¼j-¼ˆ¨ÓüD€”@t®U#afc"¹ãõtº´Õn:épëL 	›½f~gì4Í¨ F›­-bpÜ$ç¢YWÂbÇpmÖ rW„¢2 ø|C„©:dÉ˜¨±’¸Oı‚®°¯Å…‰@ıV«øömØSã^*&€b¡‘æ'$¨rLzçt‚O§'T—E»sÕNUOºª)ÚílÕ°a?=DÜ˜ŒveCÃ«'Ò9ó³<•¥Jµ{¥÷™»^C½¤¢h CÆèOOº³ãE/­šõ"xçIV}Ÿ8ßYÄ©½ß^¨8T5C{ªj§ªÍW¼İ®fİãîš öÚ½¦µÈäz;Ø’ õ¤bÁiOÏğİu;5å)Z\¯Ÿ™Ëüä^¥ZÁXö—ogoyòÃæKf$Ğ7Ñ”O¸ÈâIW5eUf:5QYœ‡.nÆô„U´³íš®ê³uİK½½¨)®^ßw™µ•íy.®½^ƒêìÊØ¦Do2Æ\ƒhº•LmiD”‹ë·¢9¤ê°a½¨ÏÆ«{¹ØĞü´‚«À¼ k^ìs(Bxe0®’Ø0¯ÜezKBû3 ¯©¯	Á WnÌFªÍşPÉ›ŸLO†«UEUß?Û9Y:º~¡‹ÌkgÃ¯ÖŒf©îÊU4zà,&÷z5Œª„œŒ³®É1F°ü­uÊ¨m#›‹a``ö‰ÕÆmÅ][Å¸Â»Í«UŒ^Åğ·²©bîPpœ<pSÔ>¢óSÎ†j•/ «NG)õ}~ßéOtº˜ã±1{©3iá8B);fJÏi:¢}Ô,"¸BÔŠdŠÙ'¨;FL#/z ô3W¦h5›«*ŸÆ=²Ö R“ ˜A'Ë|1Lz…3`E„^ë·oœkhi;"’j&ütj¶Iã×–’SÎV gÅ…á¼g½1¸Ç”ÏQR5§i	Š
-®Çl¶
-®GU°è2°Èc¯WÊ·ˆö¶x}ÄÇX;Áák8»'b	éÉ'Å…•#Ğ>÷™0ŞsAl"2i("m¦jÎäËÉ¬TW]fô¡–Ày)ˆ©l½Ñ{88”<î¢ˆİPU
-\	®¯Ø9õŠ¦ÌF Ñn,°g(F‹$K”ù‹
-µ|.:.°dCÁ’xŠå|Êâ<7ˆm¨|Ä”7ÜÑ•<0eW©= Ò™´´šsÍh´Ağ>PƒV9\„´D\ù‚A‹0•€£.ê^¾È .úh¤"‘÷”hO«(Ë(—ùXƒé™Ù¤!  åİê>ì½šè)Úñu«xÉË½{Ëï;k·å/İ³v_äÈG–®)ˆ>¥RÑMºaŠS±åÙ¨¶ñ,j!çÀ£ø`ÍÂ F!ÓÅ¡P–É†*QÖ2—szzşq–Êä*
-0›Ø6ç·†T†I/·²‡Dç`«UŞÔ^w*ÒÁva2’½w&ŞÃ¼tÓ°ƒhÏ-.6QfÈ4ŠÖ§Ñh!ûoîd0cb»”¸ÁÉif	¤>§Cµa¦¦Â*OïÁŸ›…Ú¼‹®§¨Š@—m÷ªú~F¾“3rGS×<³~ÛáÉ3ÚU/¹5_†ã;jÅ|zsÃàèÙÖ`(Ç€!¥`rc«¨4L¨×XC†˜N¼éÅ0¤ÖÌ„WYCz†Xò[Ş0™ˆ(Nf÷i‰UåöÊCfå!£Ébæ„àˆ%Y3×´"¬*„
-Æ[#Š—°-!8›¯…üÆĞë“æ¤>§‹Í¼aJËLQ¼\§Â˜üWôû5«ºıöO„˜îÙ‹b¢[œY!‘±’<•kX{°çìäüÙ5Bù“VÙ™²—1AWÇqSE¬ZÚ„Çiëùézj¢Ì	ª0:»Ôğ“`ÁôJ‡uÌÔƒÒ…S1İ ‰ú"—o©/zÃpÉğâ€»y‘œ-½&N]#5×–b#¡şîE 	5ÎY!ğ
-p¼[Çiç%ùŸÍ9ÀègYDÜ0É˜Õßõí†ÁŠÅò[ˆTtùÆª]Šº‹PG„ø”(GÙ\á|ĞóJL–Q¯Ûæò[°­VUzgl«ïlû¿kş™‚elw¶q]z‹ßĞx.TÑi>‚uoÂåéP<tİ×\¡Ççò[p¼ÕLr ³Ü%Ç›;Ç÷8şEŠŒ–9’¨˜Ò\Ê¯—Äö³4>A¢˜î1y*¿“{?|âvÉäöÎäÈä/SœF(#êDêc±¤l¯UíÉ/ªÏÌœÌƒ1\ÔçÓçØĞgÕsX,Ä@İä`œ8¶ˆ šœô9‰+Ÿ(Å‡|>ä²gÜaÉ™kTH¶|*¿ôXßZàÜŠ]J»KO1ŠiP¥4¹…4Å¼ˆU˜¨ùÌÙT6b’øá‚âQIE§ıüˆy[á¦uA0‚	ÕqjSù-A¦A¼Ù¥ ø» ¬#)±¶°õ¯<L.ÿKañ˜Oyv-`^á•sÑ6Œbñ-Zü"œØ§bw~ş>fÑlŞÇ¼ò¤ªç&sÎR”=dMÿ]§eëe
-|C™;fTÇªIå·à}kÑñJï’ù…âW°¿ÒLÉî‡0Š"İ;fÿ	LLŸÔìø°µ¤4\pAEÓV>ã™Ğı0w[$f(îÂºå&»Z.rÚçá¦²&¼Ğ¢•`¶ü¢ÕRNRù-äÄ[ô…Ùg0L\1şãË‰É Ny·¨¾”¯!ÎI©“pêS|ö6s!Õ-¿3¶¶#Ê0eÚf~.¿ÇÃbÑß~Ÿ±+qU øÿ€ã_Æ¥Ï —LaÃ;A©T~~”İNÉ÷”WESïüØ2K&ä}‘à_S¾Îy©ÔéC‚Ó•°²hjT™	-Ïì
-íÚvG.¿×k‡¾)ŞKİ'×_Œ½‚ë%Ò„àŞ=×÷n_Ù˜¿–¯ÈÌ ¹¹¨D>nÁğËûÍzıÿ”m—ïâµzÉÄêÇ“5Êo!Ö£×*ÍZö¦e^kïdœöEÛ‰Á–càÏ™&2b
-endstream
-endobj
-13 0 obj
-<<
-/Length 4130
-/Filter /FlateDecode
->>
-stream
-xœí]Ë®·İß¯˜0Í÷0´°“È"€cí‚,¬ÑL ˆ?U,’Mv³9º2ØšÉ]_KÓ›M«Nª'?ßøŸ×‚ùÀ¹0§ó¯/ÿI?"^ NŠãéD>(àÖ ™¦ãù(üòØÆ·¸ü÷ŸçË_üştşôÂãéOç¿|ûã'qúÇ'¸å§r[§ß¿¯š¬N½‡–ÿÂõéıõåoßYó»öóN[c/NÙàì»“4'8'¹=[a%œ9Ã¯†ÏÚ
-‡¿Ê§zw‚6¿“—w'ş÷Óû?¿üñ=t«<¡uÌ{âçaÂs¤0Ö[é´{˜ÂYí¸ñ^*#²¡½lÂ˜İÎ+¸\Şy×•èvİ1çõwİ||ØQä	#ßÎ„™¤1%× õ@eÂ£
-ìE~´WkåGP‹Ş^±Î‚2•Üq'áÌÇx1|Ğx±uòZşÚOk¸A%İŠq%şJ¼®ÿÄÜ0®-=óOÍÖQo'¿½dõ+4³§__„ğšéÓ¿êÁúáç/Ï?ÿğ——ŸS/~kD ÀÀàÁ&K¬d€H¯˜6v®ÈZŠtLéÉãZË ‘Á0¡ä\‘µ—³Şe;‹…ä42`Y*\¹´£À•+ÌK’V/®S´ğ¬ã+œxñ7—6.låĞDBÓÈÄK<\œ”¨L4—® …@ÖhB©hHa³
-ïu´	4,±İ :%#Í¬sn;¶º\×W†&MWQª¡sX:|ĞÈ‡E;Â€-é,Ó;œkJq)-<9o>nut5¼N…/¨z½Ê…w\¬ö@W­ÕìâŒ ©t£mèïè¼qHô¸œhªÃ/Ìš4S…ı¦Yß&×ğŠÒÙ{ßïØÊRoÇÊº£®?ğ„Ñ=aŠbê¾B9w¬…ŞèJÃiiñ½=S2ÁÒáµa¢˜\ìëJ•&+I«À4Øîn®º‚µchkÌ¼‚`<„é‚WbP°f!ˆù‚[1 ØÂqfºà•lü‚yŒC.´Uö§³A'Lr¼"ë§úh-sÙüñè†h™‘]i³4İüÃK£o[³R“=vCH±Ü‡Vdd~­bƒ§ÇÆŸ1JbÜºm»5.Wkopr€Ğr\¹†E
-ˆ¼x×goÏgñ°¶‡aµØ§¯€§?ÆÑ,JşŠ³
-=Bô5‹wÁˆÜt&Î©”‡›F//r>›azA­àÙèˆÄù—ü×)Åvó€WøèN¢õá’]bâîÍ¨G¶ ÍC[€:ê<aìÛ™0Stv”½6y*ô<«¼b}Æı\0»‘"eŞÎE– Òs6Û°­D @ø{šE›%V2@$FIÔä‡¬e HË”œõ&W“Øhµ2¾U¤
-$ÓÙP è+ZDÖ‘u)B
-_ÀÒÈ+ 3-’|TFó…ÌÖlªAõhX]Ä8BÙü†+²‰m’uF´xÔfßîñ†£»v',Vİ9Ü‘Á‹5]?÷qX22Œ£³p;à:hÔÁĞ{²Ñ«0O^Íğâ+Úûçi‡WàBšI€©à‘ÂP^çW ³—ÂW¶<89hğŸÉÎë3ü¤!7d?¤y>}…Á†Îü_ºqÓà²eb¤ş!?*õe>hÈN8H
-yh8(¹A9¾î¤±ÑÊ®‰Å§äº¼Û´ÈÉİÂpYÁ‚ïœ¼jåuqÎ¸@Ö‘õdR„/Î™Èİâ·n£/'r@$Õ·ón8Sı8äœ@˜ÕaéÄfÈ³¤)>»üH+ã¨Ü£ÿ‰±I—‰!éôê¼–$—B¼ùbÕêå´M€·dâ:Œz¾R"ƒ°(¼ÛîpÓÃ¤VGb	a;¤JšãCÏÄY`UbÎ4Õ–š5¦qÇE CŠ‹+¾:höÇn¨º(£™~Òú´¾'p]WîíL˜IJWò½8á:2±³­îYP]WA*±à
-Iy&ÏPÏ”›ëÿ62@¤µLLæÈ52@¤ãŒOæÈ52P¤ba.\S‹ ^07!—$Ö2P$˜+bÖ›\Ía¾^Vt¹€	l +í˜Bª<ş9P9DWEÍĞPÌM¤›Šwè¤S@†XºëĞNêpÄÛíÑØJ‹ØuCñ6²ke_çé˜Ó}¢ml€÷u(SÒ3² =mø*Ç’Ğá­AïnsuÈï_l5<C¿¯‚´‚ RØy'…-y˜¾62@¤°ÌOæŠ72@¤äwÂÕxûp$D¥uÆ¸1Ğ¶toĞlºÌg2ùÕû˜#"¯Gã’<ò-R¾ +!Ã'•]z¾ş¥ò¤l#	º‘8×ƒ¤0+åHHjß[àğPX‹±°@zq[FÄÃÅÑ® Â×6Ie›#FX#Ö‚óô~×0XA®>—ŞE	ÁØ³ıWd¶‚–¥ÀDÌ\xËXéÌY_>ŞG÷î¼îá-ù5Ñ²ØïV4í¤ğÅ …$Ü~pùzŞŒD_Ç-í&¡Ü™uöÄ¨»jÇ`Å))=ß	*(Ş	)(uäŒl’>¥ğ”•ŠJé¬¦$X,ŸtŸaØØ°ÒÏZ½¾¹mj3u÷/İr w¯¼Ämƒò‡‚£¤ì8ÑmS‚Šu‘×¸{]e¡oıÁ}qõ¤o˜m_©RRõ!eÄ±Q×Kùò1(’=Ò†Ö·%ä³å½fËOõwüÛñwî¨ë<a°úïí¸ ¢„!jCí÷$–P4±ó6A9’‘¿S‚¿Qã®¨ÏpoÍh)áøktˆ®CÀ>ZÍÁwwåk/>kæ’-§'ÒW"6àÓé(ROO¤od H?=‘¾‘AàÈìDúF#G%Òcæ@p$ÑD"s×väÀ ûÒÜ®AÊ¢—I';i‹ğoà*U¢¡‡¼ŞÅèêÁ«éª£»Ğ‡—‡B5|4¦95®+¾ğ¨b“g†wCàgtA†àtLhA«;û%…İˆş™JYUóYƒÕáâ´äeR§PGˆ&úhÄ€Jù7‰4Æ[’)‚A‚È©r)ò’§ë®[Í»t0åÍö ê@—Zoö`Ä»Øú‰ õ`;^$@aù˜p¢İó+neö¯îç^okÂSƒëUc‡ÏÖ¡P»¾âÑ¥â4{o<óåFWLNñ´ÒIaü"¬GsŞsËµô»å™şM«l!†W`„Ï	cç1.“èJâf±"m¥/ò†"‘NWFé »n”øh¼Ş(Ö¡ÀT/¼ïºşÀF¨ú—­z÷+õnPâl›[ù7à‡×5…´0µ‹5e)Äáf»èµ,Àa¦»è¦»è,º¡¦»èÌ»„)0ã–DÖ20ïR2ÏÉÖÓZšb³Æº€š©í(ŠŸ7u(²ßË¥‹V“¡JñSô³×ÊlñR3ÉF|ˆ!§äÔg?$ŠßÉ6päïzòZ‰'¯M8´æ	æÖÉHRLµäy°OIºØ—¼åÃ,ºÔ%
-hm³Oq9	’Á÷`–Ã›õj!ˆ®ÿõ76YÁuAÕ<7ú$« îXh¹Ñ[§w0<S“¨ÆM”KúDf'\òrÔ`éš0é®%Ôö!s¥Y]y¶?tÖo†Îv—Õ×<x§4x”ühJ™ßÈ“ê§,ãİÁ
-gÂÈCf¸d.„à·#'E×nÑÅPC1Yƒ	ËÇ}Îî-¸½Ï‹¡À.7¼cô{GQ¨İóÜ„šº¢çáõç¸¡¹XÒÇe¯JÄŞIéõ…‚kç4QexUA¥5­òH*ß©€6Tı¨ĞêLw\õër]I¾m“ô-0®|£AõúE~U4t|´9T'%y1NºiØz¡`¢§Ó#X¦º{´0]$M	¤E¿,ÔKQ*¦°[‡Å’o¥ÄñæTÑ––r]˜ªMíØ”
-®Q|¿ l›)@È}±£Îvux&l? Ä{iòÆjÂ/‘ñô02e–©]àÇ’áN†dƒl~¨ªg¤qºä¹.eÖöÕ-²¥µÒÒˆ·¡Ü^hE!±ùÑñŠs®æÑ ©JäÙJ»\NÕ|eˆNÛ]ïôÁºÕ.SùJ"NòsMÚ~Ô"hB´İÎQ9­}»íLX3Ê›˜Ôfß«`ésÄ­è…
-}8>‹>êù`u#^ñuyâÙ¦Å°DëR½QrW$„¿.Ûéœ¢×uı›¦fDRš1ïÒbAÎ±Úê š¨ûBœël4_é{†xŠËÓw^ÄdÇSJÃ°zÍ¸PâÀ-\¶•à(…w×…/{Ğ£ÕÌê»<2”şŒ½<'Ìk&Ìúò¢;êúO±£cÁº×ëvŠ -ıhíŠöK¨ò6ZŠOxf&_ld`%,¾8¹Ä"Ë2p&Åd‰µ©™à³‹OT2@dKÄu–ÈZŠ4³£ºµ.Ëìê,µŒ__0®=¹ŠH-†‰è.Üm%g&Œì¯áî~=‹;PÊ6!ä×ºTHfœ"UCæ[m‰ßİ n…¬QLÀ¸±—CÃ ¦©3q;Åc	aúÕsBn©L_"»má¾ä¼ËÚQÓ[Js‰l+ã7Ñf4Ø:Ü÷Aƒ…ö-|5Ğû—4 rp­,J3iË9”ÕÇ$(¸
-§œÔA÷œÁ‡ƒÛÄ-ÁÜÖX\©æºßvÌX¥ÌİAû˜ˆÉW‹Ò%Âî¨qªş‰Éèn¿4Ï˜ızıòå¢œ6RØ÷Df¿Ac/…Q13ÿ’J2[¹ûUĞUµ	I&Ãô¦ÊúXÊ.í¨Øşne$Ğ÷;”ø{€äË¨ÀH0.$ZÆq¦-Ÿ"qƒ`®kzíßk/„ÿünë··ûbvÂ¶»²|Œîpì×n£©hÂnë¯Ù4t4³Öˆ_Ş£n­‚ÃüÁq¢ú]"xPç§Zê,¥LZW
-dÂVUÎë|3­Šâ³u)òªZbµ7Ù¬S[æ—:Ã;Èld^Š®|†âÿlòÄÙæ	Ìv»>IUWF%ÉƒÕ«)®ß×huó4sìµb©‹…2'ùäo[©eK]ùù,õ"ƒXêr6û¿–"Ø“%."¯ã“Ì¥ÅW2ˆ‰ïõ1Õf¦
-Hª¦„6MË&J©èŸÃ©Ùeä$øÍ·ö![C,pbà¤âü‰·¤o/şV<¯oÒxvlV“¨ËœùêÂ?YBô*{“å‘sİ ¦q>HŸÏÃèQ›µg¦ÿ5Åw´[=m„7n#|y .Mğ\†ÄÀI;¹òI-DZÎä´ı#‰¬e HPwj^&WÃw³ TXòlèçÚ·L
-endstream
-endobj
-xref
-0 304
-0000000000 65535 f 
-0000034834 00000 n 
-0000034930 00000 n 
-0000034747 00000 n 
-0000034726 00000 n 
-0000034977 00000 n 
-0000035645 00000 n 
-0000000415 00000 n 
-0000000268 00000 n 
-0000000015 00000 n 
-0000034628 00000 n 
-0000000059 00000 n 
-0000000144 00000 n 
-0000046675 00000 n 
-0000014479 00000 n 
-0000013922 00000 n 
-0000000533 00000 n 
-0000000621 00000 n 
-0000000747 00000 n 
-0000000835 00000 n 
-0000000961 00000 n 
-0000001049 00000 n 
-0000001176 00000 n 
-0000001311 00000 n 
-0000001438 00000 n 
-0000001573 00000 n 
-0000001700 00000 n 
-0000001835 00000 n 
-0000001962 00000 n 
-0000002085 00000 n 
-0000002218 00000 n 
-0000002341 00000 n 
-0000002474 00000 n 
-0000002597 00000 n 
-0000002730 00000 n 
-0000002827 00000 n 
-0000002960 00000 n 
-0000003057 00000 n 
-0000003190 00000 n 
-0000003287 00000 n 
-0000003420 00000 n 
-0000003509 00000 n 
-0000003636 00000 n 
-0000003725 00000 n 
-0000003852 00000 n 
-0000003941 00000 n 
-0000004067 00000 n 
-0000004158 00000 n 
-0000004284 00000 n 
-0000004375 00000 n 
-0000004502 00000 n 
-0000004593 00000 n 
-0000004720 00000 n 
-0000004808 00000 n 
-0000004934 00000 n 
-0000005022 00000 n 
-0000005149 00000 n 
-0000005237 00000 n 
-0000005364 00000 n 
-0000005485 00000 n 
-0000005611 00000 n 
-0000005732 00000 n 
-0000005858 00000 n 
-0000005979 00000 n 
-0000006106 00000 n 
-0000006197 00000 n 
-0000006324 00000 n 
-0000006415 00000 n 
-0000006542 00000 n 
-0000006633 00000 n 
-0000006760 00000 n 
-0000006860 00000 n 
-0000006986 00000 n 
-0000007086 00000 n 
-0000007212 00000 n 
-0000007312 00000 n 
-0000007439 00000 n 
-0000007560 00000 n 
-0000007687 00000 n 
-0000007808 00000 n 
-0000007935 00000 n 
-0000008056 00000 n 
-0000008183 00000 n 
-0000008265 00000 n 
-0000008391 00000 n 
-0000008473 00000 n 
-0000008599 00000 n 
-0000008681 00000 n 
-0000008808 00000 n 
-0000008897 00000 n 
-0000009024 00000 n 
-0000009113 00000 n 
-0000009240 00000 n 
-0000009329 00000 n 
-0000009456 00000 n 
-0000009544 00000 n 
-0000009671 00000 n 
-0000009759 00000 n 
-0000009885 00000 n 
-0000009973 00000 n 
-0000010099 00000 n 
-0000010235 00000 n 
-0000010364 00000 n 
-0000010500 00000 n 
-0000010629 00000 n 
-0000010765 00000 n 
-0000010893 00000 n 
-0000011034 00000 n 
-0000011162 00000 n 
-0000011303 00000 n 
-0000011431 00000 n 
-0000011572 00000 n 
-0000011700 00000 n 
-0000011789 00000 n 
-0000011915 00000 n 
-0000012004 00000 n 
-0000012131 00000 n 
-0000012220 00000 n 
-0000012347 00000 n 
-0000012483 00000 n 
-0000012609 00000 n 
-0000012745 00000 n 
-0000012871 00000 n 
-0000013007 00000 n 
-0000013134 00000 n 
-0000013270 00000 n 
-0000013396 00000 n 
-0000013532 00000 n 
-0000013659 00000 n 
-0000013795 00000 n 
-0000037585 00000 n 
-0000019688 00000 n 
-0000019382 00000 n 
-0000014598 00000 n 
-0000014739 00000 n 
-0000014866 00000 n 
-0000014967 00000 n 
-0000015094 00000 n 
-0000015195 00000 n 
-0000015322 00000 n 
-0000015423 00000 n 
-0000015548 00000 n 
-0000015638 00000 n 
-0000015763 00000 n 
-0000015853 00000 n 
-0000015980 00000 n 
-0000016070 00000 n 
-0000016198 00000 n 
-0000016322 00000 n 
-0000016450 00000 n 
-0000016574 00000 n 
-0000016703 00000 n 
-0000016827 00000 n 
-0000016956 00000 n 
-0000017054 00000 n 
-0000017182 00000 n 
-0000017280 00000 n 
-0000017408 00000 n 
-0000017506 00000 n 
-0000017635 00000 n 
-0000017757 00000 n 
-0000017886 00000 n 
-0000018008 00000 n 
-0000018136 00000 n 
-0000018258 00000 n 
-0000018386 00000 n 
-0000018508 00000 n 
-0000018635 00000 n 
-0000018757 00000 n 
-0000018884 00000 n 
-0000019006 00000 n 
-0000019133 00000 n 
-0000019255 00000 n 
-0000040451 00000 n 
-0000025403 00000 n 
-0000025065 00000 n 
-0000019808 00000 n 
-0000019906 00000 n 
-0000020035 00000 n 
-0000020133 00000 n 
-0000020262 00000 n 
-0000020360 00000 n 
-0000020488 00000 n 
-0000020564 00000 n 
-0000020692 00000 n 
-0000020768 00000 n 
-0000020896 00000 n 
-0000020972 00000 n 
-0000021100 00000 n 
-0000021198 00000 n 
-0000021327 00000 n 
-0000021425 00000 n 
-0000021554 00000 n 
-0000021652 00000 n 
-0000021780 00000 n 
-0000021870 00000 n 
-0000022005 00000 n 
-0000022095 00000 n 
-0000022230 00000 n 
-0000022320 00000 n 
-0000022455 00000 n 
-0000022547 00000 n 
-0000022676 00000 n 
-0000022768 00000 n 
-0000022896 00000 n 
-0000022988 00000 n 
-0000023116 00000 n 
-0000023199 00000 n 
-0000023326 00000 n 
-0000023416 00000 n 
-0000023543 00000 n 
-0000023635 00000 n 
-0000023761 00000 n 
-0000023853 00000 n 
-0000023980 00000 n 
-0000024129 00000 n 
-0000024256 00000 n 
-0000024339 00000 n 
-0000024466 00000 n 
-0000024540 00000 n 
-0000024665 00000 n 
-0000024739 00000 n 
-0000024865 00000 n 
-0000024939 00000 n 
-0000043377 00000 n 
-0000033328 00000 n 
-0000032926 00000 n 
-0000025523 00000 n 
-0000025688 00000 n 
-0000025817 00000 n 
-0000025982 00000 n 
-0000026111 00000 n 
-0000026276 00000 n 
-0000026405 00000 n 
-0000026495 00000 n 
-0000026622 00000 n 
-0000026712 00000 n 
-0000026839 00000 n 
-0000026913 00000 n 
-0000027048 00000 n 
-0000027122 00000 n 
-0000027257 00000 n 
-0000027331 00000 n 
-0000027466 00000 n 
-0000027556 00000 n 
-0000027685 00000 n 
-0000027775 00000 n 
-0000027904 00000 n 
-0000027994 00000 n 
-0000028123 00000 n 
-0000028213 00000 n 
-0000028341 00000 n 
-0000028431 00000 n 
-0000028559 00000 n 
-0000028649 00000 n 
-0000028777 00000 n 
-0000028851 00000 n 
-0000028980 00000 n 
-0000029054 00000 n 
-0000029183 00000 n 
-0000029257 00000 n 
-0000029386 00000 n 
-0000029475 00000 n 
-0000029609 00000 n 
-0000029745 00000 n 
-0000029878 00000 n 
-0000030002 00000 n 
-0000030136 00000 n 
-0000030234 00000 n 
-0000030368 00000 n 
-0000030458 00000 n 
-0000030592 00000 n 
-0000030684 00000 n 
-0000030818 00000 n 
-0000030940 00000 n 
-0000031074 00000 n 
-0000031175 00000 n 
-0000031308 00000 n 
-0000031391 00000 n 
-0000031525 00000 n 
-0000031615 00000 n 
-0000031748 00000 n 
-0000031889 00000 n 
-0000032023 00000 n 
-0000032113 00000 n 
-0000032246 00000 n 
-0000032322 00000 n 
-0000032454 00000 n 
-0000032603 00000 n 
-0000032735 00000 n 
-0000032809 00000 n 
-0000035020 00000 n 
-0000034333 00000 n 
-0000034163 00000 n 
-0000033448 00000 n 
-0000033522 00000 n 
-0000033656 00000 n 
-0000033821 00000 n 
-0000033955 00000 n 
-0000034029 00000 n 
-0000034548 00000 n 
-0000034453 00000 n 
-0000034482 00000 n 
-0000034511 00000 n 
-trailer
-<<
-/Size 304
-/Root 3 0 R
-/Info 300 0 R
-/ID [<f2e2d94df28a24f09c240c17149f2a28> <f2e2d94df28a24f09c240c17149f2a28>]
->>
-startxref
-50879
-%%EOF
