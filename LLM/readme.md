@@ -1,19 +1,43 @@
-# Basics of Prompt Engineering
+# LLM concepts
+
+## corpus of data
+
+    data that was used to train LLM
+
+## [Pre training](https://www.youtube.com/shorts/0SDDzQuL8m0)
+
+    learns from a large, diverse dataset of often trillions of tokens.
+    develop a broad understanding of language, context, and various types of knowledge.
+    MASSIVELY computationally expensive and requires HUGE amounts of data.
+
+## Fine Tuning
+
+    further train it on a more specific dataset. This dataset is typically smaller and focused on a particular domain or task.
+    The purpose of fine-tuning is to adapt the model to perform better in specific scenarios or on tasks that were not well covered during pre-training.
+
+## Instruct Tuning
+
+    model is trained (or further trained) to follow instructions in prompts better.
+    doesn't necessarily involve adding new factual knowledge to the model
+    improving the model's ability to parse and respond to prompts in a way that aligns with user intentions.
 
 ## Important elements of a good prompt
-1. persona: Assume a role e.g You are a career guidance expert in the field of a AI. This controlls the style, tone and depth of the generated texts 
-2. context: Any relevant information the model can use to provide the output. e.g I'm a student with a Bachelors degree in computer science looking to know carrer opportunities in the fileld of AI. When giving context try to include the information about the user, what are you trying to achieve and any constraints
-3. task: give information about what do you want the model to do using action verbs
-4. input: Input could be any information you could give to guide the model to the resoponse. This could be examples, 
-5. format: how do you want the response from llm to look like
 
+1. Persona: The role you want the llm to play, e.g. you are tax expert. This controlls the _style_, _tone_ and _depth_ of the generated texts
+2. Context: Any relevant or background information related to the task that the model can use to generate relevant response.
+3. Task: Clearly defines the action the AI needs to take, outlining the goal of the prompt. Try using action verbs to describe the task.
+4. Input: Provide the raw data the model uses to generate output
+5. Format: Specifies the desired structure of the models response, ensuring it is organized and easy to understand.
 
+## Zero shot prompting
+
+Zero shot prompting is a technique used with generative AI models to generate content without exposing it with any relevant examples or fine tuning. The model uses only the pretrained information to come up with the response.
 
 ## Few shot prompting
 
-Few-shot prompting is a significant technique in natural language processing (NLP), particularly when working with large language models such as Claude and GPT-4. This method allows models to perform specific tasks by providing them with a small number of examples, known as "shots," which can range typically from 1 to 10. By presenting a few labeled input/output pairs, few-shot prompting helps the model to learn the underlying patterns and rules of a task, effectively training it with limited resources. After receiving these examples, the model is evaluated on a separate dataset, known as the query set, to assess its performance.
+Few-shot allows models to perform specific tasks by providing them with a small number of examples, known as "shots," which can range typically from 1 to 10. By presenting a few labeled input/output pairs, few-shot prompting helps the model to learn the underlying patterns and rules of a task, effectively training it with limited resources. This enables the llm to solve similar problems. An area where few shot prompting fails is when llm is tasked with soliving complex arithmetic, reasoning question. This is where Chain of thought prompting comes handy.
 
-## Chain-of-Thought Prompting
+## [Chain-of-Thought Prompting](https://www.youtube.com/watch?v=tiTjA0nfDXo&t=75s)
 
 Chain-of-thought (CoT) prompting is a technique designed to enhance the reasoning abilities of large language models (LLMs) by breaking down intricate queries into manageable steps, thereby enabling LLMs to generate more coherent and accurate responses (a.k.a resoning chains). CoT prompting stands out for its innovative use of structured prompt-and-answer pairs, which allow models to learn and replicate the reasoning process.
 | ![standard prompting](standard-prompting.png) | ![Simple CoT](simple-cot-example.png) |
@@ -33,10 +57,18 @@ Chain-of-thought (CoT) prompting is a technique designed to enhance the reasonin
 
 Chain-of-Thought (CoT) prompting has inspired a range of related techniques aimed at enhancing reasoning capabilities in language models (LLMs). Notable among these are the **Least-to-Most prompting** method, <ins>which organizes reasoning steps from simpler to more complex tasks</ins>, and the Self-consistency approach, which leverages multiple reasoning paths to improve model reliability. Additionally, the Tree-of-Thoughts (ToT) technique has emerged, simulating a more human-like trial-and-error problem-solving process by allowing LLMs to explore multiple potential solutions simultaneously, akin to the cognitive "dual models" proposed by researchers
 
-## Prompt Chaining
+## [Prompt Chaining](https://www.youtube.com/watch?v=B4MR8m7V17A)
 
-Prompt chaining is a sophisticated method employed in the context of generative AI, particularly with large language models (LLMs). This technique involves creating a sequence of related prompts, where the output from one serves as the input for the next, thereby allowing users to tackle complex tasks in a more structured and manageable manner
+Prompt chaining helps us solve complex tasks by breaking them into smaller tasks. Simple prompts are used to solve these individual small task where in the output from one prompt flows into another prompt as input
 
 ## [PlayList](https://youtube.com/playlist?list=PLhRXULtLjLtcT5Ig8f7V-_YAVw9mrjmQA&si=3CejZFx_bd30sS5J)
 
 ## [Webpage](https://llmnanban.akmmusai.pro/Introductory/Generative-AI-Explained/)
+
+RAG
+https://aws.amazon.com/what-is/retrieval-augmented-generation/
+
+https://www.youtube.com/watch?v=LAfrShnpVIk
+https://www.youtube.com/watch?v=rBbXcO5Rp2o
+
+https://stackoverflow.com/a/77318216
