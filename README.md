@@ -44,6 +44,7 @@ brew install jq
 
 ## ITerm
 - [Install ohmyzsh](https://ohmyz.sh/#install)
+- [Powerlevel10k](https://github.com/romkatv/powerlevel10k)
 
 ## set JAVA_HOME
 ```
