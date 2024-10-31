@@ -12,6 +12,11 @@ brew install --cask raycast
 ```console
 brew install --cask dbeaver-community 
 ```
+- Iterm2
+```console
+brew install --cask iterm2
+```
+
 - awscli
 ```console
 brew install awscli 
@@ -36,6 +41,8 @@ brew install node
 ```console
 brew install jq
 ```
+
+## ITerm
 
 
 ## set JAVA_HOME
