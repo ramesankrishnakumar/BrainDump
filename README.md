@@ -46,6 +46,13 @@ brew install jq
 - [Install ohmyzsh](https://ohmyz.sh/#install)
 - [Powerlevel10k](https://github.com/romkatv/powerlevel10k)
 
+## Chrome
+- [Simple Super Highlighter](https://chromewebstore.google.com/detail/super-simple-highlighter/hhlhjgianpocpoppaiihmlpgcoehlhio)
+- [Keepa](https://chromewebstore.google.com/detail/keepa-amazon-price-tracke/neebplgakaahbhdphmkckjjcegoiijjo)
+- [Video Speed Controller](https://chromewebstore.google.com/detail/video-speed-controller/nffaoalbilbmmfgbnbgppjihopabppdk)
+- [Tabliss](https://chromewebstore.google.com/detail/tabliss-a-beautiful-new-t/hipekcciheckooncpjeljhnekcoolahp)
+- [UV Weather](https://chromewebstore.google.com/detail/uv-weather/ngeokhpbgoadbpdpnplcminbjhdecjeb)
+
 ## set JAVA_HOME
 ```
 export JAVA_HOME=`/usr/libexec/java_home -v 11`
