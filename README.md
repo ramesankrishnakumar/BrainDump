@@ -1,9 +1,18 @@
 # env-config
 ## HomeBrew 
 - raycast - spotlight replacement
+enabled homebrew extension and install brew packages via raycast  OR
+add the brew packages to a file separated by newline and
+xargs brew install < 'apps.txt'
+
 ``` console
 brew install --cask raycast
 ```
+- Dbeaver
+```console
+brew install --cask dbeaver-community 
+```
+
 - kap - screen recorder
 ``` console
 brew install kap
@@ -32,10 +41,7 @@ brew install node
 ```console
 brew install jq
 ```
-- Dbeaver
-```console
-brew install --cask dbeaver-community 
-```
+
 
 ## set JAVA_HOME
 ```
