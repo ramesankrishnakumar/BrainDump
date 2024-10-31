@@ -12,11 +12,6 @@ brew install --cask raycast
 ```console
 brew install --cask dbeaver-community 
 ```
-
-- kap - screen recorder
-``` console
-brew install kap
-```
 - awscli
 ```console
 brew install awscli 
