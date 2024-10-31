@@ -44,7 +44,8 @@ brew install jq
 
 ## ITerm
 - [Install ohmyzsh](https://ohmyz.sh/#install)
-- [Powerlevel10k](https://github.com/romkatv/powerlevel10k)
+> brew install powerlevel10k
+> echo "source $(brew --prefix)/share/powerlevel10k/powerlevel10k.zsh-theme" >>~/.zshrc <br>
 - brew install zsh-syntax-highlighting zsh-autosuggestions
 - Add the below lines to ~/.zshrc <br>
 > export JAVA_HOME=`/usr/libexec/java_home -v 11` <br>
