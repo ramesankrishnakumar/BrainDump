@@ -16,6 +16,10 @@ brew install --cask dbeaver-community
 ```console
 brew install --cask iterm2
 ```
+- PyEnv
+```console
+brew install pyenv
+```
 
 - awscli
 ```console
@@ -42,14 +46,30 @@ brew install node
 brew install jq
 ```
 
+## Poetry - Python
+```
+curl -sSL https://install.python-poetry.org | python3 -
+poetry config virtualenvs.create true
+poetry config virtualenvs.in-project true
+```
+
+
 ## ITerm
 - [Install ohmyzsh](https://ohmyz.sh/#install)
-> brew install powerlevel10k
-> echo "source $(brew --prefix)/share/powerlevel10k/powerlevel10k.zsh-theme" >>~/.zshrc <br>
-- brew install zsh-syntax-highlighting zsh-autosuggestions
+```console
+brew install powerlevel10k
+```
+``` console
+echo "source $(brew --prefix)/share/powerlevel10k/powerlevel10k.zsh-theme" >>~/.zshrc <br>
+```
+``` console
+brew install zsh-syntax-highlighting zsh-autosuggestions
+```
 - Add the below lines to ~/.zshrc <br>
 > export JAVA_HOME=`/usr/libexec/java_home -v 11` <br>
 > plugins=( git zsh-syntax-highlighting zsh-autosuggestions ) <br>
+
+
 
 ## Chrome
 - [Simple Super Highlighter](https://chromewebstore.google.com/detail/super-simple-highlighter/hhlhjgianpocpoppaiihmlpgcoehlhio)
