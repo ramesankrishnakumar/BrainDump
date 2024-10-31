@@ -1,9 +1,9 @@
 # env-config
 ## HomeBrew 
-- raycast - spotlight replacement
-enabled homebrew extension and install brew packages via raycast  OR
-add the brew packages to a file separated by newline and
-xargs brew install < 'apps.txt'
+- raycast - spotlight replacement <br>
+> enable homebrew extension in raycast and install brew packages via raycast  OR <br>
+> add all brew package names to a file separated by newline and <br>
+> xargs brew install < 'apps.txt' <br>
 
 ``` console
 brew install --cask raycast
