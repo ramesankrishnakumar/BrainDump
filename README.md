@@ -1,5 +1,13 @@
 # env-config
 ## HomeBrew 
+- raycast - spotlight replacement
+``` console
+brew install --cask raycast
+```
+- kap - screen recorder
+``` console
+brew install kap
+```
 - awscli
 ```console
 brew install awscli 
@@ -33,14 +41,3 @@ brew install --cask dbeaver-community
 ```
 export JAVA_HOME=`/usr/libexec/java_home -v 11`
 ```
-
-## kap - screen recorder
-``` console
-brew install kap
-```
-
-## raycast - spotlight replacement
-``` console
-brew install --cask raycast
-```
-
