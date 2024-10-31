@@ -43,7 +43,7 @@ brew install jq
 ```
 
 ## ITerm
-
+- [Install ohmyzsh](https://ohmyz.sh/#install)
 
 ## set JAVA_HOME
 ```
