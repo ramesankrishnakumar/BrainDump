@@ -1,4 +1,4 @@
-# env-config
+# Local Config
 ## HomeBrew 
 - raycast - spotlight replacement <br>
 > enable homebrew extension in raycast and install brew packages via raycast  OR <br>
@@ -37,10 +37,7 @@ brew install podman
 ```console
 brew install libpq 
 ```
-- node js
-```console
-brew install node
-```
+
 - json processor
 ```console
 brew install jq
@@ -69,8 +66,41 @@ brew install zsh-syntax-highlighting zsh-autosuggestions
 > export JAVA_HOME=`/usr/libexec/java_home -v 11` <br>
 > plugins=( git zsh-syntax-highlighting zsh-autosuggestions ) <br>
 
+## Git SSH keys 
+- [create](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)
+- [add](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account)
+- [verify](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/testing-your-ssh-connection)
 
+## Git mutiple SSH config
+```
+Host github.abc.com
+  AddKeysToAgent yes
+  UseKeychain yes
+  IdentityFile /Users/kramesan/.ssh/id_rsa
 
+Host github.com
+  AddKeysToAgent yes
+  UseKeyChain yes
+  IdentityFile ~/.ssh/github_com
+```
+
+## nvm 
+- don't use brew
+- [refer](https://github.com/nvm-sh/nvm?tab=readme-ov-file#installing-and-updating)
+- you will end up doing something like below 
+```
+# installs nvm (Node Version Manager)
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.0/install.sh | bash
+
+# download and install Node.js (you may need to restart the terminal)
+nvm install 22
+
+# verifies the right Node.js version is in the environment
+node -v # should print `v22.11.0`
+
+# verifies the right npm version is in the environment
+npm -v # should print `10.9.0`
+```
 ## Chrome
 - [Simple Super Highlighter](https://chromewebstore.google.com/detail/super-simple-highlighter/hhlhjgianpocpoppaiihmlpgcoehlhio)
 - [Keepa](https://chromewebstore.google.com/detail/keepa-amazon-price-tracke/neebplgakaahbhdphmkckjjcegoiijjo)
