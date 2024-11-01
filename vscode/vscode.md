@@ -10,7 +10,12 @@ These will actually make your experience in VS Code better:
 - [spell checker](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker)
 - [open in browser](https://marketplace.visualstudio.com/items?itemName=techer.open-in-browser) Handy lightweight utility for opening files in a browser. Does not use a web server, unlike Live Preview or similar extensions.
 
-
+### Programming
+- [python](https://marketplace.visualstudio.com/items?itemName=ms-python.python)
+- [python debugger](https://marketplace.visualstudio.com/items?itemName=ms-python.debugpy)
+- [pylance](https://marketplace.visualstudio.com/items?itemName=ms-python.vscode-pylance)
+- [Spring Boot extension pack](https://marketplace.visualstudio.com/items?itemName=vmware.vscode-boot-dev-pack)
+- [Extension pack for Java](https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-java-pack) - delete Intellicode extension after that 
 
 ### Themes
 
