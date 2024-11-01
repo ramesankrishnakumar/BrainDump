@@ -106,6 +106,16 @@ npm -v # should print `10.9.0`
 - [Tabliss](https://chromewebstore.google.com/detail/tabliss-a-beautiful-new-t/hipekcciheckooncpjeljhnekcoolahp)
 - [UV Weather](https://chromewebstore.google.com/detail/uv-weather/ngeokhpbgoadbpdpnplcminbjhdecjeb)
 
+## VS Code 
+- add this to settings.json -> cmd + shift + p -> settings json
+```
+"editor.stickyScroll.enabled": false,
+# disable the minimap on the right
+"editor.minimap.enabled": false,
+# tag editing good for html
+"editor.linkedEditing": true,
+```
+
 ## set JAVA_HOME
 ```
 export JAVA_HOME=`/usr/libexec/java_home -v 11`
