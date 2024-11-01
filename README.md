@@ -85,9 +85,7 @@ Host github.com
 ```
 
 ## nvm 
-- don't use brew
-- [refer](https://github.com/nvm-sh/nvm?tab=readme-ov-file#installing-and-updating)
-- you will end up doing something like below 
+- [refer](https://github.com/nvm-sh/nvm?tab=readme-ov-file#installing-and-updating) - you'll end up doing something like below 
 ```
 # installs nvm (Node Version Manager)
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.0/install.sh | bash
