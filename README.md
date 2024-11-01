@@ -107,7 +107,7 @@ npm -v # should print `10.9.0`
 - [UV Weather](https://chromewebstore.google.com/detail/uv-weather/ngeokhpbgoadbpdpnplcminbjhdecjeb)
 
 ## VS Code 
-- add this to settings.json -> cmd + shift + p -> settings json
+- add this to settings.json  cmd + shift + p -> settings json
 ```
 "editor.stickyScroll.enabled": false,
 # disable the minimap on the right
