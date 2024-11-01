@@ -6,10 +6,10 @@ A list of Visual Studio Code extensions we use in courses. Not intended to be ex
 
 These will actually make your experience in VS Code better:
 
-- [Path Intellisense](https://marketplace.visualstudio.com/items?itemName=christian-kohler.path-intellisense)
-- [Visual Studio IntelliCode](https://marketplace.visualstudio.com/items?itemName=VisualStudioExptTeam.vscodeintellicode)
+- [copilot](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot)
+- [spell checker](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker)
 - [open in browser](https://marketplace.visualstudio.com/items?itemName=techer.open-in-browser) Handy lightweight utility for opening files in a browser. Does not use a web server, unlike Live Preview or similar extensions.
-- [GitLens](https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens) Fancy, if overly complicated, git interface; great for comparing branches
+
 
 
 ### Themes
