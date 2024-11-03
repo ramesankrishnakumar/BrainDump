@@ -102,6 +102,8 @@ npm -v # should print `10.9.0`
 
 ## VS Code 
 - add this to settings.json  cmd + shift + p -> settings json
+<details> <summary>Settings.json</summary>
+
 ``` json
 {
   "redhat.telemetry.enabled": false,
@@ -194,7 +196,13 @@ npm -v # should print `10.9.0`
 
 
 ```
+
+</details>
+
 - keyboard bindings
+
+<details><summary>Keyboard Shortcuts json/summary>
+  
 ``` json
 // Place your key bindings in this file to override the defaultsauto[]
 [
@@ -261,6 +269,8 @@ npm -v # should print `10.9.0`
 
 
 ```
+</details>
+
 ## set JAVA_HOME
 ```
 export JAVA_HOME=`/usr/libexec/java_home -v 11`
