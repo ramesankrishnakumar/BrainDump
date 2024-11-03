@@ -53,15 +53,9 @@ poetry config virtualenvs.in-project true
 
 ## ITerm
 - [Install ohmyzsh](https://ohmyz.sh/#install)
-```console
-brew install powerlevel10k
-```
-``` console
-echo "source $(brew --prefix)/share/powerlevel10k/powerlevel10k.zsh-theme" >>~/.zshrc <br>
-```
-``` console
-brew install zsh-syntax-highlighting zsh-autosuggestions
-```
+- [Install p10k](https://github.com/romkatv/powerlevel10k?tab=readme-ov-file#getting-started)
+- [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/INSTALL.md#oh-my-zsh)
+- [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions/blob/master/INSTALL.md#oh-my-zsh)
 - Add the below lines to ~/.zshrc <br>
 > export JAVA_HOME=`/usr/libexec/java_home -v 11` <br>
 > plugins=( git zsh-syntax-highlighting zsh-autosuggestions ) <br>
