@@ -201,10 +201,9 @@ npm -v # should print `10.9.0`
 
 - keyboard bindings
 
-<details><summary>Keyboard Shortcuts json/summary>
+<details><summary>keybindings.json</summary>
   
 ``` json
-// Place your key bindings in this file to override the defaultsauto[]
 [
   {
     "key": "cmd+s",
@@ -266,7 +265,6 @@ npm -v # should print `10.9.0`
     "when": "editorTextFocus && !editorReadonly"
   }
 ]
-
 
 ```
 </details>
