@@ -194,7 +194,73 @@ npm -v # should print `10.9.0`
 
 
 ```
+- keyboard bindings
+``` json
+// Place your key bindings in this file to override the defaultsauto[]
+[
+  {
+    "key": "cmd+s",
+    "command": "-workbench.action.files.saveAll"
+  },
+  {
+    "key": "cmd+n",
+    "command": "-editor.action.sourceAction",
+    "when": "editorHasCodeActionsProvider && editorTextFocus && !editorReadonly"
+  },
+  {
+    "key": "cmd+1",
+    "command": "-workbench.action.focusFirstEditorGroup"
+  },
+  {
+    "key": "cmd+b",
+    "command": "workbench.action.toggleSidebarVisibility"
+  },
+  {
+    "key": "cmd+b",
+    "command": "-workbench.action.toggleSidebarVisibility"
+  },
+  {
+    "key": "cmd+1",
+    "command": "workbench.view.explorer",
+    "when": "viewContainer.workbench.view.explorer.enabled"
+  },
+  {
+    "key": "shift+cmd+e",
+    "command": "-workbench.view.explorer",
+    "when": "viewContainer.workbench.view.explorer.enabled"
+  },
+  {
+    "key": "shift+cmd+e",
+    "command": "workbench.view.explorer",
+    "when": "viewContainer.workbench.view.explorer.enabled"
+  },
+  {
+    "key": "cmd+s",
+    "command": "saveAll"
+  },
+  {
+    "key": "alt+cmd+s",
+    "command": "-saveAll"
+  },
+  {
+    "key": "shift+cmd+/",
+    "command": "editor.action.blockComment",
+    "when": "editorTextFocus && !editorReadonly"
+  },
+  {
+    "key": "shift+alt+a",
+    "command": "-editor.action.blockComment",
+    "when": "editorTextFocus && !editorReadonly"
+  },
+  {
+    "key": "shift+alt+a",
+    "command": "editor.action.blockComment",
+    "when": "editorTextFocus && !editorReadonly"
+  }
+]
 
+
+```
 ## set JAVA_HOME
 ```
 export JAVA_HOME=`/usr/libexec/java_home -v 11`
