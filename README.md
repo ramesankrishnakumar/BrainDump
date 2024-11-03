@@ -102,12 +102,97 @@ npm -v # should print `10.9.0`
 
 ## VS Code 
 - add this to settings.json  cmd + shift + p -> settings json
-```
-"editor.stickyScroll.enabled": false,
-# disable the minimap on the right
-"editor.minimap.enabled": false,
-# tag editing good for html
-"editor.linkedEditing": true,
+``` json
+{
+  "redhat.telemetry.enabled": false,
+  "editor.fontSize": 20,
+  "RainbowBrackets.depreciation-notice": false,
+  "files.autoSave": "onFocusChange",
+  "editor.wordWrap": "on",
+  "workbench.editor.autoLockGroups": {
+    "decompiled.javaClass": true
+  },
+  "workbench.colorTheme": "Cobalt2",
+  "workbench.iconTheme": "vscode-icons",
+  "security.workspace.trust.untrustedFiles": "open",
+  "editor.accessibilitySupport": "off",
+  "security.promptForLocalFileProtocolHandling": false,
+  "editor.formatOnSave": true,
+  "eslint.codeActionsOnSave.rules": null,
+  "editor.linkedEditing": true,
+  "editor.minimap.sectionHeaderFontSize": 12,
+  "terminal.integrated.env.linux": {},
+  "terminal.integrated.fontSize": 20,
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "explorer.confirmDelete": false,
+  "editor.fontWeight": "normal",
+  "workbench.sideBar.location": "right",
+  "tailwindCSS.experimental.classRegex": [],
+  "files.associations": {
+    "*.css": "tailwindcss"
+  },
+  "editor.quickSuggestions": {
+    "strings": "on"
+  },
+  "explorer.confirmPasteNative": false,
+  "telemetry.telemetryLevel": "off",
+  "explorer.confirmDragAndDrop": false,
+  "update.showReleaseNotes": false,
+  "extensions.ignoreRecommendations": true,
+  "codium.codeCompletion.enable": false,
+  "github.copilot.enable": {
+    "*": true,
+    "plaintext": false,
+    "markdown": false,
+    "scminput": false
+  },
+  "editor.stickyScroll.enabled": false,
+  "[css]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[handlebars]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[markdown]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "diffEditor.ignoreTrimWhitespace": false
+  },
+  "[scss]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "editor.minimap.enabled": false,
+  "fontshortcuts.defaultFontSize": 20,
+  "fontshortcuts.defaultTerminalFontSize": 20,
+  "fontshortcuts.step": 1,
+  "cSpell.enabled": true,
+  "editor.lineHeight": 0,
+  "terminal.integrated.fontFamily": "MesloLGS NF",
+  "cSpell.userWords": ["Doordash"],
+  "workbench.editor.enablePreview": false
+}
+
+
 ```
 
 ## set JAVA_HOME
