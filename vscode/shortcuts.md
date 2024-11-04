@@ -129,6 +129,19 @@ Cmd + Enter # Insert a line below
 Cmd + Shift + Enter # Insert a line  above
 ```
 
+Add Line Comment
+
+```bash
+Cmd + /
+```
+
+Add Block Comment
+
+```bash
+Cmd + Shift + /
+```
+
+
 
 
 
