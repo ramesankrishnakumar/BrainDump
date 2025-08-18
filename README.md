@@ -122,7 +122,8 @@ npm -v # should print `10.9.0`
 - [Video Speed Controller](https://chromewebstore.google.com/detail/video-speed-controller/nffaoalbilbmmfgbnbgppjihopabppdk)
 - [Tabliss](https://chromewebstore.google.com/detail/tabliss-a-beautiful-new-t/hipekcciheckooncpjeljhnekcoolahp)
 - [UV Weather](https://chromewebstore.google.com/detail/uv-weather/ngeokhpbgoadbpdpnplcminbjhdecjeb)
-- [ZED: Zoom Easy Downloader] (https://chromewebstore.google.com/detail/zed-zoom-easy-downloader/pdadlkbckhinonakkfkdaadceojbekep)
+- [ZED: Zoom Easy Downloader](https://chromewebstore.google.com/detail/zed-zoom-easy-downloader/pdadlkbckhinonakkfkdaadceojbekep)
+- [Previous Tab](https://chromewebstore.google.com/detail/previous-tab/bjaniflnlhhofabpoamhnobeonjcjjpl?hl=en-US&utm_source=ext_sidebar)
 
 ## VS Code
 
