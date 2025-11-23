@@ -59,6 +59,10 @@ brew install libpq
 brew install jq
 ```
 
+```console
+brew install --cask rectangle visual-studio-code
+```
+
 ## Poetry - Python
 
 ```
