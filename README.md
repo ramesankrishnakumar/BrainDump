@@ -62,6 +62,9 @@ brew install jq
 ```console
 brew install --cask rectangle visual-studio-code
 ```
+```console
+brew install yarn
+```
 
 ## Poetry - Python
 
