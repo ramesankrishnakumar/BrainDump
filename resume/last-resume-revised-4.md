@@ -34,13 +34,15 @@ Senior Software Engineer with **13+ years** building enterprise microservices, i
 
 ---
 
-### Earlier Experience
+### Mazda North American Operations — Developer Contractor | Nov 2015 – Apr 2016
 
-**Mazda North American Operations** — Developer Contractor | Nov 2015 – Apr 2016  
-Built RESTful microservices as part of a monolith modernization initiative and delivered performance improvements and feature enhancements to internal applications.
+- Built RESTful microservices during a monolith modernization initiative; delivered performance improvements and feature enhancements to internal applications.
 
-**Infosys Limited** — Systems Engineer | Jun 2011 – Jun 2013  
-Monitored and supported production ETL jobs, migrated and tested code across lower environments, and reported daily job statistics to business stakeholders.
+---
+
+### Infosys Limited — Systems Engineer | Jun 2011 – Jun 2013
+
+- Monitored and supported production ETL jobs, migrated and tested code across lower environments, and reported daily job statistics to business stakeholders.
 
 ---
 
