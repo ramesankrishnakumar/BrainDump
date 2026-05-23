@@ -92,6 +92,61 @@ _Use this when an interviewer asks you to "tell me more" about a bullet. Raw det
 
 ---
 
+## Intuit — AI Onboarding Agent (NTTF / QBO Trial Customers)
+
+**Resume bullets:** Multi-agent onboarding assistant, LangGraph, context engine, 5% → 50% ramp.
+
+**Context / Why:**
+- NTTF = New To The Franchise. New QBO customers in their 30-day trial subscription.
+- QBO has a "Guided Setup" — 7 modules a human expert walks through with the customer (1.5+ hour session). Goal: make this self-serve via AI to improve trial-to-paid conversion and reduce reliance on expensive expert sessions.
+- Inspired by Google AI Studio. Started as a hackathon with a Senior Staff engineer; I drove it forward as primary designer/developer after they moved to other priorities. A Staff IC joined the team later — I was the tech lead throughout.
+
+**System Architecture — 4 components:**
+
+1. **Context Engine** (frontend, injected into QBO)
+   - Agents guide customers through tasks ("click Reports in the left sidebar") — so the agent needs to know where the customer is in QBO and what they see on screen.
+   - V1: Injected html2canvas to capture the screen, sent the image to a Vision LLM to generate a text description of the current page state. Added meaningful latency to every agent response.
+   - Optimization journey (V1.1–V1.4): debounce (capture only after idle interval), image format/resolution experiments, masking sensitive data on screen, identified + fixed a memory leak (canvas element not being GC'd — fixed by cloning the canvas to a local variable before processing), page-settle detection (wait for navigation to complete before capturing).
+   - V2: Full rewrite using DOM parser — extracts structured page data directly from the DOM tree. Faster, no Vision LLM call needed for context. Tradeoff: loses image/visual elements on screen.
+   - V2.1: Agent can explicitly request a screen capture when it needs visual context, rather than capturing on every turn.
+
+2. **Intent Orchestrator** (LangGraph)
+   - Classifies each customer message: (a) onboarding question → which of the 7 modules?, (b) general QBO support question, (c) customer confused/overwhelmed → escalate to human expert.
+   - Routes to the appropriate sub-agent or triggers expert handoff.
+
+3. **Onboarding Sub-agents** (LangGraph)
+   - Started with 1 module: Reporting onboarding. Templatized the architecture to support all 7 guided-setup modules.
+   - Each sub-agent guides customers through setup tasks for its module using the context engine's page state.
+
+4. **Expert Handoff Module**
+   - When intent orchestrator signals confusion or customer explicitly asks for help, routes to a live human expert.
+   - Critical business requirement: must not cannibalize the human expert tier (a higher-paid service offering).
+
+**Orchestration Architecture Evolution:**
+- V1: Rule-based linear flow — rigid, could not handle natural conversation deviations.
+- V2: LangGraph orchestrating agent — delegates to sub-agents, session-history aware. Enabled natural conversation patterns (customers could jump between topics).
+- V3: Slim, focused workflows with defined levels — reduced complexity after data showed customers were overwhelmed by the 7-module scope.
+
+**Model:**
+- OpenAI throughout the experiment.
+- Intuit Film (internal platform LLM) and Gemini were evaluated as alternatives but not implemented before the experiment was shut down.
+
+**Results & Experiment:**
+- Ramped from 5% → 50% of NTTF customers during the 30-day trial window.
+- **Single-module phase** (Reporting only, custom CUI): ~50% module completion rate; multi-session engagement (customers returned across multiple sessions). Even though we advertised "Reporting onboarding only," customers started asking general QBO questions — strong signal of engagement and trust.
+- **7-module phase** (shared Intuit CUI): lower completion rate, customers completing modules out of order (actually a positive signal — shows natural conversation flow, not rigid script-following), customers felt overwhelmed by scope.
+- **Pivot**: moved to smaller "high journey" modules — focused on fewer, high-value tasks like setting up bank connection and generating first report.
+- **Key business metric passed**: did NOT cannibalize human expert tier — AI agent users continued interacting with human experts at normal rates.
+- **Unproven metric**: Larger Ecosystem Revenue (LER) — could not prove AI onboarding drove higher product adoption/revenue within the trial window.
+- Experiment shut down, agent decommissioned.
+
+**How to frame the shutdown:**
+- This was a data-driven decision, not an engineering failure. The system performed well technically — 50% completion, multi-session engagement, natural conversation flow.
+- The hard part was the business attribution problem: proving AI onboarding drove LER within a 30-day trial window. That's a difficult measurement challenge, not a product flaw.
+- The pivot to smaller modules and the eventual shutdown reflects mature product/engineering judgment: don't scale what you can't prove converts, especially when you're competing for product investment.
+
+---
+
 ## TriNet — Authorization Service
 
 **Resume bullet:** Built ACL-based authZ service used by 20 microservices; two-tier Redis caching eliminated per-request DB roundtrips, significantly reducing p90 latency.
@@ -171,4 +226,43 @@ _Use this when an interviewer asks you to "tell me more" about a bullet. Raw det
 
 **If asked why not use a standard DLQ:**
 - The need was more than just retry — we needed to *correct* the data and track human changes, which a standard DLQ doesn't support. The audit trail was also important for root-cause analysis during the decomposition.
+
+---
+
+---
+
+## Intuit — Live Bookkeeping Expert Workflow & Review System
+
+**Resume bullets:** Template-driven expert workflow; configurable peer-review system; ~30 min/engagement saved across 50k active services.
+
+**Context / Why:**
+- QuickBooks Live Bookkeeping has two cleanup offerings: One-Time Cleanup (single paid engagement) and Ongoing Cleanup (monthly subscription). Both involve Intuit experts doing bookkeeping work on behalf of customers.
+- Customer Service Time (CST) = total expert hours spent per engagement. It's the primary cost metric for the offering — reducing it directly reduces cost per service.
+
+**What I built — Part 1: Expert task modeling**
+- Expert work was previously unstructured. I modeled it as template-driven Projects and Tasks in the workflow engine.
+- Templates are configured per service; the system instantiates them automatically at the right workflow stage (e.g., document-collection project created after the onboarding call completes).
+- This gave the business visibility into where expert time was going — the first step toward reducing CST.
+- I was tech lead on this, guiding 1–2 engineers through the implementation.
+
+**What I built — Part 2: Peer review system**
+- After a task is complete, an expert can request peer review. Key design decisions:
+  1. **Reviewer assignment:** FIFO queue — the engagement/work request is placed into queues where leads are waiting. Ensures fair load distribution without manual assignment.
+  2. **Review completion:** Reviewer fills out a structured YES/NO questionnaire and leaves notes. Review signaling cascades to update task status in the correct order.
+  3. **Notifications:** Both reviewer and reviewee are kept informed throughout — reduces Slack back-and-forth.
+  4. **UiPath RPA integration:** For the final review stage, UiPath automation can auto-answer certain questionnaire items, reducing lead burden.
+- Before this system: review coordination was entirely via Slack/email — no audit trail, no visibility into review status, constant context switching.
+
+**Extensibility design (senior/staff angle):**
+- The review system is config-driven: extending to a new service requires only (a) declaring review types for that service, (b) mapping a questionnaire template to each review type, (c) configuring notification templates.
+- No code changes needed to onboard a new service. This was a deliberate architectural decision to avoid bespoke review logic per offering.
+- The complexity was service discovery and mapping — understanding which services existed and how to dynamically map them to review configurations.
+
+**Impact:**
+- Each review saves ~10 min (prevents context switching, consolidates rework context, RPA handles final-stage auto-review).
+- Average 3 reviews per service × 50k active services = meaningful CST reduction at scale.
+- Framing for interview: ~30 min of expert time saved per engagement across 50k active services.
+
+**If asked about the before/after CST number:**
+- Don't have a precise before/after delta. Frame it as: CST was the tracked metric the business cared about, the review system + task modeling were two levers to move it, and the 30-min/engagement figure is the review system's direct contribution.
 

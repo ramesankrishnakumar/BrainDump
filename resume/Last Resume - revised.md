@@ -27,7 +27,10 @@ Senior Software Engineer with **13+ years** building enterprise microservices, i
 
 ### Intuit — Senior Software Engineer | Aug 2022 – Present
 
-Commerce platform for QuickBooks; fulfillment, inventory sync, shipping, and secure credentials.
+Commerce platform, AI-assisted onboarding, and Live Bookkeeping expert workflow for QuickBooks; fulfillment, inventory sync, shipping, secure credentials, NTTF onboarding agents, and expert review systems.
+
+- **Designed and shipped** a multi-agent QBO onboarding assistant for NTTF trial customers — built with LangGraph: intent orchestrator routing to 7 guided-setup sub-agents or live human-expert handoff, a real-time screen-context engine (html2canvas + Vision LLM, later rewritten as DOM parser to cut agent response latency), and a workflow agent spanning all 7 guided-setup modules; drove end-to-end from hackathon prototype to production, ramped to **50% of NTTF customers** with ~50% module-completion rate in the initial phase.
+- **Iterated** context engine through 5+ versions (debounce, resolution/format tuning, masking, canvas memory-leak fix via clone-to-local, page-settle detection) and orchestration from rule-based linear flow → LangGraph sub-agent delegation with session-history awareness → slim focused workflow.
 
 - **Owned** a fault-tolerant fulfillment subsystem syncing inventory changes across **4 sales channels** (hundreds of thousands of events/day); designed for idempotent consumers, ordered delivery, and safe recovery under partial failures.
 - **Validated 75 TPS** throughput for GA (against a 70 TPS traffic-estimate baseline) using custom datagen scripts; confirmed published-to-consumed event accuracy end-to-end across the product → variant → fulfillment dependency chain.
@@ -36,7 +39,10 @@ Commerce platform for QuickBooks; fulfillment, inventory sync, shipping, and sec
 - **Designed and built** account and credential management for QuickBooks' shipping module — enabling customers to fulfill invoices end-to-end via a carrier aggregator integration; launched to GA as the **first core revenue product in the Commerce Business Unit**, with hundreds of shipping labels created post-launch.
 - **Designed and built** a credential store managing **thousands** of shipping API credentials (hierarchical parent/child keys, one child per connected company); implemented **AES-256-GCM envelope encryption** via AWS KMS — root key never leaves the keystore, rotated every **30 days**, with key-version headers on all encrypted records for seamless rotation. Data secured at rest (KMS) and in transit (**mTLS** over service mesh). Architected as an isolated module with a clean migration path to the platform credential system.
 
-**Stack (typical):** Kotlin, Java, Kafka, PostgreSQL, DynamoDB, AWS, Kubernetes
+- **Designed and led** the expert workflow platform for QuickBooks Live Bookkeeping (One-Time Cleanup and Ongoing Cleanup) — modeled expert tasks as template-driven projects and tasks instantiated at workflow milestones (e.g., document-collection project auto-created post-onboarding call); established Customer Service Time (CST) tracking as the primary per-engagement cost metric for the offering; guided 2 engineers through implementation.
+- **Designed and built** a configurable peer-review system for Live Bookkeeping expert work — FIFO queue-based reviewer assignment, structured YES/NO questionnaire with notes, bidirectional status notifications, and UiPath RPA integration for automated final-stage review; architected for zero-code extension to new services (a new service requires only review-type, questionnaire, and notification-template config); replaced ad-hoc Slack/email coordination with an audited, structured flow — **saving ~30 min of expert time per engagement across 50k active services**.
+
+**Stack (typical):** Kotlin, Java, Kafka, PostgreSQL, DynamoDB, AWS, Kubernetes, LangGraph, Python, OpenAI/Vision LLM
 
 ---
 
