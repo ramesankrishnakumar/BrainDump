@@ -8,7 +8,7 @@ Hayward, CA | (256) 652-8738 | r.krishnakumar90@gmail.com | [linkedin.com/in/rkr
 
 ## PROFILE
 
-Senior Software Engineer with **13+ years** building enterprise microservices, identity integrations (**SAML, OIDC, Okta**), and event-driven systems (**Kafka, RabbitMQ**). Recently designed and shipped a production multi-agent LLM system for QuickBooks trial onboarding, with an intent orchestrator routing to a journey orchestrator driving 7 domain sub-agents across the full onboarding flow, a focused single-module agent, or a live expert handoff, backed by a real-time screen context engine. Strong in **Kotlin/Java**, API design, security (envelope encryption, KMS, mTLS), and production reliability (idempotency, retries, HPA-based autoscaling).
+Senior Software Engineer with **13+ years** building enterprise microservices, identity integrations with **SAML, OIDC, and Okta**, and event-driven systems on **Kafka and RabbitMQ**. Recently designed and shipped a production multi-agent AI onboarding system for QuickBooks, ramped to **50% of first-time trial customers**. Strong in **Kotlin/Java**, distributed system design, data security, and production reliability at scale.
 
 ---
 
