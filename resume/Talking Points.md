@@ -10,9 +10,9 @@ _Use this when an interviewer asks you to "tell me more" about a bullet. Raw det
 **Resume bullet:** Owned fault-tolerant fulfillment subsystem syncing inventory across 4 sales channels (hundreds of thousands of events/day).
 
 **Talking points:**
-- We sync inventory changes from QuickBooks to 4 external sales channels.
-- Fulfillment is a child entity — we receive fulfillment events, but have to wait for product/variant entities to be resolved first before we can link them. This ordering dependency was a key design constraint.
-- Records are partitioned by `realm_id` with 2 shards, which gives us horizontal scale per tenant.
+- My system ingests fulfillment events FROM 4 external sales channels and stores/processes them. Inventory adjustment is downstream — a separate service consumes my events to perform the actual inventory update. My system is responsible for reliable ingestion, ordering, and publishing.
+- Fulfillment is a child entity — we receive fulfillment events but have to wait for upstream product and variant entities to be resolved first before we can link and publish them. This ordering dependency was a core design constraint. When a fulfillment event arrives before its upstream entities are ready, the system retries twice with exponential backoff. If still unresolved, the event is stored in a batch processing table for async retry later. This is the concrete mechanism behind "safe recovery under partial failures."
+- Records are partitioned by `realm_id` with 2 shards, giving horizontal scale per tenant.
 - System is designed for idempotent consumers and safe recovery under partial failures — if something fails mid-sync, we don't double-process or lose events.
 
 ---
