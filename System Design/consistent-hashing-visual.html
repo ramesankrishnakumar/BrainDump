@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Consistent Hashing — Visual Demo</title>
+  <style>
+    :root {
+      --bg: #0f1419;
+      --surface: #1a2332;
+      --border: #2d3a4f;
+      --text: #e7ecf3;
+      --muted: #8b9cb3;
+      --accent: #5b9fd4;
+      --move: #e07a5f;
+      --stay: #6bcf7f;
+      --key: #c9b1ff;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: "SF Pro Text", "Segoe UI", system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      padding: 2rem 1.5rem 3rem;
+      line-height: 1.5;
+    }
+
+    header {
+      max-width: 960px;
+      margin: 0 auto 1.5rem;
+    }
+
+    h1 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      margin-top: 0.35rem;
+      font-size: 0.95rem;
+    }
+
+    .layout {
+      max-width: 960px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 280px;
+      gap: 1.5rem;
+      align-items: start;
+    }
+
+    @media (max-width: 780px) {
+      .layout { grid-template-columns: 1fr; }
+    }
+
+    .ring-panel {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.25rem;
+    }
+
+    .ring-wrap {
+      position: relative;
+      width: 100%;
+      max-width: 520px;
+      margin: 0 auto;
+      aspect-ratio: 1;
+    }
+
+    svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .ring-track {
+      fill: none;
+      stroke: var(--border);
+      stroke-width: 3;
+    }
+
+    .arc-segment {
+      fill: none;
+      stroke-width: 14;
+      stroke-linecap: butt;
+      opacity: 0.35;
+      transition: opacity 0.3s;
+    }
+
+    .arc-segment.highlight {
+      opacity: 0.85;
+      stroke-width: 18;
+    }
+
+    .node-dot {
+      stroke: var(--bg);
+      stroke-width: 3;
+      cursor: default;
+    }
+
+    .node-label {
+      font-size: 13px;
+      font-weight: 600;
+      fill: var(--text);
+      text-anchor: middle;
+      dominant-baseline: middle;
+      pointer-events: none;
+    }
+
+    .key-dot {
+      stroke: var(--bg);
+      stroke-width: 1.5;
+      transition: cx 0.6s ease, cy 0.6s ease, fill 0.4s;
+    }
+
+    .key-dot.moved {
+      fill: var(--move);
+      filter: drop-shadow(0 0 4px rgba(224, 122, 95, 0.8));
+    }
+
+    .key-dot.stable {
+      fill: var(--key);
+    }
+
+    .key-dot.new-owner {
+      fill: var(--stay);
+    }
+
+    .sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1rem 1.1rem;
+    }
+
+    .card h2 {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+      margin-bottom: 0.75rem;
+    }
+
+    .controls {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    button {
+      background: #243044;
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 0.55rem 0.85rem;
+      border-radius: 8px;
+      font-size: 0.875rem;
+      cursor: pointer;
+      transition: background 0.15s, border-color 0.15s;
+    }
+
+    button:hover:not(:disabled) {
+      background: #2d3d56;
+      border-color: var(--accent);
+    }
+
+    button:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    button.primary {
+      background: #1e4a6e;
+      border-color: #2d6a9a;
+    }
+
+    button.danger {
+      background: #4a2828;
+      border-color: #7a4040;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.5rem;
+    }
+
+    .stat {
+      background: #121a24;
+      border-radius: 8px;
+      padding: 0.6rem 0.75rem;
+    }
+
+    .stat .val {
+      font-size: 1.35rem;
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .stat .lbl {
+      font-size: 0.72rem;
+      color: var(--muted);
+      margin-top: 0.1rem;
+    }
+
+    .stat.move .val { color: var(--move); }
+    .stat.stable .val { color: var(--stay); }
+
+    .legend {
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+      font-size: 0.82rem;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .swatch {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+  .explain {
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    .explain strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .event-banner {
+      margin-top: 0.75rem;
+      padding: 0.65rem 0.85rem;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      background: #121a24;
+      border-left: 3px solid var(--accent);
+      min-height: 2.8rem;
+    }
+
+    .node-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 0.5rem;
+    }
+
+    .node-chip {
+      font-size: 0.75rem;
+      padding: 0.2rem 0.55rem;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+    }
+
+    footer.note {
+      max-width: 960px;
+      margin: 1.25rem auto 0;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Consistent Hashing Ring</h1>
+    <p class="subtitle">Add or remove a server — only keys in the affected arc move.</p>
+  </header>
+
+  <div class="layout">
+    <section class="ring-panel">
+      <div class="ring-wrap">
+        <svg id="ring" viewBox="0 0 500 500" aria-label="Consistent hashing ring diagram"></svg>
+      </div>
+    </section>
+
+    <aside class="sidebar">
+      <div class="card">
+        <h2>Actions</h2>
+        <div class="controls">
+          <button id="btnAdd" class="primary">+ Add server D</button>
+          <button id="btnRemove" class="danger" disabled>− Remove server D</button>
+          <button id="btnReset">Reset (3 nodes)</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>After last change</h2>
+        <div class="stats">
+          <div class="stat move">
+            <div class="val" id="movedCount">0</div>
+            <div class="lbl">Keys moved</div>
+          </div>
+          <div class="stat stable">
+            <div class="val" id="stableCount">24</div>
+            <div class="lbl">Keys unchanged</div>
+          </div>
+        </div>
+        <div class="event-banner" id="eventText">3 servers (A, B, C). Each key maps to the first server clockwise on the ring.</div>
+      </div>
+
+      <div class="card">
+        <h2>Legend</h2>
+        <div class="legend">
+          <div class="legend-item"><span class="swatch" style="background:#5b9fd4"></span> Server node</div>
+          <div class="legend-item"><span class="swatch" style="background:#c9b1ff"></span> Key (unchanged)</div>
+          <div class="legend-item"><span class="swatch" style="background:#e07a5f"></span> Key that moved</div>
+          <div class="legend-item"><span class="swatch" style="background:#6bcf7f"></span> Key inherited (new owner)</div>
+        </div>
+        <div class="node-list" id="nodeList"></div>
+      </div>
+
+      <div class="card explain">
+        <h2>Rules</h2>
+        <p><strong>Add server:</strong> it only takes keys in its arc — from the previous server up to itself, (A, D]. Those keys used to belong to B.</p>
+        <p style="margin-top:0.5rem"><strong>Remove server:</strong> D's keys slide to the next server clockwise (B). All other keys stay put.</p>
+      </div>
+    </aside>
+  </div>
+
+  <footer class="note">
+    Simplified demo: 24 sample keys on a 0–360° ring. Compare with modulo hashing where ~75% of keys move when going from 3→4 nodes.
+  </footer>
+
+  <script>
+    const COLORS = {
+      A: "#5b9fd4",
+      B: "#e9c46a",
+      C: "#9b5de5",
+      D: "#06d6a0",
+    };
+
+    const CX = 250, CY = 250, R = 190;
+    const KEY_R = 168;
+    const NODE_R = 210;
+
+    // Fixed positions on ring (degrees, clockwise from top = 0°)
+    const NODE_POSITIONS = { A: 30, B: 150, C: 270, D: 60 };
+
+    // Sample keys — angle on ring
+    const KEY_ANGLES = [
+      10, 22, 38, 45, 55, 68, 85, 95,
+      115, 128, 140, 162, 175, 188, 200, 215,
+      235, 248, 258, 285, 300, 315, 330, 345
+    ];
+
+    let activeNodes = ["A", "B", "C"];
+    let prevOwners = null;
+    let lastEvent = "initial";
+
+    function degToRad(d) {
+      return ((d - 90) * Math.PI) / 180;
+    }
+
+    function posOnCircle(angleDeg, radius) {
+      const rad = degToRad(angleDeg);
+      return { x: CX + radius * Math.cos(rad), y: CY + radius * Math.sin(rad) };
+    }
+
+    function normalizeAngle(a) {
+      a = a % 360;
+      return a < 0 ? a + 360 : a;
+    }
+
+    function sortedNodes() {
+      return [...activeNodes].sort(
+        (a, b) => NODE_POSITIONS[a] - NODE_POSITIONS[b]
+      );
+    }
+
+    // Standard rule: walk clockwise from the key; the first server you hit owns it.
+    // Equivalently, server X owns the arc (prev_server, X].
+    function ownerForKey(angleDeg) {
+      const nodes = sortedNodes();
+      const a = normalizeAngle(angleDeg);
+      for (const n of nodes) {
+        if (NODE_POSITIONS[n] >= a) return n;
+      }
+      return nodes[0]; // wrap past 360° back to the first server
+    }
+
+    function arcPath(startDeg, endDeg, radius, largeOnly) {
+      const start = posOnCircle(startDeg, radius);
+      const end = posOnCircle(endDeg, radius);
+      let sweep = endDeg - startDeg;
+      if (sweep <= 0) sweep += 360;
+      const large = sweep > 180 ? 1 : 0;
+      return `M ${start.x} ${start.y} A ${radius} ${radius} 0 ${large} 1 ${end.x} ${end.y}`;
+    }
+
+    function getArcs() {
+      const nodes = sortedNodes();
+      return nodes.map((node, i) => {
+        const prev = NODE_POSITIONS[nodes[(i - 1 + nodes.length) % nodes.length]];
+        const end = NODE_POSITIONS[node];
+        return { node, start: prev, end };
+      });
+    }
+
+    function render(highlightNode = null) {
+      const svg = document.getElementById("ring");
+      svg.innerHTML = "";
+
+      // Base ring
+      const track = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+      track.setAttribute("cx", CX);
+      track.setAttribute("cy", CY);
+      track.setAttribute("r", R);
+      track.classList.add("ring-track");
+      svg.appendChild(track);
+
+      // Ownership arcs
+      const arcs = getArcs();
+      arcs.forEach(({ node, start, end }) => {
+        const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+        path.setAttribute("d", arcPath(start, end, R));
+        path.setAttribute("stroke", COLORS[node]);
+        path.classList.add("arc-segment");
+        if (highlightNode === node) path.classList.add("highlight");
+        svg.appendChild(path);
+      });
+
+      // Keys
+      let moved = 0;
+      KEY_ANGLES.forEach((angle, idx) => {
+        const owner = ownerForKey(angle);
+        const p = posOnCircle(angle, KEY_R);
+        const dot = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+        dot.setAttribute("cx", p.x);
+        dot.setAttribute("cy", p.y);
+        dot.setAttribute("r", 5);
+        dot.classList.add("key-dot");
+
+        if (prevOwners) {
+          const before = prevOwners[idx];
+          if (before !== owner) {
+            dot.classList.add("moved");
+            moved++;
+            if (lastEvent === "remove" && owner !== "D") {
+              dot.classList.add("new-owner");
+            }
+          } else {
+            dot.classList.add("stable");
+          }
+        } else {
+          dot.classList.add("stable");
+        }
+
+        dot.setAttribute("title", `Key ${idx + 1} → ${owner}`);
+        svg.appendChild(dot);
+      });
+
+      // Nodes
+      activeNodes.forEach((node) => {
+        const angle = NODE_POSITIONS[node];
+        const p = posOnCircle(angle, NODE_R);
+        const dot = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+        dot.setAttribute("cx", p.x);
+        dot.setAttribute("cy", p.y);
+        dot.setAttribute("r", 16);
+        dot.setAttribute("fill", COLORS[node]);
+        dot.classList.add("node-dot");
+        svg.appendChild(dot);
+
+        const labelPos = posOnCircle(angle, NODE_R + 28);
+        const label = document.createElementNS("http://www.w3.org/2000/svg", "text");
+        label.setAttribute("x", labelPos.x);
+        label.setAttribute("y", labelPos.y);
+        label.classList.add("node-label");
+        label.textContent = node;
+        svg.appendChild(label);
+      });
+
+      // Stats
+      const stable = KEY_ANGLES.length - moved;
+      document.getElementById("movedCount").textContent = prevOwners ? moved : 0;
+      document.getElementById("stableCount").textContent = prevOwners ? stable : KEY_ANGLES.length;
+
+      // Node chips
+      const list = document.getElementById("nodeList");
+      list.innerHTML = activeNodes
+        .map(
+          (n) =>
+            `<span class="node-chip" style="border-color:${COLORS[n]};color:${COLORS[n]}">${n}</span>`
+        )
+        .join("");
+
+      return moved;
+    }
+
+    function setEvent(text, highlight = null) {
+      document.getElementById("eventText").textContent = text;
+      render(highlight);
+    }
+
+    function snapshotOwners() {
+      return KEY_ANGLES.map((a) => ownerForKey(a));
+    }
+
+    function addServer() {
+      if (activeNodes.includes("D")) return;
+      prevOwners = snapshotOwners();
+      lastEvent = "add";
+      activeNodes.push("D");
+      const moved = render("D");
+      setEvent(
+        `Added server D. It took only the 3 keys in arc (A, D] — at 38°, 45°, and 55°. They moved from B to D. All other keys stayed put.`,
+        "D"
+      );
+      document.getElementById("btnAdd").disabled = true;
+      document.getElementById("btnRemove").disabled = false;
+    }
+
+    function removeServer() {
+      if (!activeNodes.includes("D")) return;
+      prevOwners = snapshotOwners();
+      lastEvent = "remove";
+
+      // Keys owned by D will move to next server clockwise (B at 150°)
+      const dKeys = KEY_ANGLES.filter((a) => ownerForKey(a) === "D").length;
+
+      activeNodes = activeNodes.filter((n) => n !== "D");
+      const moved = render("B");
+      setEvent(
+        `Removed server D. Its ${dKeys} keys slid clockwise to server B — only those keys moved. The other ${KEY_ANGLES.length - dKeys} keys stayed on their servers.`,
+        "B"
+      );
+      document.getElementById("btnAdd").disabled = false;
+      document.getElementById("btnRemove").disabled = true;
+    }
+
+    function reset() {
+      activeNodes = ["A", "B", "C"];
+      prevOwners = null;
+      lastEvent = "initial";
+      document.getElementById("btnAdd").disabled = false;
+      document.getElementById("btnRemove").disabled = true;
+      setEvent("3 servers (A, B, C). Each key maps to the first server clockwise on the ring.");
+    }
+
+    document.getElementById("btnAdd").addEventListener("click", addServer);
+    document.getElementById("btnRemove").addEventListener("click", removeServer);
+    document.getElementById("btnReset").addEventListener("click", reset);
+
+    reset();
+  </script>
+</body>
+</html>

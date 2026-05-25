@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Database Choice — Interview Scenarios</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #0f1117;
+      color: #e2e8f0;
+      line-height: 1.7;
+      padding: 2rem 1rem;
+    }
+
+    .container {
+      max-width: 780px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: #f8fafc;
+      margin-bottom: 0.4rem;
+    }
+
+    .subtitle {
+      color: #64748b;
+      font-size: 0.95rem;
+      margin-bottom: 3rem;
+    }
+
+    .principle-box {
+      background: #1e293b;
+      border-left: 3px solid #6366f1;
+      border-radius: 6px;
+      padding: 1.2rem 1.4rem;
+      margin-bottom: 3rem;
+    }
+
+    .principle-box p {
+      color: #cbd5e1;
+      font-size: 0.95rem;
+    }
+
+    .principle-box strong {
+      color: #a5b4fc;
+    }
+
+    .scenario {
+      margin-bottom: 3.5rem;
+    }
+
+    .scenario-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .scenario-number {
+      background: #334155;
+      color: #94a3b8;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+    }
+
+    .scenario-title {
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: #f1f5f9;
+    }
+
+    .difficulty {
+      margin-left: auto;
+      font-size: 0.75rem;
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      font-weight: 600;
+    }
+
+    .easy   { background: #14532d; color: #86efac; }
+    .medium { background: #78350f; color: #fcd34d; }
+    .hard   { background: #4c0519; color: #fda4af; }
+
+    .prompt-block {
+      background: #1e293b;
+      border-radius: 8px;
+      padding: 1.2rem 1.4rem;
+      margin-bottom: 1.4rem;
+    }
+
+    .prompt-label {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #475569;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .prompt-text {
+      color: #e2e8f0;
+      font-style: italic;
+      font-size: 1rem;
+    }
+
+    .context-text {
+      color: #94a3b8;
+      font-size: 0.9rem;
+      margin-bottom: 1.2rem;
+    }
+
+    details {
+      background: #0f172a;
+      border: 1px solid #1e293b;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    summary {
+      cursor: pointer;
+      padding: 0.9rem 1.2rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #6366f1;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      user-select: none;
+    }
+
+    summary::-webkit-details-marker { display: none; }
+
+    summary::before {
+      content: "▶";
+      font-size: 0.65rem;
+      transition: transform 0.2s;
+    }
+
+    details[open] summary::before {
+      transform: rotate(90deg);
+    }
+
+    details[open] summary {
+      border-bottom: 1px solid #1e293b;
+    }
+
+    .answer-body {
+      padding: 1.4rem;
+    }
+
+    .model-answer {
+      background: #0d2b1a;
+      border-left: 3px solid #22c55e;
+      border-radius: 6px;
+      padding: 1rem 1.2rem;
+      margin-bottom: 1.4rem;
+      font-style: italic;
+      color: #bbf7d0;
+      font-size: 1rem;
+    }
+
+    .analysis h4 {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: #475569;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+      margin-top: 1.2rem;
+    }
+
+    .analysis h4:first-child {
+      margin-top: 0;
+    }
+
+    .analysis p {
+      color: #94a3b8;
+      font-size: 0.92rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .analysis ul {
+      padding-left: 1.2rem;
+      color: #94a3b8;
+      font-size: 0.92rem;
+    }
+
+    .analysis li {
+      margin-bottom: 0.4rem;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.88rem;
+      margin-top: 0.8rem;
+    }
+
+    th {
+      text-align: left;
+      padding: 0.5rem 0.75rem;
+      background: #1e293b;
+      color: #64748b;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-weight: 600;
+    }
+
+    td {
+      padding: 0.5rem 0.75rem;
+      border-bottom: 1px solid #1e293b;
+      color: #cbd5e1;
+      vertical-align: top;
+    }
+
+    tr:last-child td { border-bottom: none; }
+
+    .tag-good { color: #86efac; }
+    .tag-bad  { color: #fda4af; }
+
+    .shortcut {
+      background: #1e293b;
+      border-radius: 6px;
+      padding: 0.9rem 1.2rem;
+      margin-top: 1.2rem;
+      font-size: 0.88rem;
+      color: #94a3b8;
+    }
+
+    .shortcut strong {
+      color: #a5b4fc;
+    }
+
+    .concept-block {
+      background: #0f172a;
+      border: 1px solid #1e293b;
+      border-radius: 8px;
+      padding: 1.4rem;
+      margin-bottom: 3.5rem;
+    }
+
+    .concept-block h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #f1f5f9;
+      margin-bottom: 1rem;
+    }
+
+    pre {
+      background: #020617;
+      border-radius: 6px;
+      padding: 1rem 1.2rem;
+      overflow-x: auto;
+      font-family: "SF Mono", "Fira Code", monospace;
+      font-size: 0.82rem;
+      color: #94a3b8;
+      margin: 0.8rem 0;
+      line-height: 1.6;
+    }
+
+    .divider {
+      border: none;
+      border-top: 1px solid #1e293b;
+      margin: 3rem 0;
+    }
+
+    .footer {
+      color: #334155;
+      font-size: 0.8rem;
+      text-align: center;
+      margin-top: 4rem;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <h1>Database Choice — Interview Scenarios</h1>
+  <p class="subtitle">Based on guide 5 · RDBMS, NoSQL, ACID, and BASE · Practice sessions</p>
+
+  <div class="principle-box">
+    <p>
+      <strong>The meta-rule:</strong> name the database, tie it to one specific property that matters for this domain, state the consequence of getting it wrong. One sentence unprompted. Expand only when probed.
+      <br><br>
+      <strong>Three questions to run before answering:</strong> What must be <em>correct</em>? What must be <em>fast</em>? What can be <em>stale</em>?
+    </p>
+  </div>
+
+  <!-- ── SCENARIO 1 ── -->
+  <div class="scenario">
+    <div class="scenario-header">
+      <span class="scenario-number">Scenario 1</span>
+      <span class="scenario-title">Taxi ride payment processing</span>
+      <span class="difficulty easy">Easy</span>
+    </div>
+
+    <p class="context-text">You've just described a system that processes payments at the end of each taxi ride — charge the rider, credit the driver, log the transaction.</p>
+
+    <div class="prompt-block">
+      <div class="prompt-label">Interviewer</div>
+      <div class="prompt-text">"What database are you using here and why?"</div>
+    </div>
+
+    <details>
+      <summary>Model answer + analysis</summary>
+      <div class="answer-body">
+        <div class="model-answer">
+          "Postgres — payments need atomic multi-step transactions. A charge and a ledger entry can't partially succeed."
+        </div>
+        <div class="analysis">
+          <h4>Why this works</h4>
+          <ul>
+            <li>Names a specific database, not a category.</li>
+            <li>Atomicity is the right ACID property to cite here — not consistency, not isolation. If charge succeeds but ledger write fails, money disappears.</li>
+            <li>Gives a concrete consequence ("can't partially succeed") rather than reciting a definition.</li>
+          </ul>
+
+          <h4>Common mistakes</h4>
+          <table>
+            <thead><tr><th>What candidates say</th><th>The problem</th></tr></thead>
+            <tbody>
+              <tr>
+                <td class="tag-bad">"I need ACID consistency"</td>
+                <td>Consistency is the weakest letter in ACID for interviews. The real risk is atomicity — partial writes.</td>
+              </tr>
+              <tr>
+                <td class="tag-bad">"Relational database because there are relationships"</td>
+                <td>NoSQL can model relationships too. This is the yellow flag the interviewer is watching for.</td>
+              </tr>
+              <tr>
+                <td class="tag-bad">"SQL because I know it well"</td>
+                <td>That's a personal preference, not a requirement-driven reason. Fine to say at the end, not as the reason.</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="shortcut">
+            <strong>Pattern:</strong> when money, inventory, or permissions are involved → lead with <em>atomicity</em> or <em>transactions</em>, name Postgres or MySQL.
+          </div>
+        </div>
+      </div>
+    </details>
+  </div>
+
+  <!-- ── SCENARIO 2 ── -->
+  <div class="scenario">
+    <div class="scenario-header">
+      <span class="scenario-number">Scenario 2</span>
+      <span class="scenario-title">Social media activity feed</span>
+      <span class="difficulty medium">Medium</span>
+    </div>
+
+    <p class="context-text">You're designing the feed that shows each user the 50 most recent events from people they follow. Reads are very high volume. A post appearing 1–2 seconds late is acceptable.</p>
+
+    <div class="prompt-block">
+      <div class="prompt-label">Interviewer</div>
+      <div class="prompt-text">"Same question — what are you storing the feed in?"</div>
+    </div>
+
+    <details>
+      <summary>Model answer + analysis</summary>
+      <div class="answer-body">
+        <div class="model-answer">
+          "Cassandra — the feed access pattern is always 'latest N events by user_id', which maps directly to a wide-column partition. Slight staleness is fine here so I don't need ACID."
+        </div>
+        <div class="analysis">
+          <h4>Why not Postgres here</h4>
+          <p>Postgres can answer this query. The problem is <em>at scale</em>. "JOIN users, follows, posts WHERE follower = X ORDER BY created_at LIMIT 50" touches multiple tables on every feed load for millions of users. That's what breaks.</p>
+          <p>The feed read path is latency-sensitive with a completely fixed, known access pattern. That profile calls for a store modeled around that query.</p>
+
+          <h4>The tell that reveals the wrong instinct</h4>
+          <p>If your justification for a database is <em>"I'll join two tables"</em> — pause. Joins are an implementation detail, not a requirement. Ask whether that join runs on every request at scale.</p>
+
+          <h4>Requirements breakdown</h4>
+          <table>
+            <thead><tr><th>Requirement</th><th>Implication</th></tr></thead>
+            <tbody>
+              <tr><td>Must be fast at scale</td><td>Single-partition read, no joins</td></tr>
+              <tr><td>Access pattern is fixed</td><td>No need for flexible SQL queries</td></tr>
+              <tr><td>Staleness of ~1s is fine</td><td>Eventual consistency (BASE) is acceptable</td></tr>
+              <tr><td>No financial correctness</td><td>ACID not required</td></tr>
+            </tbody>
+          </table>
+
+          <div class="shortcut">
+            <strong>Pattern:</strong> fixed known access pattern + high read volume + staleness acceptable → wide-column store (Cassandra, DynamoDB). Model your query first, then pick the store.
+          </div>
+        </div>
+      </div>
+    </details>
+  </div>
+
+  <!-- ── CONCEPT: WIDE-COLUMN ── -->
+  <div class="concept-block">
+    <h3>Concept: What a wide-column store actually looks like</h3>
+
+    <p style="color:#94a3b8; font-size:0.92rem; margin-bottom:1rem;">
+      A wide-column row has three parts: a <strong style="color:#a5b4fc">partition key</strong> (which node), a <strong style="color:#a5b4fc">clustering key</strong> (order within that node), and sparse columns (different rows can have different columns).
+    </p>
+
+<pre>
+partition_key │ clustering_key       │ event_type │ content       │ liked_post_id
+──────────────┼──────────────────────┼────────────┼───────────────┼──────────────
+user1         │ 2026-05-24 10:00:00  │ post       │ "hello world" │ —
+user1         │ 2026-05-24 09:00:00  │ like       │ —             │ 123
+user1         │ 2026-05-24 08:00:00  │ follow     │ —             │ —
+user2         │ 2026-05-24 11:00:00  │ post       │ "good morning"│ —
+</pre>
+
+    <p style="color:#94a3b8; font-size:0.92rem; margin-top:1rem;">
+      The query <code style="color:#a5b4fc">WHERE user_id = 'user1' ORDER BY ts DESC LIMIT 50</code> is a single sequential read within one partition — already sorted, no joins, no scatter across nodes.
+    </p>
+    <p style="color:#94a3b8; font-size:0.92rem; margin-top:0.75rem;">
+      The timestamp is the <em>clustering key</em>, not a separate dimension. It exists because you need multiple rows per user (one per event) and you need to know which 50 to return. The partition key routes you to the right node; the clustering key orders the rows once you're there.
+    </p>
+  </div>
+
+  <!-- ── SCENARIO 3 ── -->
+  <div class="scenario">
+    <div class="scenario-header">
+      <span class="scenario-number">Scenario 3</span>
+      <span class="scenario-title">URL shortener</span>
+      <span class="difficulty medium">Medium</span>
+    </div>
+
+    <p class="context-text">Short code maps to a long URL. Writes are infrequent (someone creates a short link). Reads are very high volume (anyone clicking a link triggers a lookup). No transactions needed. Slight staleness on a newly created link is acceptable.</p>
+
+    <div class="prompt-block">
+      <div class="prompt-label">Interviewer</div>
+      <div class="prompt-text">"What database are you using?"</div>
+    </div>
+
+    <details>
+      <summary>Model answer + analysis</summary>
+      <div class="answer-body">
+        <div class="model-answer">
+          "DynamoDB or Redis — the access pattern is a pure key lookup: short code in, long URL out. No joins, no transactions, and a key-value store handles this at high read volume with low latency. I'd layer a CDN or Redis cache on top so most lookups never hit the database at all."
+        </div>
+        <div class="analysis">
+          <h4>Why this is genuinely ambiguous — and that's okay</h4>
+          <p>Postgres would also work here. The data model is simple, scale is manageable, and a keyed lookup with an index is fast. If the interviewer pushes back, saying "either works, I'm going DynamoDB because the access pattern is a pure key lookup at high read volume and I want to avoid operational overhead" is a strong, honest answer.</p>
+          <p>The skill being tested is whether you can <em>justify</em> the choice with requirements — not whether you pick the "correct" answer.</p>
+
+          <h4>Requirements breakdown</h4>
+          <table>
+            <thead><tr><th>Requirement</th><th>Implication</th></tr></thead>
+            <tbody>
+              <tr><td>Pure key lookup</td><td>Key-value store is a natural fit</td></tr>
+              <tr><td>Very high read volume</td><td>Cache layer is mandatory regardless of DB choice</td></tr>
+              <tr><td>No transactions</td><td>ACID not required</td></tr>
+              <tr><td>Infrequent writes</td><td>Write throughput is not the bottleneck</td></tr>
+              <tr><td>Slight staleness on new links OK</td><td>Eventual consistency acceptable</td></tr>
+            </tbody>
+          </table>
+
+          <h4>The cache observation matters</h4>
+          <p>Saying "I'd cache this" unprompted signals maturity. Most URL shortener traffic hits a small set of popular links. A CDN or Redis cache means the database choice barely matters for the hot path — almost all reads are served from cache.</p>
+
+          <div class="shortcut">
+            <strong>Pattern:</strong> pure key lookup + no transactions + high reads → key-value store. Add caching observation unprompted — it shows you're thinking about the actual bottleneck.
+          </div>
+        </div>
+      </div>
+    </details>
+  </div>
+
+  <!-- ── SCENARIO 4 ── -->
+  <div class="scenario">
+    <div class="scenario-header">
+      <span class="scenario-number">Scenario 4</span>
+      <span class="scenario-title">E-commerce checkout (polyglot)</span>
+      <span class="difficulty hard">Hard</span>
+    </div>
+
+    <p class="context-text">You're designing an e-commerce system. It has: order management, a product catalog (10M SKUs with varying attributes per category), a product search page, and user sessions.</p>
+
+    <div class="prompt-block">
+      <div class="prompt-label">Interviewer</div>
+      <div class="prompt-text">"Walk me through your storage choices."</div>
+    </div>
+
+    <details>
+      <summary>Model answer + analysis</summary>
+      <div class="answer-body">
+        <div class="model-answer">
+          "I'd use different stores for different jobs. Orders and payments go in Postgres — they need ACID transactions across order, payment, and inventory tables. The product catalog goes in a document store like MongoDB or DynamoDB — product attributes vary by category so a flexible schema fits better than forcing everything into fixed columns. Search goes to Elasticsearch — users need ranked full-text search with filters, which a document DB can't do well. Sessions go in Redis — pure key lookup, needs sub-millisecond latency, and it's fine if a session expires."
+        </div>
+        <div class="analysis">
+          <h4>What this answer demonstrates</h4>
+          <ul>
+            <li>Polyglot persistence — different stores for different jobs, not one database for everything.</li>
+            <li>Each choice is justified by a specific property: transactions, schema flexibility, text ranking, latency.</li>
+            <li>No store is over-extended into a role it's bad at.</li>
+          </ul>
+
+          <h4>The trap: one database to rule them all</h4>
+          <p>Candidates often try to pick one database and stretch it to cover every use case. The interviewer is watching for the recognition that search, sessions, flexible catalogs, and transactional orders have genuinely different requirements that are best served by different engines.</p>
+
+          <h4>Storage allocation summary</h4>
+          <table>
+            <thead><tr><th>Component</th><th>Store</th><th>Reason</th></tr></thead>
+            <tbody>
+              <tr><td>Orders / payments</td><td>Postgres</td><td>ACID transactions across related tables</td></tr>
+              <tr><td>Product catalog</td><td>MongoDB / DynamoDB</td><td>Schema varies per product category</td></tr>
+              <tr><td>Product search</td><td>Elasticsearch</td><td>Ranked full-text search with filters</td></tr>
+              <tr><td>Sessions</td><td>Redis</td><td>Pure key lookup, TTL expiry, sub-ms latency</td></tr>
+            </tbody>
+          </table>
+
+          <div class="shortcut">
+            <strong>Pattern:</strong> in complex systems, each data type has a different job. Name the store for each job and justify with one property. "One database should own each truth" — guide 5 §8.
+          </div>
+        </div>
+      </div>
+    </details>
+  </div>
+
+  <!-- ── CONCEPT: DYNAMODB MULTI-MODAL ── -->
+  <div class="concept-block">
+    <h3>Concept: DynamoDB is one engine — three modes</h3>
+    <p style="color:#94a3b8; font-size:0.92rem; margin-bottom:1rem;">
+      The "mode" is a data modeling decision, not a configuration switch. Same DynamoDB engine, different behavior based on key design.
+    </p>
+    <table>
+      <thead><tr><th>Mode</th><th>Key design</th><th>Behavior</th><th>Example use</th></tr></thead>
+      <tbody>
+        <tr><td>Key-value</td><td>Partition key only</td><td>O(1) single item lookup</td><td>Sessions, feature flags</td></tr>
+        <tr><td>Wide-column</td><td>PK + sort key (timestamp)</td><td>Range queries within partition, sorted rows</td><td>Feeds, order history, timelines</td></tr>
+        <tr><td>Document</td><td>Any key + nested JSON item</td><td>Flexible per-item attributes</td><td>Product catalog, user profiles</td></tr>
+      </tbody>
+    </table>
+
+    <p style="color:#94a3b8; font-size:0.92rem; margin-top:1.2rem; margin-bottom:0.6rem;"><strong style="color:#a5b4fc">Three ways to handle a secondary access pattern (in order of preference):</strong></p>
+    <ol style="color:#94a3b8; font-size:0.92rem; padding-left:1.4rem;">
+      <li style="margin-bottom:0.5rem;"><strong style="color:#e2e8f0">Sort key prefix</strong> — encode item type into the SK (<code style="color:#a5b4fc">post#timestamp</code>, <code style="color:#a5b4fc">like#timestamp</code>). Use <code style="color:#a5b4fc">begins_with</code> to filter. Cheap, co-located, no extra cost.</li>
+      <li style="margin-bottom:0.5rem;"><strong style="color:#e2e8f0">Global Secondary Index (GSI)</strong> — DynamoDB maintains a separate index with a different PK. Allows a totally different access dimension. Costs extra read/write throughput.</li>
+      <li style="margin-bottom:0.5rem;"><strong style="color:#fda4af">Filter expression — avoid on hot paths.</strong> Fetches the entire partition first, then discards non-matching rows in memory. Reduces response size, not read cost. 10,000 rows fetched to return 50 = 10,000 read units consumed.</li>
+    </ol>
+  </div>
+
+  <!-- ── SCENARIO 5 ── -->
+  <div class="scenario">
+    <div class="scenario-header">
+      <span class="scenario-number">Scenario 5</span>
+      <span class="scenario-title">DynamoDB single-table: why not separate tables?</span>
+      <span class="difficulty hard">Hard</span>
+    </div>
+
+    <p class="context-text">You chose DynamoDB for the social feed. You've explained co-locating posts, likes, and follows in one table using sort key prefixes. The interviewer pushes back.</p>
+
+    <div class="prompt-block">
+      <div class="prompt-label">Interviewer</div>
+      <div class="prompt-text">"Why not just have separate tables — posts, likes, follows? That feels cleaner."</div>
+    </div>
+
+    <details>
+      <summary>Model answer + analysis</summary>
+      <div class="answer-body">
+        <div class="model-answer">
+          "DynamoDB has no joins. Separate tables mean multiple round trips — one per table — or expensive cross-table transactions. By encoding item type in the sort key prefix, all of user_123's data lives in one partition. I get one query, one round trip, and the prefix filter separates types cleanly."
+        </div>
+        <div class="analysis">
+          <h4>Why single-table is idiomatic DynamoDB</h4>
+          <p>In a relational DB, one table per entity is the right instinct — SQL joins bring them together cheaply at query time. DynamoDB has no joins. Every cross-table access is a separate network request. Single-table design is the DynamoDB community's answer to this constraint.</p>
+
+          <h4>What the sort key prefix pattern looks like</h4>
+<pre>PK: user_123  |  SK: post#2026-05-24T10:00   → { content: "hello" }
+PK: user_123  |  SK: like#2026-05-24T09:00   → { liked_id: 456 }
+PK: user_123  |  SK: follow#2026-05-24T08:00 → { followed: "user_99" }
+
+Query all posts:   WHERE PK = 'user_123' AND SK begins_with 'post#'
+Query everything:  WHERE PK = 'user_123' ORDER BY SK DESC LIMIT 50</pre>
+
+          <h4>Cassandra does the opposite — and that's fine too</h4>
+          <p>Cassandra's convention is one physical table per access pattern. <code>feed_by_user</code>, <code>posts_by_user</code>, <code>likes_by_user</code> would all be separate tables. Neither approach is wrong — they reflect the different operational philosophies of the two engines.</p>
+
+          <table>
+            <thead><tr><th></th><th>DynamoDB</th><th>Cassandra</th></tr></thead>
+            <tbody>
+              <tr><td>Convention</td><td>Single-table, sort key prefixes</td><td>One table per query</td></tr>
+              <tr><td>Secondary access</td><td>GSI</td><td>Materialized views</td></tr>
+              <tr><td>Secondary indexes</td><td>Safe (separate maintained index)</td><td>Dangerous (queries every node)</td></tr>
+              <tr><td>Best fit</td><td>Managed / serverless</td><td>On-prem / high sustained writes</td></tr>
+            </tbody>
+          </table>
+
+          <div class="shortcut">
+            <strong>Pattern:</strong> DynamoDB = single-table, sort key encodes entity type. Cassandra = one table per query. Both avoid joins by modeling around the access pattern upfront.
+          </div>
+        </div>
+      </div>
+    </details>
+  </div>
+
+  <!-- ── SCENARIO 6 ── -->
+  <div class="scenario">
+    <div class="scenario-header">
+      <span class="scenario-number">Scenario 6</span>
+      <span class="scenario-title">Cassandra vs DynamoDB — same requirements, how do you choose?</span>
+      <span class="difficulty hard">Hard</span>
+    </div>
+
+    <p class="context-text">You've said the feed needs a wide-column store. The interviewer knows both Cassandra and DynamoDB fit the access pattern.</p>
+
+    <div class="prompt-block">
+      <div class="prompt-label">Interviewer</div>
+      <div class="prompt-text">"You mentioned Cassandra or DynamoDB. Both work. How do you actually pick one?"</div>
+    </div>
+
+    <details>
+      <summary>Model answer + analysis</summary>
+      <div class="answer-body">
+        <div class="model-answer">
+          "For most product teams I'd default to DynamoDB — it's fully managed, scales automatically, and removes operational overhead. I'd lean toward Cassandra if we need on-prem deployment, very high sustained write throughput with fine-grained tuning, or we already have Cassandra expertise in-house. The data model philosophy differs too: DynamoDB leans single-table with sort key prefixes; Cassandra leans one table per query. Either works, but the team needs to commit to one modeling convention."
+        </div>
+        <div class="analysis">
+          <h4>Decision factors</h4>
+          <table>
+            <thead><tr><th>Factor</th><th>Lean DynamoDB</th><th>Lean Cassandra</th></tr></thead>
+            <tbody>
+              <tr><td>Infrastructure</td><td>Cloud-managed, serverless</td><td>On-prem or self-managed</td></tr>
+              <tr><td>Write throughput</td><td>High but auto-scaled</td><td>Very high, sustained, tunable</td></tr>
+              <tr><td>Ops overhead</td><td>Near zero</td><td>Significant (compaction, repair, tuning)</td></tr>
+              <tr><td>Data modeling</td><td>Single-table, GSI</td><td>One-table-per-query, materialized views</td></tr>
+              <tr><td>Cost model</td><td>Per request (unpredictable at spikes)</td><td>Provisioned capacity (predictable)</td></tr>
+            </tbody>
+          </table>
+
+          <h4>What the interviewer is really testing</h4>
+          <p>They want to see that you can distinguish the two beyond "both are NoSQL wide-column stores." Knowing the operational philosophy difference (single-table vs one-table-per-query) and the secondary index risk in Cassandra signals real familiarity.</p>
+
+          <div class="shortcut">
+            <strong>Pattern:</strong> when requirements are ambiguous between two stores, justify on operational fit and team context — not just data model. "Either works; I'd pick X because…" is a strong, honest answer.
+          </div>
+        </div>
+      </div>
+    </details>
+  </div>
+
+  <!-- ── SCENARIO 7 ── -->
+  <div class="scenario">
+    <div class="scenario-header">
+      <span class="scenario-number">Scenario 7</span>
+      <span class="scenario-title">Fashion retailer product catalog</span>
+      <span class="difficulty medium">Medium</span>
+    </div>
+
+    <p class="context-text">A fashion retailer with 50 million SKUs. Jeans have waist and length. Shoes have size, width, and style. Electronics have voltage and wattage. Every category has different attributes.</p>
+
+    <div class="prompt-block">
+      <div class="prompt-label">Interviewer</div>
+      <div class="prompt-text">"How are you storing the product catalog?"</div>
+    </div>
+
+    <details>
+      <summary>Model answer + analysis</summary>
+      <div class="answer-body">
+        <div class="model-answer">
+          "MongoDB or DynamoDB in document mode — product attributes vary structurally by category. Forcing this into a relational schema means either sparse nullable columns across hundreds of attributes, or an EAV table which is slow and hard to query. A document store handles per-category schemas naturally, and the access pattern is a simple key lookup by product ID."
+        </div>
+        <div class="analysis">
+          <h4>Why relational breaks here</h4>
+          <p>A single <code>products</code> table with every possible attribute across every category would have hundreds of columns, most null for any given row. The alternative — Entity-Attribute-Value (EAV) — stores attributes as rows, but then filtering by <code>waist=32</code> becomes a painful pivot query. Both patterns are painful.</p>
+
+          <h4>What EAV looks like (and why it's bad)</h4>
+<pre>product_id | attribute   | value
+1001       | waist       | 32
+1001       | length      | 30
+1001       | color       | blue
+-- To filter: WHERE attribute='waist' AND value='32' AND attribute='color' AND value='blue'
+-- This requires self-joining the table. Slow, hard to index.</pre>
+
+          <h4>Requirements breakdown</h4>
+          <table>
+            <thead><tr><th>Requirement</th><th>Implication</th></tr></thead>
+            <tbody>
+              <tr><td>Schema varies by category</td><td>Document store handles flexible per-item attributes</td></tr>
+              <tr><td>Access is usually by product ID</td><td>Simple key lookup — no complex joins needed</td></tr>
+              <tr><td>Search (color, size, price) is separate</td><td>Elasticsearch sits in front for filtered search</td></tr>
+              <tr><td>No financial transactions</td><td>ACID not required</td></tr>
+            </tbody>
+          </table>
+
+          <div class="shortcut">
+            <strong>Pattern:</strong> variable schema per record → document store. If filtered search is also needed → document store as source of truth, Elasticsearch as the search layer.
+          </div>
+        </div>
+      </div>
+    </details>
+  </div>
+
+  <hr class="divider">
+
+  <!-- ── CHEAT SHEET ── -->
+  <div class="scenario">
+    <div class="scenario-header">
+      <span class="scenario-number">Reference</span>
+      <span class="scenario-title">Quick decision map</span>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>If you see…</th>
+          <th>Reach for…</th>
+          <th>One-word reason</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Money / inventory / permissions</td><td>Postgres / MySQL</td><td>Atomicity</td></tr>
+        <tr><td>Fixed high-volume access pattern, staleness OK</td><td>Cassandra / DynamoDB wide-column</td><td>Partition</td></tr>
+        <tr><td>Pure key lookup, no transactions</td><td>DynamoDB / Redis</td><td>Key-value</td></tr>
+        <tr><td>Variable schema per record</td><td>MongoDB / DynamoDB document</td><td>Flexibility</td></tr>
+        <tr><td>Ranked text search with filters</td><td>Elasticsearch</td><td>Inverted index</td></tr>
+        <tr><td>Sub-millisecond read, TTL expiry</td><td>Redis</td><td>Cache</td></tr>
+        <tr><td>Relationship traversal (fraud, social graph)</td><td>Neo4j / Neptune</td><td>Graph</td></tr>
+        <tr><td>Time-window metrics / IoT</td><td>InfluxDB / TimescaleDB</td><td>Time-series</td></tr>
+      </tbody>
+    </table>
+
+    <div class="shortcut" style="margin-top: 1.2rem;">
+      <strong>Interview sentence template:</strong> "[Database] — [this domain] needs [specific property]. [One-sentence consequence of getting it wrong]."
+    </div>
+  </div>
+
+  <p class="footer">System Design Study Series · Guide 5 companion · db-choice-interview-scenarios.html</p>
+
+</div>
+</body>
+</html>

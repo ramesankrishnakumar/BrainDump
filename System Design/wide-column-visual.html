@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wide-Column Database — Visual Guide</title>
+  <style>
+    :root {
+      --bg: #0f1419;
+      --surface: #1a2332;
+      --surface2: #243044;
+      --border: #2d3a4f;
+      --text: #e7ecf3;
+      --muted: #8b9cb3;
+      --accent: #5b9fd4;
+      --pk: #e07a5f;
+      --ck: #f2cc60;
+      --col: #6bcf7f;
+      --doc: #c9b1ff;
+      --kv: #7ec8e3;
+      --rdb: #94a3b8;
+      --wide: #6bcf7f;
+      --highlight: #5b9fd4;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: "SF Pro Text", "Segoe UI", system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      padding: 2rem 1.5rem 3rem;
+      line-height: 1.55;
+    }
+
+    header {
+      max-width: 1100px;
+      margin: 0 auto 1.75rem;
+    }
+
+    h1 {
+      font-size: 1.55rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      margin-top: 0.4rem;
+      font-size: 0.95rem;
+      max-width: 720px;
+    }
+
+    .tabs {
+      max-width: 1100px;
+      margin: 0 auto 1.25rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .tab {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      padding: 0.5rem 0.9rem;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .tab:hover { color: var(--text); border-color: var(--accent); }
+    .tab.active {
+      color: var(--text);
+      border-color: var(--accent);
+      background: var(--surface2);
+      box-shadow: 0 0 0 1px var(--accent);
+    }
+
+    .tab[data-type="wide"].active { border-color: var(--wide); box-shadow: 0 0 0 1px var(--wide); }
+    .tab[data-type="rdb"].active { border-color: var(--rdb); }
+    .tab[data-type="doc"].active { border-color: var(--doc); }
+    .tab[data-type="kv"].active { border-color: var(--kv); }
+
+    .panel {
+      max-width: 1100px;
+      margin: 0 auto 1.5rem;
+      display: none;
+    }
+
+    .panel.active { display: block; }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.25rem 1.35rem;
+      margin-bottom: 1rem;
+    }
+
+    .card h2 {
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .card p, .card li {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .card ul { margin: 0.5rem 0 0 1.1rem; }
+    .card li { margin-bottom: 0.25rem; }
+
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem 1.25rem;
+      margin-bottom: 1rem;
+      font-size: 0.8rem;
+    }
+
+    .legend span {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      color: var(--muted);
+    }
+
+    .swatch {
+      width: 12px;
+      height: 12px;
+      border-radius: 3px;
+      display: inline-block;
+    }
+
+    /* ── Visual grids ── */
+    .viz-wrap {
+      overflow-x: auto;
+      margin: 0.75rem 0;
+    }
+
+    table.viz {
+      border-collapse: separate;
+      border-spacing: 0;
+      font-size: 0.78rem;
+      min-width: 100%;
+    }
+
+    table.viz th,
+    table.viz td {
+      border: 1px solid var(--border);
+      padding: 0.45rem 0.55rem;
+      text-align: left;
+      vertical-align: top;
+      white-space: nowrap;
+    }
+
+    table.viz th {
+      background: var(--surface2);
+      color: var(--muted);
+      font-weight: 600;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .cell-pk { background: rgba(224, 122, 95, 0.18); color: #f0a090; font-weight: 600; }
+    .cell-ck { background: rgba(242, 204, 96, 0.15); color: #f2cc60; }
+    .cell-col { background: rgba(107, 207, 127, 0.12); color: #8ee0a0; }
+    .cell-empty { background: transparent; color: #3d4f66; font-style: italic; }
+    .cell-doc { background: rgba(201, 177, 255, 0.1); }
+    .cell-kv { background: rgba(126, 200, 227, 0.12); }
+    .cell-rdb { background: rgba(148, 163, 184, 0.1); }
+
+    .row-label {
+      font-weight: 600;
+      color: var(--text);
+      background: var(--surface2) !important;
+    }
+
+    /* Wide-column: column family blocks */
+    .wide-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+      gap: 0.75rem;
+      margin: 1rem 0;
+      align-items: start;
+    }
+
+    @media (max-width: 700px) {
+      .wide-layout { grid-template-columns: 1fr; }
+    }
+
+    .partition-box {
+      border: 2px dashed var(--pk);
+      border-radius: 10px;
+      padding: 0.75rem;
+      background: rgba(224, 122, 95, 0.06);
+    }
+
+    .partition-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--pk);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 0.6rem;
+    }
+
+    .row-block {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 0.5rem;
+      align-items: stretch;
+    }
+
+    .row-key {
+      min-width: 72px;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 0.4rem 0.5rem;
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--ck);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .cfamily {
+      flex: 1;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+
+    .cfamily-name {
+      background: var(--surface2);
+      padding: 0.3rem 0.5rem;
+      font-size: 0.68rem;
+      font-weight: 700;
+      color: var(--col);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .cfamily-cells {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1px;
+      background: var(--border);
+    }
+
+    .cf-cell {
+      background: var(--surface);
+      padding: 0.35rem 0.5rem;
+      font-size: 0.72rem;
+      min-width: 64px;
+    }
+
+    .cf-cell .k { color: var(--muted); font-size: 0.65rem; display: block; }
+    .cf-cell .v { color: var(--text); font-weight: 500; }
+
+    /* Document blob */
+    .doc-blob {
+      background: var(--surface2);
+      border: 1px solid var(--doc);
+      border-radius: 10px;
+      padding: 1rem;
+      font-family: "SF Mono", "Fira Code", monospace;
+      font-size: 0.78rem;
+      line-height: 1.6;
+      color: #b8c5d6;
+      overflow-x: auto;
+    }
+
+    .doc-blob .key { color: var(--doc); }
+    .doc-blob .str { color: #8ee0a0; }
+    .doc-blob .num { color: #f2cc60; }
+
+    /* Key-value pair */
+    .kv-pair {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin: 1rem 0;
+    }
+
+    .kv-key {
+      background: rgba(126, 200, 227, 0.15);
+      border: 2px solid var(--kv);
+      border-radius: 10px;
+      padding: 1rem 1.25rem;
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--kv);
+      min-width: 200px;
+      text-align: center;
+    }
+
+    .kv-arrow {
+      font-size: 1.5rem;
+      color: var(--muted);
+    }
+
+    .kv-value {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1rem;
+      flex: 1;
+      min-width: 220px;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    /* Compare grid */
+    .compare-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 0.75rem;
+      margin-top: 0.75rem;
+    }
+
+    .compare-card {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 0.85rem;
+    }
+
+    .compare-card h3 {
+      font-size: 0.85rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .compare-card.wide h3 { color: var(--wide); }
+    .compare-card.doc h3 { color: var(--doc); }
+    .compare-card.kv h3 { color: var(--kv); }
+    .compare-card.rdb h3 { color: var(--rdb); }
+
+    .compare-card p {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .query-box {
+      background: rgba(91, 159, 212, 0.1);
+      border-left: 3px solid var(--accent);
+      padding: 0.65rem 0.85rem;
+      border-radius: 0 8px 8px 0;
+      margin-top: 0.75rem;
+      font-size: 0.85rem;
+    }
+
+    .query-box strong { color: var(--accent); }
+
+    .arrow-flow {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin: 0.75rem 0;
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+
+    .arrow-flow .step {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      padding: 0.35rem 0.6rem;
+      border-radius: 6px;
+      color: var(--text);
+    }
+
+    .arrow-flow .arr { color: var(--accent); font-weight: bold; }
+
+    .mental {
+      border-left: 3px solid var(--wide);
+      padding: 0.6rem 0.9rem;
+      margin-top: 0.75rem;
+      font-size: 0.88rem;
+      color: var(--text);
+      background: rgba(107, 207, 127, 0.08);
+      border-radius: 0 8px 8px 0;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Wide-Column Database — Visual Guide</h1>
+    <p class="subtitle">
+      A wide-column store is <strong>not</strong> “a table with many SQL columns.”
+      It is a <strong>sparse, partitioned grid</strong>: rows grouped by partition key,
+      sorted by clustering key, with <strong>column families</strong> that grow horizontally over time.
+    </p>
+  </header>
+
+  <nav class="tabs" role="tablist">
+    <button class="tab active" data-type="wide" data-panel="wide">Wide-Column (Cassandra)</button>
+    <button class="tab" data-type="rdb" data-panel="rdb">Relational (SQL)</button>
+    <button class="tab" data-type="doc" data-panel="doc">Document (MongoDB)</button>
+    <button class="tab" data-type="kv" data-panel="kv">Key-Value (Redis)</button>
+    <button class="tab" data-type="compare" data-panel="compare">Side-by-Side</button>
+  </nav>
+
+  <!-- ═══════════════ WIDE COLUMN ═══════════════ -->
+  <section id="wide" class="panel active">
+    <div class="card">
+      <h2>What “wide” really means</h2>
+      <p>
+        Think of one <strong>partition</strong> (e.g. all events for <code>user_123</code>) as a row
+        that gets <strong>wider over time</strong> as you append events — without defining 10,000 SQL columns upfront.
+        Empty cells cost almost nothing (<strong>sparse</strong>).
+      </p>
+      <div class="legend">
+        <span><i class="swatch" style="background:var(--pk)"></i> Partition key — which machine / shard owns this data</span>
+        <span><i class="swatch" style="background:var(--ck)"></i> Clustering key — sort order inside the partition</span>
+        <span><i class="swatch" style="background:var(--col)"></i> Columns — actual field values (can differ per row)</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Example: Instagram-style activity feed for <code>user_123</code></h2>
+      <p>Table: <code>user_events</code> — optimized query: “last 50 events for this user”</p>
+
+      <div class="wide-layout">
+        <div class="partition-box">
+          <div class="partition-label">Partition: user_id = user_123</div>
+          <p style="font-size:0.8rem;color:var(--muted);margin-bottom:0.75rem">
+            All rows below live on the <strong>same shard</strong>. One disk seek, sequential read.
+          </p>
+
+          <div class="row-block">
+            <div class="row-key">2026-05-24<br/>14:02:01</div>
+            <div class="cfamily">
+              <div class="cfamily-name">Column family: event_details</div>
+              <div class="cfamily-cells">
+                <div class="cf-cell"><span class="k">type</span><span class="v">like</span></div>
+                <div class="cf-cell"><span class="k">target</span><span class="v">post_9f2</span></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row-block">
+            <div class="row-key">2026-05-24<br/>13:58:44</div>
+            <div class="cfamily">
+              <div class="cfamily-name">Column family: event_details</div>
+              <div class="cfamily-cells">
+                <div class="cf-cell"><span class="k">type</span><span class="v">comment</span></div>
+                <div class="cf-cell"><span class="k">target</span><span class="v">post_7aa</span></div>
+                <div class="cf-cell"><span class="k">text</span><span class="v">Nice shot!</span></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row-block">
+            <div class="row-key">2026-05-24<br/>09:15:00</div>
+            <div class="cfamily">
+              <div class="cfamily-name">Column family: event_details</div>
+              <div class="cfamily-cells">
+                <div class="cf-cell"><span class="k">type</span><span class="v">follow</span></div>
+                <div class="cf-cell"><span class="k">target</span><span class="v">user_456</span></div>
+              </div>
+            </div>
+          </div>
+
+          <p style="font-size:0.75rem;color:var(--muted);margin-top:0.5rem">
+            ↓ partition grows wider as more timestamps are inserted (millions of events per user over years)
+          </p>
+        </div>
+
+        <div>
+          <div class="query-box">
+            <strong>Query:</strong> SELECT * FROM user_events<br/>
+            WHERE user_id = 'user_123'<br/>
+            AND event_time &gt; '2026-05-20'<br/>
+            LIMIT 50;
+          </div>
+          <div class="arrow-flow">
+            <span class="step">Hash(user_123)</span>
+            <span class="arr">→</span>
+            <span class="step">Node 7</span>
+            <span class="arr">→</span>
+            <span class="step">Read sorted rows on disk</span>
+            <span class="arr">→</span>
+            <span class="step">Return 50 events</span>
+          </div>
+          <p class="mental">
+            <strong>Mental model:</strong> Wide-column = <em>spreadsheet per partition key</em>, time grows to the right (new rows), each row can have different columns filled in.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Your exact question: one row, or many?</h2>
+      <p>
+        Common trap: “a feed is <code>user1 → feed</code>, so why split into <code>time1</code>, <code>time2</code>?”
+        Because a feed is <strong>not one value</strong> — it’s an <strong>ordered log of many events</strong> that grows forever.
+        Wide-column uses <em>two different keys</em> to do <em>two different jobs</em>:
+      </p>
+      <div class="compare-grid" style="margin-top:0.75rem">
+        <div class="compare-card" style="border-color:var(--pk)">
+          <h3 style="color:var(--pk)">Partition key = user1</h3>
+          <p><strong>Which machine</strong> stores the data. Co-locates <em>all</em> of user1’s events on one shard. This is your “user1 → feed” intuition — and it’s correct, at the partition level.</p>
+        </div>
+        <div class="compare-card" style="border-color:var(--ck)">
+          <h3 style="color:var(--ck)">Clustering key = time1, time2…</h3>
+          <p><strong>Sort order + identity</strong> of each row <em>inside</em> the partition. Each event is its own row, kept physically sorted by time so “last 50” is one sequential read.</p>
+        </div>
+      </div>
+
+      <p style="margin-top:1rem;font-weight:600;color:var(--text)">So the mapping is really:</p>
+      <div class="kv-pair" style="margin-top:0.5rem">
+        <div class="kv-key" style="border-color:var(--pk);background:rgba(224,122,95,0.12);color:#f0a090">user1</div>
+        <span class="kv-arrow">→</span>
+        <div class="kv-value">
+          <code>[ event@time1, event@time2, event@time3, … ]</code><br/>
+          <em style="font-size:0.8rem">one partition, many sorted rows — grows forever as events append</em>
+        </div>
+      </div>
+
+      <p style="margin-top:1rem;font-weight:600;color:var(--text)">Model A vs Model B (both you proposed):</p>
+      <div class="compare-grid" style="margin-top:0.5rem">
+        <div class="compare-card" style="border-color:var(--muted)">
+          <h3 style="color:var(--muted)">Model A — fixed wide row</h3>
+          <p style="font-family:'SF Mono',monospace;font-size:0.75rem;color:var(--text)">user1, time1, col1, col2, … col50<br/>user1, time2, col1, col2, … col50</p>
+          <p style="margin-top:0.5rem">This is only the <strong>logical CQL view</strong>. Misleading — it implies fixed, pre-allocated columns. Real storage is not like this.</p>
+        </div>
+        <div class="compare-card wide">
+          <h3>Model B — row → present columns only ✓</h3>
+          <p style="font-family:'SF Mono',monospace;font-size:0.75rem;color:var(--text)">user1, time1 → {type:like, target:post_9f2}<br/>user1, time2 → {type:comment, target:post_7aa, text:"Nice"}</p>
+          <p style="margin-top:0.5rem">Closer to <strong>physical reality</strong>. Each row stores only columns that exist — a <code>like</code> has no <code>text</code> cell; it simply isn’t on disk (<strong>sparse</strong>). Cassandra even stores each as <code>(user1, time1, colname) → value</code>.</p>
+        </div>
+      </div>
+
+      <p style="margin-top:1rem;font-weight:600;color:var(--text)">Why many rows, not one blob?</p>
+      <ul style="margin:0.5rem 0 0 1.1rem">
+        <li><strong>Append is cheap</strong> — new event = write one new row, never touch old data.</li>
+        <li><strong>Read is a range scan</strong> — “last 50” = first 50 rows of an already-sorted partition. One seek.</li>
+        <li><strong>One blob would be terrible</strong> — every new event would rewrite the whole feed (contention + unbounded row).</li>
+      </ul>
+      <p class="mental">
+        <strong>One line:</strong> one <em>partition</em> per user (the “user1 → feed” part), many <em>rows</em> per partition (one per event, sorted by time). Model B, not Model A.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>Logical view as a sparse table (same data)</h2>
+      <div class="viz-wrap">
+        <table class="viz">
+          <thead>
+            <tr>
+              <th class="cell-pk">user_id (PK)</th>
+              <th class="cell-ck">event_time (CK)</th>
+              <th class="cell-col">type</th>
+              <th class="cell-col">target</th>
+              <th class="cell-col">text</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="cell-pk row-label">user_123</td>
+              <td class="cell-ck">2026-05-24 14:02:01</td>
+              <td class="cell-col">like</td>
+              <td class="cell-col">post_9f2</td>
+              <td class="cell-empty">—</td>
+            </tr>
+            <tr>
+              <td class="cell-pk row-label">user_123</td>
+              <td class="cell-ck">2026-05-24 13:58:44</td>
+              <td class="cell-col">comment</td>
+              <td class="cell-col">post_7aa</td>
+              <td class="cell-col">Nice shot!</td>
+            </tr>
+            <tr>
+              <td class="cell-pk row-label">user_123</td>
+              <td class="cell-ck">2026-05-24 09:15:00</td>
+              <td class="cell-col">follow</td>
+              <td class="cell-col">user_456</td>
+              <td class="cell-empty">—</td>
+            </tr>
+            <tr>
+              <td class="cell-pk row-label">user_456</td>
+              <td class="cell-ck">…</td>
+              <td class="cell-col">…</td>
+              <td class="cell-empty">—</td>
+              <td class="cell-empty">—</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="font-size:0.82rem;color:var(--muted);margin-top:0.5rem">
+        Notice: <code>text</code> is empty for “like” and “follow” — in SQL you still pay for NULL columns across all rows;
+        in wide-column, missing cells are cheap (<strong>sparse</strong>).
+      </p>
+    </div>
+  </section>
+
+  <!-- ═══════════════ RDBMS ═══════════════ -->
+  <section id="rdb" class="panel">
+    <div class="card">
+      <h2>Relational table — fixed schema, all rows same columns</h2>
+      <p>Every row must fit the same columns. Joins across tables are native. Great for correctness; harder to scale writes globally.</p>
+      <div class="viz-wrap">
+        <table class="viz">
+          <thead>
+            <tr>
+              <th>id</th><th>user_id</th><th>event_time</th><th>type</th><th>target</th><th>text</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="cell-rdb">1</td><td class="cell-rdb">user_123</td><td class="cell-rdb">2026-05-24 14:02:01</td>
+              <td class="cell-rdb">like</td><td class="cell-rdb">post_9f2</td><td class="cell-empty">NULL</td>
+            </tr>
+            <tr>
+              <td class="cell-rdb">2</td><td class="cell-rdb">user_123</td><td class="cell-rdb">2026-05-24 13:58:44</td>
+              <td class="cell-rdb">comment</td><td class="cell-rdb">post_7aa</td><td class="cell-rdb">Nice shot!</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="query-box">
+        <strong>Query:</strong> SELECT * FROM user_events WHERE user_id = 'user_123' ORDER BY event_time DESC LIMIT 50;
+        <br/><span style="color:var(--muted)">Works, but at billions of rows you need indexes + sharding; cross-shard queries get expensive.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ DOCUMENT ═══════════════ -->
+  <section id="doc" class="panel">
+    <div class="card">
+      <h2>Document store — one JSON blob per record</h2>
+      <p>Flexible nested shape. Great when each record is a self-contained object (profile, product). Less ideal for “millions of tiny events per user” unless you embed arrays (which grow huge).</p>
+      <div class="doc-blob">
+{ <span class="key">"_id"</span>: <span class="str">"evt_001"</span>,
+  <span class="key">"user_id"</span>: <span class="str">"user_123"</span>,
+  <span class="key">"event_time"</span>: <span class="str">"2026-05-24T14:02:01Z"</span>,
+  <span class="key">"type"</span>: <span class="str">"like"</span>,
+  <span class="key">"target"</span>: <span class="str">"post_9f2"</span>
+}
+      </div>
+      <div class="doc-blob" style="margin-top:0.5rem">
+{ <span class="key">"_id"</span>: <span class="str">"evt_002"</span>,
+  <span class="key">"user_id"</span>: <span class="str">"user_123"</span>,
+  <span class="key">"event_time"</span>: <span class="str">"2026-05-24T13:58:44Z"</span>,
+  <span class="key">"type"</span>: <span class="str">"comment"</span>,
+  <span class="key">"target"</span>: <span class="str">"post_7aa"</span>,
+  <span class="key">"text"</span>: <span class="str">"Nice shot!"</span>
+}
+      </div>
+      <div class="query-box">
+        <strong>Query:</strong> db.user_events.find({ user_id: "user_123" }).sort({ event_time: -1 }).limit(50)
+        <br/><span style="color:var(--muted)">Each event = separate document. 10M events = 10M documents (heavy vs one wide partition).</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ KEY-VALUE ═══════════════ -->
+  <section id="kv" class="panel">
+    <div class="card">
+      <h2>Key-value store — one key → one opaque value</h2>
+      <p>Fastest lookup by exact key. No native “range of timestamps inside a user.” You must design the key carefully or store everything in one blob.</p>
+      <div class="kv-pair">
+        <div class="kv-key">user_123:feed</div>
+        <span class="kv-arrow">→</span>
+        <div class="kv-value">
+          Serialized list of 50 events (JSON / protobuf)<br/>
+          <em style="font-size:0.8rem">Update = read entire blob, append, write back</em>
+        </div>
+      </div>
+      <div class="kv-pair">
+        <div class="kv-key">user_123:evt:2026-05-24T14:02:01</div>
+        <span class="kv-arrow">→</span>
+        <div class="kv-value">{ type: "like", target: "post_9f2" }</div>
+      </div>
+      <div class="query-box">
+        <strong>GET</strong> user_123:feed — O(1) but no efficient “events between May 20–24” unless you designed many keys upfront.
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ COMPARE ═══════════════ -->
+  <section id="compare" class="panel">
+    <div class="card">
+      <h2>Same use case, four shapes</h2>
+      <p>Store: “last 50 events for user_123” at massive scale (billions of events/day)</p>
+      <div class="compare-grid">
+        <div class="compare-card wide">
+          <h3>Wide-Column ✓ best fit</h3>
+          <p>Partition by user_id, sort by time. Append-only writes on one shard. Range queries inside partition. Sparse columns.</p>
+          <p style="margin-top:0.4rem"><strong>Examples:</strong> Cassandra, HBase, Bigtable</p>
+        </div>
+        <div class="compare-card doc">
+          <h3>Document △ OK</h3>
+          <p>One doc per event is simple but many small docs. Embedding events in user doc = huge document, painful updates.</p>
+          <p style="margin-top:0.4rem"><strong>Examples:</strong> MongoDB, Couchbase</p>
+        </div>
+        <div class="compare-card kv">
+          <h3>Key-Value △ with tricks</h3>
+          <p>Whole feed as one value = fast read, bad for partial updates. Per-event keys = no cheap time-range scan.</p>
+          <p style="margin-top:0.4rem"><strong>Examples:</strong> Redis, DynamoDB (also wide-column-ish)</p>
+        </div>
+        <div class="compare-card rdb">
+          <h3>Relational ✓ until scale</h3>
+          <p>Fixed schema, ACID, SQL. At extreme write volume, sharding + hot rows become the bottleneck.</p>
+          <p style="margin-top:0.4rem"><strong>Examples:</strong> PostgreSQL, MySQL</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Visual: how data is laid out on disk</h2>
+      <div class="viz-wrap">
+        <svg viewBox="0 0 900 320" width="100%" style="max-width:900px;display:block">
+          <!-- RDB -->
+          <text x="10" y="22" fill="#94a3b8" font-size="12" font-weight="600">RDBMS — uniform rows, all columns</text>
+          <rect x="10" y="32" width="880" height="36" fill="#243044" stroke="#2d3a4f"/>
+          <rect x="10" y="32" width="110" height="36" fill="rgba(148,163,184,0.2)" stroke="#2d3a4f"/>
+          <rect x="120" y="32" width="110" height="36" fill="rgba(148,163,184,0.2)" stroke="#2d3a4f"/>
+          <rect x="230" y="32" width="110" height="36" fill="rgba(148,163,184,0.2)" stroke="#2d3a4f"/>
+          <rect x="340" y="32" width="110" height="36" fill="rgba(148,163,184,0.2)" stroke="#2d3a4f"/>
+          <text x="55" y="55" fill="#8b9cb3" font-size="10" text-anchor="middle">col A</text>
+          <text x="165" y="55" fill="#8b9cb3" font-size="10" text-anchor="middle">col B</text>
+          <text x="275" y="55" fill="#8b9cb3" font-size="10" text-anchor="middle">col C</text>
+          <text x="385" y="55" fill="#8b9cb3" font-size="10" text-anchor="middle">col D</text>
+
+          <!-- Document -->
+          <text x="10" y="100" fill="#c9b1ff" font-size="12" font-weight="600">Document — self-contained blobs</text>
+          <rect x="10" y="110" width="200" height="50" rx="6" fill="rgba(201,177,255,0.15)" stroke="#c9b1ff"/>
+          <rect x="220" y="110" width="200" height="50" rx="6" fill="rgba(201,177,255,0.15)" stroke="#c9b1ff"/>
+          <rect x="430" y="110" width="200" height="50" rx="6" fill="rgba(201,177,255,0.15)" stroke="#c9b1ff"/>
+          <text x="110" y="140" fill="#8b9cb3" font-size="10" text-anchor="middle">{ doc 1 }</text>
+          <text x="320" y="140" fill="#8b9cb3" font-size="10" text-anchor="middle">{ doc 2 }</text>
+          <text x="530" y="140" fill="#8b9cb3" font-size="10" text-anchor="middle">{ doc 3 }</text>
+
+          <!-- KV -->
+          <text x="10" y="190" fill="#7ec8e3" font-size="12" font-weight="600">Key-Value — key points to value</text>
+          <rect x="10" y="200" width="120" height="40" rx="6" fill="rgba(126,200,227,0.2)" stroke="#7ec8e3"/>
+          <text x="70" y="225" fill="#7ec8e3" font-size="10" text-anchor="middle">key</text>
+          <text x="145" y="225" fill="#5b9fd4" font-size="14">→</text>
+          <rect x="160" y="200" width="280" height="40" rx="6" fill="#243044" stroke="#2d3a4f"/>
+          <text x="300" y="225" fill="#8b9cb3" font-size="10" text-anchor="middle">opaque value</text>
+
+          <!-- Wide -->
+          <text x="10" y="270" fill="#6bcf7f" font-size="12" font-weight="600">Wide-Column — partition → many sorted rows, sparse cols</text>
+          <rect x="10" y="280" width="200" height="32" rx="4" fill="rgba(224,122,95,0.25)" stroke="#e07a5f" stroke-width="2"/>
+          <text x="110" y="300" fill="#f0a090" font-size="10" text-anchor="middle" font-weight="600">PARTITION user_123</text>
+          <rect x="215" y="280" width="55" height="32" fill="rgba(242,204,96,0.2)" stroke="#2d3a4f"/>
+          <rect x="270" y="280" width="55" height="32" fill="rgba(107,207,127,0.15)" stroke="#2d3a4f"/>
+          <rect x="325" y="280" width="30" height="32" fill="transparent" stroke="#2d3a4f" stroke-dasharray="4"/>
+          <rect x="360" y="280" width="55" height="32" fill="rgba(242,204,96,0.2)" stroke="#2d3a4f"/>
+          <rect x="415" y="280" width="55" height="32" fill="rgba(107,207,127,0.15)" stroke="#2d3a4f"/>
+          <rect x="470" y="280" width="55" height="32" fill="rgba(107,207,127,0.15)" stroke="#2d3a4f"/>
+          <text x="242" y="300" fill="#8b9cb3" font-size="8" text-anchor="middle">t1</text>
+          <text x="297" y="300" fill="#8ee0a0" font-size="8" text-anchor="middle">cols</text>
+          <text x="340" y="300" fill="#3d4f66" font-size="8" text-anchor="middle">∅</text>
+          <text x="387" y="300" fill="#8b9cb3" font-size="8" text-anchor="middle">t2</text>
+          <text x="442" y="300" fill="#8ee0a0" font-size="8" text-anchor="middle">cols</text>
+          <text x="497" y="300" fill="#8ee0a0" font-size="8" text-anchor="middle">+more→</text>
+        </svg>
+      </div>
+      <p class="mental" style="border-color:var(--accent);background:rgba(91,159,212,0.08)">
+        <strong>Interview line:</strong> “Wide-column is query-first: I partition by the key I always filter on (user_id), cluster by how I sort (time), and accept sparse columns so each event type can have different fields without a migration.”
+      </p>
+    </div>
+  </section>
+
+  <script>
+    const tabs = document.querySelectorAll(".tab");
+    const panels = document.querySelectorAll(".panel");
+
+    tabs.forEach((tab) => {
+      tab.addEventListener("click", () => {
+        tabs.forEach((t) => t.classList.remove("active"));
+        panels.forEach((p) => p.classList.remove("active"));
+        tab.classList.add("active");
+        document.getElementById(tab.dataset.panel).classList.add("active");
+      });
+    });
+  </script>
+</body>
+</html>
