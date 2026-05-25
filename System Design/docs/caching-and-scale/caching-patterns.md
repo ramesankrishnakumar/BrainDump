@@ -196,6 +196,8 @@ flowchart TD
 | Replication | Keep extra copies of cached data | Improves availability and read capacity |
 | Peer-to-peer cache | Cache nodes coordinate directly with each other | Avoids a single coordinator but makes consistency harder |
 
+These reuse two concepts covered in depth elsewhere: see [Sharding & Partitioning](../databases/sharding-partitioning.md#4-consistent-hashing-and-virtual-nodes) for consistent hashing and virtual nodes, and [Availability & Replication](../distributed-systems/availability-replication.md) for replication patterns and their freshness tradeoffs.
+
 ### Replication
 
 Replication means storing a cached value on more than one cache node.
@@ -312,6 +314,8 @@ Caching problems often show up during traffic spikes, cache failures, or deploys
 | Cache avalanche | Many keys expire at the same time | Add TTL jitter, stagger refreshes |
 | Stale reads | User sees old value after update | Invalidate on write, shorter TTL, read-your-writes path |
 | Split brain | Cache nodes disagree about cluster membership or ownership | Strong cluster membership, quorum, conservative failover |
+
+Hot keys and the full taxonomy of production mitigations (key salting, scatter-gather, request coalescing, adaptive resharding) are covered in [Sharding & Partitioning → Hot Spots](../databases/sharding-partitioning.md#5-hot-spots-what-they-are-and-how-production-systems-fix-them).
 
 ### Cache Stampede Example
 

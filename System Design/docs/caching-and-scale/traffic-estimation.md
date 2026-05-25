@@ -3,10 +3,10 @@
 Goal: understand traffic estimation techniques well enough to derive QPS, storage, bandwidth, and async throughput for a new service—and explain your assumptions clearly—in a system design interview.
 
 Related:
-- [System Design guide §5](1.system-design-study-guide.md#5-scaling-fundamentals) — horizontal scaling, queues, replication
-- [Caching Patterns guide](4.caching-patterns-study-guide.md) — cache hit ratio and working-set sizing
-- [Event-Driven Architecture guide §7](7.event-driven-architecture-study-guide.md#7-messaging-and-message-brokers) — queue throughput and consumers
-- [Stability Patterns guide §8](8.stability-patterns-study-guide.md#8-throttling) — rate limits driven by estimated load
+- [System Design guide §5](../foundations/networking-request-path.md#5-scaling-fundamentals) — horizontal scaling, queues, replication
+- [Caching Patterns guide](caching-patterns.md) — cache hit ratio and working-set sizing
+- [Event-Driven Architecture guide §7](../messaging-and-apis/event-driven-and-messaging.md#messaging-and-message-brokers) — queue throughput and consumers
+- [Stability Patterns guide §8](../resilience/stability-patterns.md#8-throttling) — rate limits driven by estimated load
 
 **Running example (used throughout):** a new **URL shortener with redirect analytics**.
 
@@ -450,7 +450,7 @@ origin_read_QPS ≈ read_QPS × (1 - cache_hit_rate)
 | 80% | ~460/s |
 | 50% | ~1,150/s |
 
-Size the **cache working set** for hot codes (recent viral links), not all links ever created. See [caching guide](4.caching-patterns-study-guide.md).
+Size the **cache working set** for hot codes (recent viral links), not all links ever created. See [caching guide](caching-patterns.md).
 
 | Common mistake | Better approach |
 |---|---|
@@ -641,9 +641,9 @@ If consumers lag:
 backlog growth = enqueue_rate - dequeue_rate
 ```
 
-Size queue retention and **autoscaled consumers** for peak; consider [throttling](8.stability-patterns-study-guide.md#8-throttling) on enqueue during extreme events.
+Size queue retention and **autoscaled consumers** for peak; consider [throttling](../resilience/stability-patterns.md#8-throttling) on enqueue during extreme events.
 
-See [EDA guide §7](7.event-driven-architecture-study-guide.md#7-messaging-and-message-brokers) for broker choice (Kafka for replay, SQS for simpler queues).
+See [EDA guide §7](../messaging-and-apis/event-driven-and-messaging.md#messaging-and-message-brokers) for broker choice (Kafka for replay, SQS for simpler queues).
 
 | Common mistake | Better approach |
 |---|---|

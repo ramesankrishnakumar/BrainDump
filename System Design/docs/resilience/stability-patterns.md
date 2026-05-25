@@ -19,7 +19,7 @@ Goal: understand stability patterns well enough to explain how a system limits b
 11. [Design Warnings](#11-design-warnings)
 12. [Interview Language](#12-interview-language)
 13. [Final Mental Model](#13-final-mental-model)
-14. [30-Minute Review Checklist](#14-30-minute-review-checklist)
+14. [30–45 Minute Review Checklist](#14-3045-minute-review-checklist)
 
 <!-- SECTION: mental-model - DONE -->
 
@@ -267,7 +267,7 @@ flowchart TD
 | Graceful degradation | Non-critical dependency down | Partial page with cache/default |
 | CP workflow | Cannot confirm latest state | Reject write rather than risk wrong data |
 
-See also: fail fast under partition in [`2.1.cap-theorem-study-guide.md`](2.1.cap-theorem-study-guide.md) for CP systems.
+See also: fail fast under partition in [`2.1.cap-theorem-study-guide.md`](../distributed-systems/consistency-cap-pacelc.md) for CP systems.
 
 ### Fail Fast vs Fail Slow
 
@@ -325,7 +325,7 @@ flowchart TB
 
 A queue can act as a bulkhead between producers and consumers. If Payment consumers lag, the payment queue grows, but restaurant menu reads can still use a different queue and worker pool.
 
-See also: backpressure and worker pools in [`6.concurrency-study-guide.md`](6.concurrency-study-guide.md).
+See also: backpressure and worker pools in [`6.concurrency-study-guide.md`](../messaging-and-apis/concurrency.md).
 
 ### Food Delivery Example
 
@@ -497,7 +497,7 @@ Throttling is proactive protection. Fail fast is often the response when a limit
 - Global: gateway sheds 20% of search traffic during peak before Order exhausts threads.
 - Payment: client-side throttle to provider's 100 TPS so the breaker does not trip from self-inflicted overload.
 
-See also: consumer visibility timeout and queue pacing in [`7.event-driven-architecture-study-guide.md`](7.event-driven-architecture-study-guide.md).
+See also: consumer visibility timeout and queue pacing in [`7.event-driven-architecture-study-guide.md`](../messaging-and-apis/event-driven-and-messaging.md).
 
 Mental shortcut: **throttling controls demand before demand controls you.**
 
@@ -595,7 +595,7 @@ Mental shortcut: **throttle ingress, isolate resources, bound waits, stop callin
 | Fail fast | Stop charging attempts in that region |
 | Throttling | Shift only allowed traffic to backup provider within quota |
 | Steady state | Runbook-free failover only if rehearsed; otherwise manual regional flag |
-| Availability cross-link | Multi-region app stack from [`3.Availability-study-guide.md`](3.Availability-study-guide.md) for DR; stability for runtime behavior |
+| Availability cross-link | Multi-region app stack from [`3.Availability-study-guide.md`](../distributed-systems/availability-replication.md) for DR; stability for runtime behavior |
 
 Mental shortcut: **name the failing dependency, then show how other paths stay alive.**
 

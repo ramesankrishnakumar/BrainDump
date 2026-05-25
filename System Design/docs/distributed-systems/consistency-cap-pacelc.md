@@ -1,40 +1,312 @@
-# 2.2 PACELC Theorem 30–45 Minute Study Guide
+# Consistency: CAP & PACELC
 
-Goal: understand PACELC well enough to explain how distributed databases trade off consistency, availability, and latency—during partitions and during normal operation—with detailed examples and interview-ready talking points.
+CAP explains the tradeoff you face **during a network partition**; PACELC completes the picture by also covering the **normal, no-partition** case (latency vs consistency). Read **Part 1 (CAP)** first to build the mental model, then **Part 2 (PACELC)** extends it.
 
-Numbered **2.2** as a companion to **2.1 CAP**—same topic family (distributed consistency tradeoffs), not a separate top-level track.
+!!! note "Related"
+    For the replication patterns these tradeoffs build on, see [Availability & Replication](availability-replication.md). For the three different meanings of the word "consistency" (ACID-C vs CAP/PACELC-C vs eventual), see Part 2 below.
 
-Related:
-- [2.1 CAP theorem guide](2.1.cap-theorem-study-guide.md) — partition branch (PA vs PC); global likes and payments examples
-- [RDBMS, NoSQL, ACID, and BASE guide §4–5](5.rdbms-nosql-acid-study-guide.md#4-acid-transactions) — ACID vs BASE; ACID-C vs CAP/PACELC-C
-- [Availability guide](3.Availability-study-guide.md) — replication, multi-region behavior
+## Contents
 
-PACELC extends CAP (Daniel Abadi, 2012): **when the network is healthy, you still choose between latency and consistency.**
+**Part 1 — CAP Theorem**
 
-<!-- SECTION: table-of-contents - DONE -->
+- The CAP mental model; what Consistency, Availability, Partition tolerance mean
+- Why a partition forces the choice
+- AP example (global likes), CP example (payments & inventory)
+- Choosing CP vs AP; interview language
 
-## Table of Contents
+**Part 2 — PACELC Theorem**
 
-1. [PACELC Mental Model](#1-pacelc-mental-model)
-2. [Letters and Definitions](#2-letters-and-definitions)
-3. [The Partition Branch (PA vs PC)](#3-the-partition-branch-pa-vs-pc)
-4. [The Else Branch (EL vs EC)](#4-the-else-branch-el-vs-ec)
-5. [The Four PACELC Labels](#5-the-four-pacelc-labels)
-6. [Consistency Levels Cheat Sheet](#6-consistency-levels-cheat-sheet)
-7. [What Drives Latency (L)](#7-what-drives-latency-l)
-8. [Worked Example: Global Likes (PA/EL)](#8-worked-example-global-likes-pael)
-9. [Worked Example: Payments and Inventory (PC/EC)](#9-worked-example-payments-and-inventory-pcec)
-10. [Worked Example: E-Commerce Mixed](#10-worked-example-e-commerce-mixed)
-11. [Database and Store Classifications](#11-database-and-store-classifications)
-12. [Feature-by-Feature in One System](#12-feature-by-feature-in-one-system)
-13. [PACELC vs CAP vs BASE vs ACID](#13-pacelc-vs-cap-vs-base-vs-acid)
-14. [Design Warnings](#14-design-warnings)
-15. [Interview Language](#15-interview-language)
-16. [Final Mental Model and Review Checklist](#16-final-mental-model-and-review-checklist)
+- The Else branch (latency vs consistency); the four labels
+- Consistency levels cheat sheet; what drives latency
+- Worked examples (likes, payments, e-commerce)
+- Database classifications; feature-by-feature; design warnings
 
-<!-- SECTION: mental-model - DONE -->
+---
 
-## 1. PACELC Mental Model
+## Part 1 — CAP Theorem
+
+### The CAP Mental Model
+
+CAP theorem applies to **distributed systems**: systems with multiple nodes, databases, replicas, services, or regions that need to coordinate over a network.
+
+![CAP theorem diagram](../resources/CAP-Theorem.png)
+
+The practical CAP question is:
+
+> When the network breaks, should the system protect correctness or keep responding?
+
+In real distributed systems, **partition tolerance is not optional** because network failures can happen. So CAP is usually not "pick any two" in the abstract. It is mostly:
+
+```text
+During a partition:
+choose Consistency or Availability.
+```
+
+Mental shortcut: **CAP is about behavior during network partitions, not normal healthy operation.**
+
+<!-- SECTION: letters - DONE -->
+
+### What Each Letter Means
+
+| Letter | Meaning | Beginner explanation |
+|---|---|---|
+| C | Consistency | Every successful read sees the latest correct data |
+| A | Availability | Every request receives a non-error response |
+| P | Partition tolerance | The system continues operating when nodes cannot talk to each other |
+
+#### Consistency
+
+Consistency means the system avoids returning stale or conflicting data. If one region updates a value, other regions should not claim an older value is correct.
+
+Example:
+
+```text
+Inventory = 1 item left
+```
+
+A consistent system should not let two regions both sell that final item.
+
+#### Availability
+
+Availability means each request gets a response, even if the response might be based on local or stale state.
+
+Example:
+
+```text
+User clicks Like
+→ Local region accepts the like
+→ Other regions may see it later
+```
+
+#### Partition Tolerance
+
+A partition means parts of the system are still running, but cannot communicate.
+
+```text
+USA Region        network partition        Europe Region
+Local DB works                             Local DB works
+Cross-region sync is broken
+```
+
+Mental shortcut: **a partition is not always user-facing downtime; it can be backend nodes losing contact with each other.**
+
+<!-- SECTION: partition-question - DONE -->
+
+### Why Partition Changes the Question
+
+When there is no partition, many systems can provide both useful consistency and availability.
+
+During a partition, the system faces a forced choice:
+
+```mermaid
+flowchart TD
+    Partition["Network partition happens"] --> Question{"Can we safely coordinate?"}
+    Question -->|No, but respond anyway| AP["AP: stay available, allow temporary inconsistency"]
+    Question -->|No, so block unsafe work| CP["CP: preserve consistency, sacrifice some availability"]
+```
+
+If both sides keep accepting writes independently, they may disagree. If one side refuses unsafe writes, some users may see errors or timeouts.
+
+Mental shortcut: **AP says "accept now, fix later." CP says "do not answer unless it is safe."**
+
+<!-- SECTION: ap-likes - DONE -->
+
+### AP Example: Global Likes
+
+Likes, view counts, comments counters, feeds, recommendations, analytics, and notifications often prefer **Availability over Consistency**.
+
+Initial state:
+
+```text
+article_123 likes = 100
+```
+
+A partition happens between USA and Europe.
+
+```text
+USA users add 5 likes
+Europe users add 3 likes
+```
+
+During the partition:
+
+```text
+USA DB:    likes = 105
+Europe DB: likes = 103
+```
+
+This is temporarily inconsistent, but users can still like the article.
+
+After the partition heals:
+
+```text
+USA and Europe exchange missing events
+Final likes = 108
+```
+
+This is **eventual consistency**.
+
+AP design usually relies on:
+
+- Local writes per region
+- Async replication
+- Durable event logs
+- Idempotent operations
+- Conflict resolution or reconciliation
+
+Mental shortcut: **AP design accepts local writes now and synchronizes globally later.**
+
+<!-- SECTION: cp-critical - DONE -->
+
+### CP Example: Payments and Inventory
+
+Payments, bank balances, permissions, seat booking, inventory reservation, and order state transitions often prefer **Consistency over Availability**.
+
+Example:
+
+```text
+Inventory = 1 item left
+```
+
+During a partition, USA and Europe both think the item is available.
+
+If both regions sell it independently:
+
+```text
+USA sale = 1 item
+Europe sale = 1 item
+Total sold = 2
+Actual inventory = 1
+```
+
+That is incorrect. A CP system may reject, delay, or timeout one side until it can confirm the latest state.
+
+```text
+Cannot confirm inventory owner
+→ reject or delay reservation
+→ avoid overselling
+```
+
+CP design usually relies on:
+
+- Leader-based writes
+- Quorum reads and writes
+- Transactions
+- Consensus
+- Distributed locks for carefully scoped cases
+- Fail-fast behavior for unsafe operations
+
+Mental shortcut: **CP design protects correctness even when some users temporarily cannot complete the action.**
+
+<!-- SECTION: choose - DONE -->
+
+### How to Choose CP vs AP
+
+Apply CAP **feature by feature**, not to the whole system.
+
+| Feature | Likely choice | Reason |
+|---|---|---|
+| Product catalog | AP | Slightly stale product info is acceptable |
+| Likes and view counts | AP | Counts can be corrected later |
+| Search results | AP | Stale results are usually tolerable |
+| Recommendations | AP | Freshness is useful but not correctness-critical |
+| Cart | Usually AP | Temporary sync delay is often acceptable |
+| Inventory reservation | CP | Prevent overselling |
+| Payment authorization | CP | Avoid incorrect charges or double-spend |
+| Permissions | CP | Avoid unauthorized access |
+| Order state transitions | Usually CP | Avoid impossible states like shipped before paid |
+
+Ask four questions:
+
+1. Can users tolerate stale data?
+2. Can the system tolerate conflicting writes?
+3. Is it better to fail than return wrong data?
+4. Is it better to return stale data than fail?
+
+If stale data is acceptable, AP may be a good fit. If wrong data creates financial, security, legal, or inventory problems, prefer CP.
+
+<!-- SECTION: interview-language - DONE -->
+
+### Interview Language
+
+For AP systems, use terms like:
+
+```text
+eventual consistency
+async replication
+local writes
+conflict resolution
+reconciliation
+idempotency
+message queues
+```
+
+AP answer:
+
+> For likes, I would choose availability over consistency. Each region can accept likes locally and replicate events asynchronously. Users may temporarily see stale counts, but reconciliation will converge the final value after the partition heals.
+
+For CP systems, use terms like:
+
+```text
+strong consistency
+leader-based writes
+quorum
+transactions
+consensus
+fail fast
+```
+
+CP answer:
+
+> For payments, I would choose consistency over availability. If the system cannot confirm the latest account state, it should reject or delay the transaction rather than risk double-spending or incorrect charges.
+
+<!-- SECTION: final-model - DONE -->
+
+### Final Mental Model
+
+```mermaid
+flowchart LR
+    Feature["Feature requirement"] --> Risk{"Can wrong data hurt?"}
+    Risk -->|Yes| CP["Prefer CP: block unsafe work"]
+    Risk -->|No| Stale{"Can stale data be tolerated?"}
+    Stale -->|Yes| AP["Prefer AP: respond now, repair later"]
+    Stale -->|No| CP
+```
+
+CAP is not about labeling a whole application as CP or AP. A real system often mixes both:
+
+- The same ecommerce site may use AP for product browsing and CP for inventory reservation.
+- The same social app may use AP for likes and CP for account permissions.
+- The same banking app may use AP for marketing content and CP for balance-changing operations.
+
+One-line mental model:
+
+```text
+During a partition, AP protects responsiveness and CP protects correctness.
+```
+
+<!-- SECTION: review-checklist - DONE -->
+
+### 30-Minute Review Checklist
+
+1. Explain why CAP matters only for distributed systems.
+2. Define consistency, availability, and partition tolerance in plain English.
+3. Explain why partition tolerance is usually required in real systems.
+4. Describe the difference between user-facing downtime and backend network partition.
+5. Walk through the global likes AP example from 100 likes to 108 likes.
+6. Explain why eventual consistency is acceptable for likes but dangerous for payments.
+7. Walk through the inventory oversell example.
+8. Name three mechanisms used in AP designs.
+9. Name three mechanisms used in CP designs.
+10. Explain why CAP should be applied feature by feature.
+11. Classify product catalog, likes, payments, inventory, permissions, and order state as CP or AP.
+12. Give one interview-ready AP answer and one interview-ready CP answer.
+
+---
+
+## Part 2 — PACELC Theorem
+
+### PACELC Mental Model
 
 **CAP** applies to distributed systems during a **network partition (P)**:
 
@@ -55,7 +327,7 @@ flowchart TD
     ELC --> EC["EC: slower, stronger agreement"]
 ```
 
-### Why CAP Alone Is Incomplete
+#### Why CAP Alone Is Incomplete
 
 Many databases are described as "AP" because they stay available during partitions. That label hides everyday behavior:
 
@@ -64,7 +336,7 @@ Many databases are described as "AP" because they stay available during partitio
 
 Interviewers often follow "Are you AP or CP?" with "What consistency do reads get in the happy path?" PACELC answers that directly.
 
-### Scope
+#### Scope
 
 | Applies to | Does not replace |
 |---|---|
@@ -90,7 +362,7 @@ flowchart LR
 
 <!-- SECTION: letters - DONE -->
 
-## 2. Letters and Definitions
+### Letters and Definitions
 
 | Letter | In PACELC | Meaning |
 |---|---|---|
@@ -107,7 +379,7 @@ PA/EL  →  During partition: Availability; Else: Latency
 PC/EC  →  During partition: Consistency; Else: Consistency
 ```
 
-### Three Different "Consistency" Words (Interview Critical)
+#### Three Different "Consistency" Words (Interview Critical)
 
 | Term | Layer | Meaning |
 |---|---|---|
@@ -126,7 +398,7 @@ Mental shortcut: **name which C you mean before debating tradeoffs.**
 
 <!-- SECTION: partition-branch - DONE -->
 
-## 3. The Partition Branch (PA vs PC)
+### The Partition Branch (PA vs PC)
 
 When **P** happens, PACELC matches CAP. Partition tolerance is not optional in real distributed systems—networks fail.
 
@@ -139,7 +411,7 @@ flowchart TD
     PC --> CPNote["Errors or timeouts OK"]
 ```
 
-### PA (Availability over Consistency)
+#### PA (Availability over Consistency)
 
 - Both sides keep accepting reads/writes.
 - Replicas may diverge until the partition heals.
@@ -147,18 +419,18 @@ flowchart TD
 
 **Product fit:** likes, view counts, feeds, recommendations, non-critical catalog metadata.
 
-See [CAP guide §4](2.1.cap-theorem-study-guide.md#4-ap-example-global-likes).
+See [CAP guide §4](#ap-example-global-likes).
 
-### PC (Consistency over Availability)
+#### PC (Consistency over Availability)
 
 - System refuses or delays operations that cannot be verified against a quorum or leader.
 - Avoids split-brain writes (double sell, double charge).
 
 **Product fit:** payments, inventory holds, permissions, seat booking, ledger balances.
 
-See [CAP guide §5](2.1.cap-theorem-study-guide.md#5-cp-example-payments-and-inventory).
+See [CAP guide §5](#cp-example-payments-and-inventory).
 
-### Talking Points (Partition Branch)
+#### Talking Points (Partition Branch)
 
 ```text
 Under partition, we're PA for likes—local writes, merge later.
@@ -170,11 +442,11 @@ Mental shortcut: **PA = accept now, fix later. PC = do not answer unless it is s
 
 <!-- SECTION: else-branch - DONE -->
 
-## 4. The Else Branch (EL vs EC)
+### The Else Branch (EL vs EC)
 
 When the network is **healthy (E)**, PACELC asks: optimize for **low latency (L)** or **strong consistency (C)**?
 
-### EL (Else: Latency)
+#### EL (Else: Latency)
 
 Typical mechanisms:
 
@@ -184,7 +456,7 @@ Typical mechanisms:
 
 **Cost of consistency avoided:** extra RTT to leader, quorum read (R+W > N), serializable isolation.
 
-### EC (Else: Consistency)
+#### EC (Else: Consistency)
 
 Typical mechanisms:
 
@@ -207,7 +479,7 @@ sequenceDiagram
     Leader-->>Client: Slower fresher response
 ```
 
-### Tunable Per Request
+#### Tunable Per Request
 
 Many stores let you pick per operation:
 
@@ -224,7 +496,7 @@ Mental shortcut: **Else is where interview designs win or lose on read latency.*
 
 <!-- SECTION: four-labels - DONE -->
 
-## 5. The Four PACELC Labels
+### The Four PACELC Labels
 
 Common combinations:
 
@@ -247,19 +519,19 @@ flowchart TD
     end
 ```
 
-### PA/EL (Most Common NoSQL Story)
+#### PA/EL (Most Common NoSQL Story)
 
 - **Partition:** keep serving from local region (PA).
 - **Else:** read local replica, async replicate (EL).
 - **Interview line:** "Social counters and feeds—stale OK, fast required."
 
-### PC/EC (Strong Global Correctness)
+#### PC/EC (Strong Global Correctness)
 
 - **Partition:** minority partition unavailable for writes/reads that need quorum (PC).
 - **Else:** still pay coordination cost for linearizable operations (EC).
 - **Interview line:** "Money and inventory—latency secondary to correctness."
 
-### PA/EC and PC/EL (Nuanced)
+#### PA/EC and PC/EL (Nuanced)
 
 - **PA/EC:** partition accepts writes locally; when network is fine, some operations use strong reads/writes (per-request tuning).
 - **PC/EL:** under partition, refuse unsafe ops; when healthy, offload read traffic to async replicas (SQL read replicas)—**reads EL, writes EC**.
@@ -268,7 +540,7 @@ Mental shortcut: **lead with PA/EL or PC/EC; mention tunability if the store all
 
 <!-- SECTION: consistency-levels - DONE -->
 
-## 6. Consistency Levels Cheat Sheet
+### Consistency Levels Cheat Sheet
 
 Consistency is a **spectrum**. PACELC **C** usually means the strong end; **L** often means weaker levels on the left.
 
@@ -286,7 +558,7 @@ Eventual    causal    RYW    linearizable
    ↑ more L-friendly              ↑ more C-friendly
 ```
 
-### Mapping to Interview Language
+#### Mapping to Interview Language
 
 | Interviewer asks | Answer frame |
 |---|---|
@@ -300,7 +572,7 @@ Mental shortcut: **name the consistency level, then map it to EL or EC.**
 
 <!-- SECTION: latency-drivers - DONE -->
 
-## 7. What Drives Latency (L)
+### What Drives Latency (L)
 
 Understanding **L** makes the Else branch concrete.
 
@@ -313,7 +585,7 @@ Understanding **L** makes the Else branch concrete.
 | Contention | Locking, serializable isolation | EC throughput cost |
 | Hot keys | Single partition overload | Not PACELC label but affects SLA |
 
-### Order-of-Magnitude RTT Reminder
+#### Order-of-Magnitude RTT Reminder
 
 | Path | Rough RTT |
 |---|---|
@@ -327,26 +599,26 @@ Mental shortcut: **EL = avoid extra coordination; EC = pay RTT for agreement.**
 
 <!-- SECTION: likes-example - DONE -->
 
-## 8. Worked Example: Global Likes (PA/EL)
+### Worked Example: Global Likes (PA/EL)
 
-### Scenario
+#### Scenario
 
 A global news site shows **like counts** on articles. Users in USA and Europe both like the same article. Counts should feel instant; exact global totals can lag slightly.
 
-### Assumptions
+#### Assumptions
 
 - Multi-region deployment (USA, Europe)
 - Product accepts **stale counts for seconds**; not used for billing
 - Network partitions are rare but possible
 
-### PACELC Label: **PA/EL**
+#### PACELC Label: **PA/EL**
 
 | Branch | Choice | Why |
 |---|---|---|
 | **P** | PA | Users can still like during partition |
 | **E** | EL | Reads/writes served from local region for low latency |
 
-### Timeline — Normal Operation (Else: EL)
+#### Timeline — Normal Operation (Else: EL)
 
 ```text
 T0: article_123 likes = 100 (replicated baseline)
@@ -358,7 +630,7 @@ T4: Europe read may still show 100 briefly, then 101
 
 **Mechanisms:** local write, async replication, durable event log, idempotent `like_id`, counter merge or sum of deltas.
 
-### Timeline — Partition (P: PA)
+#### Timeline — Partition (P: PA)
 
 ```text
 Partition cuts USA ↔ Europe sync
@@ -369,7 +641,7 @@ Reads are local and fast (EL within each region)
 Partition heals → exchange missed events → merge → 108
 ```
 
-Aligns with [CAP guide §4](2.1.cap-theorem-study-guide.md#4-ap-example-global-likes): 100 → 105/103 → 108.
+Aligns with [CAP guide §4](#ap-example-global-likes): 100 → 105/103 → 108.
 
 ```mermaid
 flowchart LR
@@ -381,7 +653,7 @@ flowchart LR
     Log --> Merge["Reconciliation on heal"]
 ```
 
-### Talking Points
+#### Talking Points
 
 ```text
 Likes are PA/EL: available under partition, low latency when healthy.
@@ -392,15 +664,15 @@ Stale count of 103 vs 105 is a product-tolerable inconsistency.
 We would NOT use this model for account balance or inventory.
 ```
 
-### 30-Second Answer
+#### 30-Second Answer
 
 > For likes we choose PA/EL. In normal operation reads hit the local replica for low latency, so counts may be slightly stale across regions. If USA and Europe partition, both sides keep accepting likes and we reconcile when the network heals—like 100 plus five plus three converging to 108. Eventual consistency is fine because a wrong like total does not create financial harm.
 
-### 60-Second Answer
+#### 60-Second Answer
 
 > Global likes are a classic PA/EL feature. Else branch: we favor latency—users read and write against the regional replica without waiting for cross-region quorum on every click. Partition branch: we favor availability—both regions keep serving likes rather than erroring. We use durable events, idempotency, and merge on recovery. The tradeoff is temporary disagreement—105 vs 103—until sync completes. We would not apply PA/EL to payments or inventory; those need PC/EC because stale or divergent state causes oversell or double charge.
 
-### Follow-Up Traps
+#### Follow-Up Traps
 
 | Interviewer pushback | Short reply |
 |---|---|
@@ -413,26 +685,26 @@ Mental shortcut: **likes = PA/EL = fast local + merge later.**
 
 <!-- SECTION: payments-example - DONE -->
 
-## 9. Worked Example: Payments and Inventory (PC/EC)
+### Worked Example: Payments and Inventory (PC/EC)
 
-### Scenario
+#### Scenario
 
 An e-commerce service **reserves the last item in stock** and **charges a card** when the user checks out. Overselling one unit or double-charging must not happen.
 
-### Assumptions
+#### Assumptions
 
 - Inventory and ledger are distributed across regions
 - **Wrong state is worse than a timeout**
 - Regulatory and financial invariants apply
 
-### PACELC Label: **PC/EC**
+#### PACELC Label: **PC/EC**
 
 | Branch | Choice | Why |
 |---|---|---|
 | **P** | PC | Refuse reservation if quorum/leader unreachable |
 | **E** | EC | Normal path uses transactions / quorum for fresh state |
 
-### Timeline — Normal Operation (Else: EC)
+#### Timeline — Normal Operation (Else: EC)
 
 ```text
 T0: inventory(sku_42) = 1 (authoritative on primary or quorum)
@@ -444,7 +716,7 @@ T4: commit → ACK to user (higher latency than local replica read)
 
 **Mechanisms:** leader-based writes, quorum reads/writes (R+W > N), distributed transactions or sagas with strict steps, idempotency keys on payment API.
 
-### Timeline — Partition (P: PC)
+#### Timeline — Partition (P: PC)
 
 ```text
 Partition splits USA and Europe
@@ -454,7 +726,7 @@ User may see "try again" or timeout (availability sacrificed)
 No double sell: only quorum side commits decrement
 ```
 
-Aligns with [CAP guide §5](2.1.cap-theorem-study-guide.md#5-cp-example-payments-and-inventory).
+Aligns with [CAP guide §5](#cp-example-payments-and-inventory).
 
 ```mermaid
 sequenceDiagram
@@ -472,7 +744,7 @@ sequenceDiagram
     end
 ```
 
-### Talking Points
+#### Talking Points
 
 ```text
 Payments and inventory are PC/EC—not PA/EL.
@@ -483,15 +755,15 @@ Availability loss on minority partition is the intended tradeoff.
 Idempotency keys prevent duplicate charge on client retry.
 ```
 
-### 30-Second Answer
+#### 30-Second Answer
 
 > For inventory and payment we use PC/EC. When healthy, reads and writes go through a leader or quorum so we never commit against stale stock. During a partition, if we cannot confirm global state, we reject or timeout the checkout instead of risking oversell. Users may see errors, but we protect the invariant that we never sell the same unit twice.
 
-### 60-Second Answer
+#### 60-Second Answer
 
 > This path is PC/EC. In the Else branch we choose consistency over latency—transaction or quorum read before decrementing inventory or capturing payment. In the Partition branch we choose consistency over availability—if the quorum is split, the minority partition stops accepting commits that could diverge. That is different from likes: financial and inventory errors are permanent customer problems; a temporary "try again" is acceptable. We combine this with idempotent payment APIs so retries after timeout do not double-charge.
 
-### Follow-Up Traps
+#### Follow-Up Traps
 
 | Interviewer pushback | Short reply |
 |---|---|
@@ -504,13 +776,13 @@ Mental shortcut: **money and stock = PC/EC = coordinate or refuse.**
 
 <!-- SECTION: ecommerce-mixed - DONE -->
 
-## 10. Worked Example: E-Commerce Mixed
+### Worked Example: E-Commerce Mixed
 
-### Scenario
+#### Scenario
 
 One **e-commerce site**: users **browse products** (stale OK) and **checkout** (must be correct). Same company, **different PACELC labels per feature**.
 
-### Architecture
+#### Architecture
 
 ```mermaid
 flowchart TB
@@ -522,7 +794,7 @@ flowchart TB
     Checkout --> Pay["Payment PC/EC"]
 ```
 
-### Feature Comparison
+#### Feature Comparison
 
 | Feature | PACELC | Normal (Else) | Partition (P) |
 |---|---|---|---|
@@ -533,7 +805,7 @@ flowchart TB
 | Payment capture | **PC/EC** | Leader + idempotent charge | Fail if quorum split |
 | Order state machine | **PC/EC** | No impossible transitions | Block unsafe transitions |
 
-### Timeline — Browse vs Checkout (Same Session)
+#### Timeline — Browse vs Checkout (Same Session)
 
 ```text
 Browse (PA/EL):
@@ -545,7 +817,7 @@ Checkout (PC/EC):
   If partition blocks quorum → "checkout unavailable, try again"
 ```
 
-### Talking Points
+#### Talking Points
 
 ```text
 We do not label the whole site AP or CP—we label each feature.
@@ -556,15 +828,15 @@ At checkout we re-validate against the source of truth.
 This matches CAP guide feature-by-feature thinking.
 ```
 
-### 30-Second Answer
+#### 30-Second Answer
 
 > The storefront is mixed PACELC. Browsing and catalog reads are PA/EL—we cache at CDN and region for speed and accept slight staleness. Checkout, inventory reservation, and payment are PC/EC—we read from quorum or primary and fail if we cannot guarantee correctness during a partition.
 
-### 60-Second Answer
+#### 60-Second Answer
 
 > Real e-commerce is never one quadrant. Product images and descriptions are PA/EL: we want low latency globally and can refresh asynchronously. When the user commits money, we switch to PC/EC: re-fetch price and stock from the authoritative service, use transactions, and reject checkout if a partition prevents safe coordination. Cart drafts can stay EL until checkout boundary. I'd draw two paths on the whiteboard so the interviewer sees we match consistency to business risk.
 
-### Follow-Up Traps
+#### Follow-Up Traps
 
 | Interviewer pushback | Short reply |
 |---|---|
@@ -576,7 +848,7 @@ Mental shortcut: **one product, multiple PACELC labels—tied to business risk.*
 
 <!-- SECTION: db-classifications - DONE -->
 
-## 11. Database and Store Classifications
+### Database and Store Classifications
 
 Typical **default** PACELC labels (tunable per request in many systems):
 
@@ -593,7 +865,7 @@ Typical **default** PACELC labels (tunable per request in many systems):
 | **PostgreSQL (single node)** | N/A (not distributed PACELC) | One machine = ACID | "PACELC starts when I add cross-region replicas." |
 | **PostgreSQL (primary + async replica)** | PC/EL reads / EC writes | Read replicas lag | "Writes EC to primary; analytics reads EL from replica." |
 
-### Talking Points by Store Type
+#### Talking Points by Store Type
 
 **Cassandra / Dynamo (PA/EL):**
 
@@ -616,7 +888,7 @@ Single-region Postgres is ACID on one node.
 Multi-region: async replica gives EL reads; sync/replication quorum gives EC.
 ```
 
-### Follow-Up Traps
+#### Follow-Up Traps
 
 | Pushback | Reply |
 |---|---|
@@ -628,9 +900,9 @@ Mental shortcut: **store label is a default; per-operation tuning still matters.
 
 <!-- SECTION: feature-by-feature - DONE -->
 
-## 12. Feature-by-Feature in One System
+### Feature-by-Feature in One System
 
-Apply PACELC **per feature**, not per company. Same pattern as [CAP guide §6](2.1.cap-theorem-study-guide.md#6-how-to-choose-cp-vs-ap).
+Apply PACELC **per feature**, not per company. Same pattern as [CAP guide §6](#how-to-choose-cp-vs-ap).
 
 | Feature | PACELC | Else behavior | Partition behavior |
 |---|---|---|---|
@@ -645,7 +917,7 @@ Apply PACELC **per feature**, not per company. Same pattern as [CAP guide §6](2
 | Payment / ledger | PC/EC | Strong read + idempotent write | Fail if no quorum |
 | Order state (paid → shipped) | PC/EC | State machine invariants | Block illegal transitions |
 
-### Four Questions (Per Feature)
+#### Four Questions (Per Feature)
 
 1. Can users tolerate **stale** reads? → favors **EL**
 2. Can the system tolerate **divergent** writes during partition? → favors **PA**
@@ -665,7 +937,7 @@ Mental shortcut: **classify the feature, not the logo on the building.**
 
 <!-- SECTION: comparisons - DONE -->
 
-## 13. PACELC vs CAP vs BASE vs ACID
+### PACELC vs CAP vs BASE vs ACID
 
 | Framework | When it applies | Main question | Typical interview use |
 |---|---|---|---|
@@ -674,7 +946,7 @@ Mental shortcut: **classify the feature, not the logo on the building.**
 | **CAP** | During **partition** | A or C? | Outage / split-brain behavior |
 | **PACELC** | Partition **and** normal ops | P→A or C; E→L or C | Full story for Dynamo vs Spanner |
 
-### Relationship Diagram
+#### Relationship Diagram
 
 ```text
 ACID (transaction on one DB)
@@ -684,7 +956,7 @@ ACID (transaction on one DB)
         BASE: often describes PA/EL systems (Basically Available, Soft state, Eventual)
 ```
 
-### One-Table Interview Answer
+#### One-Table Interview Answer
 
 | | Partition | Normal operation | Example |
 |---|---|---|---|
@@ -698,7 +970,7 @@ Mental shortcut: **ACID = single node; CAP = split; PACELC = split + everyday la
 
 <!-- SECTION: warnings - DONE -->
 
-## 14. Design Warnings
+### Design Warnings
 
 | Mistake | Why it hurts | Better answer |
 |---|---|---|
@@ -711,7 +983,7 @@ Mental shortcut: **ACID = single node; CAP = split; PACELC = split + everyday la
 | EL for payment display **and** commit | Oversell risk | EL display OK; EC commit |
 | No reconciliation for PA | Permanent drift | Idempotent events + merge |
 
-### Useful Invariants
+#### Useful Invariants
 
 | Domain | Invariant | PACELC implication |
 |---|---|---|
@@ -724,9 +996,9 @@ Mental shortcut: **invariant first, then pick PACELC label.**
 
 <!-- SECTION: interview-language - DONE -->
 
-## 15. Interview Language
+### Interview Language
 
-### Phrases That Sound Strong
+#### Phrases That Sound Strong
 
 ```text
 PACELC extends CAP: during partition we choose A or C; otherwise we choose latency or consistency.
@@ -738,15 +1010,15 @@ Dynamo and Cassandra are typically PA/EL; Spanner is PC/EC.
 Strong cross-region reads cost RTT—that's the Else tradeoff.
 ```
 
-### How PACELC Differs From CAP (30-Second Script)
+#### How PACELC Differs From CAP (30-Second Script)
 
 > CAP only tells you what to do during a network partition—availability or consistency. PACELC adds that even when the network is fine, distributed databases still trade latency against consistency. Most large NoSQL systems are PA/EL: they stay available under partition and serve fast possibly stale reads when healthy. Financial paths are PC/EC: they coordinate or fail.
 
-### Full PACELC Answer (60-Second Script)
+#### Full PACELC Answer (60-Second Script)
 
 > I'd split the design by feature. Social engagement like likes is PA/EL: under partition both regions keep accepting likes; when healthy we read from the local replica for low latency and reconcile asynchronously—temporary 105 vs 103 is OK. Checkout and inventory are PC/EC: when healthy we use quorum or transactions so reads and writes see authoritative stock; under partition we fail checkout rather than oversell. The ecommerce catalog can stay PA/EL on CDN while payment stays PC/EC. That's PACELC: partition branch from CAP, plus Else branch choosing latency versus consistency for normal traffic.
 
-### Terms to Use
+#### Terms to Use
 
 ```text
 PACELC
@@ -769,9 +1041,9 @@ Mental shortcut: **state label, mechanism, and what you would not use it for.**
 
 <!-- SECTION: final-checklist - DONE -->
 
-## 16. Final Mental Model and Review Checklist
+### Final Mental Model and Review Checklist
 
-### Final Mental Model
+#### Final Mental Model
 
 ```mermaid
 flowchart TB
@@ -804,7 +1076,7 @@ PACELC = CAP during partition + latency vs consistency when healthy.
 Likes: PA/EL. Money: PC/EC. Real apps: both.
 ```
 
-### 30–45 Minute Review Checklist
+#### 30–45 Minute Review Checklist
 
 - [ ] Can you explain why PACELC extends CAP?
 - [ ] Can you define P, A, C, E, L in PACELC terms?

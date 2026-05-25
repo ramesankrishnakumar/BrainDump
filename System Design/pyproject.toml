@@ -1,0 +1,19 @@
+[project]
+name = "system-design-study-guides"
+version = "0.1.0"
+description = "Interview-focused system design study guides, served with MkDocs Material."
+requires-python = ">=3.10"
+dependencies = [
+    "mkdocs-material>=9.7,<10",
+]
+
+# This project is documentation only — there is no importable Python package to build.
+[tool.uv]
+package = false
+# Use the OS trust store so uv works behind a TLS-intercepting corporate proxy.
+system-certs = true
+
+# Always resolve from public PyPI, regardless of any local/internal mirror config.
+[[tool.uv.index]]
+url = "https://pypi.org/simple/"
+default = true

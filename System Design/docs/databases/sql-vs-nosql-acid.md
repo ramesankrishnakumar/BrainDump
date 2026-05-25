@@ -178,6 +178,10 @@ Mental shortcut: **NoSQL often trades general-purpose querying for scale, speed,
 
 ### DynamoDB: One Engine, Three Modes
 
+!!! tip "Interactive demos"
+    - [**Database-choice interview scenarios**](../assets/db-choice-interview-scenarios.html) — six worked scenarios (payments, social feed, polyglot e-commerce, DynamoDB modes, single-table design, Cassandra vs DynamoDB) with model answers.
+    - [**Wide-column visual**](../assets/wide-column-visual.html) — how partition key + sort key lay out rows for range queries.
+
 DynamoDB is not three separate databases. The same engine behaves differently depending on how you design your keys and data.
 
 | Mode | Key design | Behavior | Example use |
@@ -247,7 +251,7 @@ NoSQL handles this with lighter, more targeted tools instead of wrapping everyth
 
 The key split: NoSQL protects a **single item** well (atomic ops, conditional writes). **Multi-item all-or-nothing** — like a bank transfer touching two accounts — is what full transactions are for. That is what classic NoSQL gave up and where RDBMS still leads.
 
-The conditional-write-and-retry pattern is the same idea as optimistic locking and STM in the [concurrency guide](6.concurrency-study-guide.md), and it relies on the same isolation concerns covered in [ACID Transactions](#4-acid-transactions).
+The conditional-write-and-retry pattern is the same idea as optimistic locking and STM in the [concurrency guide](../messaging-and-apis/concurrency.md), and it relies on the same isolation concerns covered in [ACID Transactions](#4-acid-transactions).
 
 Mental shortcut: **single-item safety is cheap in NoSQL; multi-item all-or-nothing is where transactions earn their keep.**
 
@@ -378,7 +382,7 @@ Databases enforce isolation with two main mechanisms. The first is **locks**.
 
 The downside of locks is waiting, which costs throughput. So many databases also use **MVCC** (Multi-Version Concurrency Control): keep an old version of a row so readers see the old copy while a writer creates a new one. Readers do not block.
 
-Real databases mix both — locks for writes, MVCC so reads do not block — to get correctness and speed together. For locks, atomics, and optimistic coordination as general concurrency models, see [concurrency guide](6.concurrency-study-guide.md) (shared-state concurrency and STM).
+Real databases mix both — locks for writes, MVCC so reads do not block — to get correctness and speed together. For locks, atomics, and optimistic coordination as general concurrency models, see [concurrency guide](../messaging-and-apis/concurrency.md) (shared-state concurrency and STM).
 
 Mental shortcut: **pure locking is "wait your turn"; MVCC is "read the old copy while I write the new one."**
 
@@ -467,7 +471,7 @@ Partition staleness is what that same design choice looks like when something br
 
 **DynamoDB specifically:** offers two read modes per request. Eventually consistent reads (cheaper, ~half cost) may be stale in both scenarios. Strongly consistent reads always hit the primary replica — never stale — but cost more and may be unavailable if the primary is unreachable during a partition.
 
-For how BASE-style systems behave when the network is **healthy** (latency vs consistency), see [PACELC theorem guide](2.2.pacelc-theorem-study-guide.md) — the **Else (E)** branch complements CAP's partition-only view.
+For how BASE-style systems behave when the network is **healthy** (latency vs consistency), see [PACELC theorem guide](../distributed-systems/consistency-cap-pacelc.md) — the **Else (E)** branch complements CAP's partition-only view.
 
 <!-- SECTION: decision-guide - DONE -->
 

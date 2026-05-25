@@ -5,13 +5,13 @@ Goal: understand the index types that come up in system design interviews — wh
 ## Table of Contents
 
 1. [Mental Model](#1-mental-model)
-2. [B-Tree Index — the default](#2-b-tree-index--the-default)
+2. [B-Tree Index — the default](#2-b-tree-index-the-default)
 3. [Hash Index](#3-hash-index)
 4. [Composite Index](#4-composite-index)
 5. [Covering Index](#5-covering-index)
 6. [Partial Index](#6-partial-index)
 7. [Full-Text Index](#7-full-text-index)
-8. [Spatial / GiST Index](#8-spatial--gist-index)
+8. [Spatial / GiST Index](#8-spatial-gist-index)
 9. [Comparison Table](#9-comparison-table)
 10. [How to Choose](#10-how-to-choose)
 11. [Interview Talking Points](#11-interview-talking-points)

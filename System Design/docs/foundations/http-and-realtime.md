@@ -8,7 +8,7 @@ Goal: understand how HTTP, SSE, and WebSockets work, how L4 and L7 see each prot
 
 1. [Communication Mental Model](#1-communication-mental-model)
 2. [HTTP Fundamentals](#2-http-fundamentals)
-3. [L4 vs L7 — What Each Layer Sees](#3-l4-vs-l7--what-each-layer-sees)
+3. [L4 vs L7 — What Each Layer Sees](#3-l4-vs-l7-what-each-layer-sees)
 4. [HTTP at L4 and L7](#4-http-at-l4-and-l7)
 5. [Server-Sent Events](#5-server-sent-events)
 6. [WebSockets](#6-websockets)

@@ -8,7 +8,7 @@ Goal: understand sharding and partitioning well enough to design a data distribu
 2. [Partitioning vs Sharding](#2-partitioning-vs-sharding)
 3. [Sharding Strategies](#3-sharding-strategies)
 4. [Consistent Hashing and Virtual Nodes](#4-consistent-hashing-and-virtual-nodes)
-5. [Hot Spots — What They Are and How Production Systems Fix Them](#5-hot-spots--what-they-are-and-how-production-systems-fix-them)
+5. [Hot Spots — What They Are and How Production Systems Fix Them](#5-hot-spots-what-they-are-and-how-production-systems-fix-them)
 6. [Rebalancing](#6-rebalancing)
 7. [Cross-Shard Queries and Distributed Transactions](#7-cross-shard-queries-and-distributed-transactions)
 8. [Decision Guide: When to Shard](#8-decision-guide-when-to-shard)
@@ -110,6 +110,9 @@ user_id 99 → Shard 1
 ---
 
 ## 4. Consistent Hashing and Virtual Nodes
+
+!!! tip "Interactive demo"
+    Play with the ring directly: [**consistent-hashing visual demo**](../assets/consistent-hashing-visual.html) — add/remove nodes and watch which keys move vs. stay put.
 
 Standard hash sharding (`hash(key) % N`) breaks when N changes — almost every key remaps. Consistent hashing fixes this by placing both nodes and keys on a circular hash ring. Adding or removing a node only remaps the keys on the arc adjacent to that node, not the entire dataset.
 

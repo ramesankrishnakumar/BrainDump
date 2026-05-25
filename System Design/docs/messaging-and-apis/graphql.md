@@ -3,9 +3,9 @@
 Goal: understand GraphQL well enough to choose it over REST (or not), explain common production problems and fixes, and answer authorization questions—including mixed admin and user permissions in one query—in a system design interview.
 
 Related:
-- [System Design guide §2](1.system-design-study-guide.md#2-internet-request-flow) — L7 gateway vs GraphQL federator, query-abuse controls
-- [Caching Patterns guide](4.caching-patterns-study-guide.md) — why HTTP/CDN caching is harder with GraphQL
-- [Concurrency guide](6.concurrency-study-guide.md) — resolver parallelism, timeouts, bulkheads
+- [System Design guide §2](../foundations/networking-request-path.md#2-internet-request-flow) — L7 gateway vs GraphQL federator, query-abuse controls
+- [Caching Patterns guide](../caching-and-scale/caching-patterns.md) — why HTTP/CDN caching is harder with GraphQL
+- [Concurrency guide](concurrency.md) — resolver parallelism, timeouts, bulkheads
 
 <!-- SECTION: table-of-contents - DONE -->
 
@@ -122,7 +122,7 @@ Interview line: *"I default to cursor pagination for user-facing lists; offset o
 | Query plan | Gateway decides which subgraph resolves each field |
 | `_entities` | Federation batch lookup for references |
 
-Aligns with the federator role in [guide 1](1.system-design-study-guide.md#gateway-vs-federator): the gateway understands GraphQL fields; subgraphs own domains.
+Aligns with the federator role in [guide 1](../foundations/networking-request-path.md#gateway-vs-federator): the gateway understands GraphQL fields; subgraphs own domains.
 
 Mental shortcut: **schema defines what is possible; resolvers define what it costs.**
 
@@ -306,7 +306,7 @@ Rules:
 | Persisted queries / APQ | Only known operation hashes in prod |
 | Rate limit | Per token, per operation name |
 
-See [guide 1 §4](1.system-design-study-guide.md#4-ddos-protection-by-layer): expensive GraphQL abuse is handled at federator/app layer.
+See [guide 1 §4](../foundations/networking-request-path.md#4-ddos-protection-by-layer): expensive GraphQL abuse is handled at federator/app layer.
 
 Mental shortcut: **every flexible query needs a cost model—flexibility without limits is an outage.**
 
@@ -438,7 +438,7 @@ Mental shortcut: **GraphQL authz is field-scoped; mixed permissions mean partial
 | CDN for static, not arbitrary GraphQL | Edge cache rarely fits ad-hoc queries |
 | Read replicas / CQRS | Heavy read fields served from read models |
 
-### Security (with [guide 1](1.system-design-study-guide.md#4-ddos-protection-by-layer))
+### Security (with [guide 1](../foundations/networking-request-path.md#4-ddos-protection-by-layer))
 
 | Threat | Defense |
 |---|---|
@@ -592,7 +592,7 @@ IDOR / BOLA
 
 **Answer skeleton:**
 
-> Per-entity cache with principal/tenant in the cache key where needed; invalidate on mutation. For public identical responses, persisted queries enable limited CDN caching. See [caching guide](4.caching-patterns-study-guide.md) for cache-aside and TTL tradeoffs.
+> Per-entity cache with principal/tenant in the cache key where needed; invalidate on mutation. For public identical responses, persisted queries enable limited CDN caching. See [caching guide](../caching-and-scale/caching-patterns.md) for cache-aside and TTL tradeoffs.
 
 ### GraphQL gateway is down; subgraphs are healthy
 

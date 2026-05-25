@@ -1,6 +1,6 @@
 # Blob Storage & File Upload Patterns
 
-> **Related guides:** [1. System Design Fundamentals](1.system-design-study-guide.md) (object storage intro) · [4. Caching Patterns](4.caching-patterns-study-guide.md) (CDN) · [11. Client, Edge & CDN](11.client-edge-cdn-real-world-example-study-guide.md)
+> **Related guides:** [1. System Design Fundamentals](../foundations/networking-request-path.md) (object storage intro) · [4. Caching Patterns](../caching-and-scale/caching-patterns.md) (CDN) · [11. Client, Edge & CDN](../foundations/client-edge-cdn.md)
 
 ---
 

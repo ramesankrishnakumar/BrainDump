@@ -67,7 +67,7 @@ flowchart LR
     Subgraphs --> Data
 ```
 
-![L4 vs L7 request flow](resources/L4-vs-L7.png)
+![L4 vs L7 request flow](../resources/L4-vs-L7.png)
 
 - **DNS** maps a hostname to reachable IPs. It is useful for coarse traffic steering, but browser, OS, and resolver caching means failover is not instant.
 - **Edge/CDN/DDoS layer** is the public perimeter. It absorbs large traffic, filters bad packets, caches static content, and hides origins.
@@ -88,7 +88,7 @@ Mental shortcut: **L4 routes connections. L7 routes requests. Federators route G
 
 ## 3. VIP, Anycast, and Load Balancer Entry Points
 
-![VIP vs Anycast IP](resources/VIP-vs-Anycast-IP.png)
+![VIP vs Anycast IP](../resources/VIP-vs-Anycast-IP.png)
 
 - **VIP (Virtual IP):** one IP represents a group of servers or load balancers, usually within a data center or local environment.
 - **Anycast IP:** the same IP is announced from multiple locations. Internet routing usually sends users to the nearest or best reachable site/POP.
@@ -242,11 +242,11 @@ flowchart LR
 - SQL stores metadata such as owner, object key, timestamps, permissions, and relationships.
 - Object storage stores bytes cheaply and durably behind keys like `user/42/avatar.png`.
 - Common examples: Amazon S3, Azure Blob Storage, Google Cloud Storage, MinIO, Ceph Object Gateway, NetApp StorageGRID, Dell ECS.
-- For upload/download patterns, presigned URLs, virus scanning, and quarantine buckets see [Guide 16: Blob Storage & File Upload Patterns](16.blob-storage-file-upload-study-guide.md).
+- For upload/download patterns, presigned URLs, virus scanning, and quarantine buckets see [Guide 16: Blob Storage & File Upload Patterns](../databases/blob-storage.md).
 
 ### Partitioning vs Sharding
 
-![Partitioning vs Sharding](resources/Sharding-vs-Partitioning.png)
+![Partitioning vs Sharding](../resources/Sharding-vs-Partitioning.png)
 
 ```mermaid
 flowchart LR
@@ -265,11 +265,11 @@ flowchart LR
 
 Shortcut: **All sharding is partitioning, but not all partitioning is sharding.**
 
-*See [guide 15](15.sharding-partitioning-study-guide.md) for a deep dive on sharding strategies, consistent hashing, hot spot mitigations, and rebalancing.*
+*See [guide 15](../databases/sharding-partitioning.md) for a deep dive on sharding strategies, consistent hashing, hot spot mitigations, and rebalancing.*
 
 ### RAID
 
-![RAID strategies](resources/Raid-strategies.png)
+![RAID strategies](../resources/Raid-strategies.png)
 
 | RAID | Minimum drives | Capacity idea | Fault tolerance | Best fit |
 |---|---:|---|---|---|

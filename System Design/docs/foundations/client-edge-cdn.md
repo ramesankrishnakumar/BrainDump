@@ -3,10 +3,10 @@
 Goal: connect the abstract **Client → Edge/CDN** path to what you actually see in DevTools—HTML, CDN asset URLs, CSS/JS, images, and GraphQL calls that appear later.
 
 Related:
-- [System Design guide §2](1.system-design-study-guide.md#2-internet-request-flow) — DNS, edge, L4, L7 request flow
-- [System Design guide §3](1.system-design-study-guide.md#3-vip-anycast-and-load-balancer-entry-points) — Anycast, VIP, steering
-- [System Design guide §4](1.system-design-study-guide.md#4-ddos-protection-by-layer) — what edge absorbs vs gateway
-- [Caching Patterns guide §2](4.caching-patterns-study-guide.md#2-where-caches-live) — browser, CDN, gateway caches
+- [System Design guide §2](networking-request-path.md#2-internet-request-flow) — DNS, edge, L4, L7 request flow
+- [System Design guide §3](networking-request-path.md#3-vip-anycast-and-load-balancer-entry-points) — Anycast, VIP, steering
+- [System Design guide §4](networking-request-path.md#4-ddos-protection-by-layer) — what edge absorbs vs gateway
+- [Caching Patterns guide §2](../caching-and-scale/caching-patterns.md#2-where-caches-live) — browser, CDN, gateway caches
 
 **Running example:** loading `https://www.intuit.com/` in a browser and reading the Network tab.
 
@@ -17,11 +17,11 @@ Patterns below were observed from live homepage HTML and response headers (Akama
 ## Table of Contents
 
 1. [The Big Picture: One Visit, Many Doors](#1-the-big-picture-one-visit-many-doors)
-2. [Phase 0 — DNS and Edge Pick](#2-phase-0--dns-and-edge-pick)
-3. [Phase 1 — HTML Arrives](#3-phase-1--html-arrives)
-4. [Phase 2 — CSS, JS, and Images](#4-phase-2--css-js-and-images)
-5. [Phase 3 — Paint, Hydrate, Second Wave](#5-phase-3--paint-hydrate-second-wave)
-6. [Phase 4 — GraphQL and APIs (Later)](#6-phase-4--graphql-and-apis-later)
+2. [Phase 0 — DNS and Edge Pick](#2-phase-0-dns-and-edge-pick)
+3. [Phase 1 — HTML Arrives](#3-phase-1-html-arrives)
+4. [Phase 2 — CSS, JS, and Images](#4-phase-2-css-js-and-images)
+5. [Phase 3 — Paint, Hydrate, Second Wave](#5-phase-3-paint-hydrate-second-wave)
+6. [Phase 4 — GraphQL and APIs (Later)](#6-phase-4-graphql-and-apis-later)
 7. [Map to Study-Guide Layers](#7-map-to-study-guide-layers)
 8. [DevTools Checklist](#8-devtools-checklist)
 9. [Quick Reference Table](#9-quick-reference-table)
@@ -73,7 +73,7 @@ Mental shortcut: **HTML is the manifest; CDNs serve the heavy static copies; API
 
 The HTML document goes through **Akamai → origin** (Next.js / marketing stack). It is **not** cached like a versioned `.js` file with `immutable`—it is dynamic or short-TTL compared to static assets.
 
-From the [VIP/Anycast section](1.system-design-study-guide.md#3-vip-anycast-and-load-balancer-entry-points): **DNS chooses an address; Anycast chooses a location.**
+From the [VIP/Anycast section](networking-request-path.md#3-vip-anycast-and-load-balancer-entry-points): **DNS chooses an address; Anycast chooses a location.**
 
 <!-- SECTION: phase-1 - DONE -->
 
@@ -205,11 +205,11 @@ GraphQL requests are usually:
 
 - **POST** to a GraphQL gateway (not cacheable like `GET logo.png`)
 - **Cookie-bearing** when personalized
-- Routed to **L7 gateway / federator** in the [request-flow model](1.system-design-study-guide.md#2-internet-request-flow)—**not** the image CDN path
+- Routed to **L7 gateway / federator** in the [request-flow model](networking-request-path.md#2-internet-request-flow)—**not** the image CDN path
 
 Even on a “static-looking” homepage, GraphQL may back: promos, blog cards, nav, locale, experiments, or signed-in hints.
 
-For GraphQL depth, see [GraphQL study guide](9.graphql-study-guide.md).
+For GraphQL depth, see [GraphQL study guide](../messaging-and-apis/graphql.md).
 
 <!-- SECTION: map-layers - DONE -->
 
@@ -233,7 +233,7 @@ Browser
 
 **Client → Edge/CDN** covers the first four bullets. GraphQL is **past** that—application tier—which matches “after a while” in DevTools.
 
-Contrast with [reverse proxy vs L4](1.system-design-study-guide.md#2-internet-request-flow):
+Contrast with [reverse proxy vs L4](networking-request-path.md#2-internet-request-flow):
 
 - **L4** (behind edge): picks which connection hits which frontend.
 - **L7 reverse proxy / gateway** (origin side): routes HTTP by path; GraphQL lives here.
