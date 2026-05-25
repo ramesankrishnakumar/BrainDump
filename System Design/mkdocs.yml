@@ -77,3 +77,10 @@ nav:
       - GraphQL: messaging-and-apis/graphql.md
   - Resilience:
       - Stability Patterns: resilience/stability-patterns.md
+  - Patterns:
+      - Contention: patterns/contention.md
+      - Multi-step Processes: patterns/multi-step-processes.md
+      - Scaling Writes: patterns/scaling-writes.md
+      - Scaling Reads: patterns/scaling-reads.md
+      - Handling Large Blobs: patterns/large-blobs.md
+      - Long-Running Tasks: patterns/long-running-tasks.md

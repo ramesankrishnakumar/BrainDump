@@ -16,6 +16,7 @@ Interview-focused notes on the core building blocks of large-scale systems. Each
 4. **Caching & Scale** — caching patterns → traffic/capacity estimation.
 5. **Messaging & APIs** — concurrency → event-driven architecture & messaging → GraphQL.
 6. **Resilience** — stability patterns (timeouts, circuit breakers, bulkheads, throttling).
+7. **Patterns** — interview-ready coordination patterns: contention (locking, CAS, distributed locks) and multi-step processes (sagas, idempotency, compensation).
 
 ## Topic map
 
@@ -27,6 +28,7 @@ Interview-focused notes on the core building blocks of large-scale systems. Each
 | **Caching & Scale** | [Caching Patterns](caching-and-scale/caching-patterns.md) · [Traffic Estimation](caching-and-scale/traffic-estimation.md) |
 | **Messaging & APIs** | [Concurrency](messaging-and-apis/concurrency.md) · [Event-Driven Architecture & Messaging](messaging-and-apis/event-driven-and-messaging.md) · [GraphQL](messaging-and-apis/graphql.md) |
 | **Resilience** | [Stability Patterns](resilience/stability-patterns.md) |
+| **Patterns** | [Contention](patterns/contention.md) · [Multi-step Processes](patterns/multi-step-processes.md) · [Scaling Writes](patterns/scaling-writes.md) · [Scaling Reads](patterns/scaling-reads.md) · [Handling Large Blobs](patterns/large-blobs.md) · [Long-Running Tasks](patterns/long-running-tasks.md) |
 
 ## Interactive demos
 
