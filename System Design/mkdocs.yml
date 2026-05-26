@@ -55,6 +55,11 @@ extra_javascript:
 
 nav:
   - Home: index.md
+  - Interview Playbook:
+      - Attacking the Interview: interview-playbook/attacking-the-interview.md
+      - Senior vs Staff Signals: interview-playbook/senior-vs-staff-signals.md
+  - Quick Refresher:
+      - 60-Minute Refresher: quick-refresher/60-minute-refresher.md
   - Foundations:
       - Networking & Request Path: foundations/networking-request-path.md
       - HTTP, SSE & WebSockets: foundations/http-and-realtime.md
@@ -77,6 +82,13 @@ nav:
       - GraphQL: messaging-and-apis/graphql.md
   - Resilience:
       - Stability Patterns: resilience/stability-patterns.md
+  - Key Technologies:
+      - Technology Selection Cheat Sheet: key-technologies/index.md
+      - Datastores: key-technologies/datastores.md
+      - Caching: key-technologies/caching.md
+      - Messaging & Streaming: key-technologies/messaging-streaming.md
+      - Search, Object Storage & CDN: key-technologies/search-storage-cdn.md
+      - Coordination: key-technologies/coordination.md
   - Patterns:
       - Contention: patterns/contention.md
       - Multi-step Processes: patterns/multi-step-processes.md
@@ -84,3 +96,15 @@ nav:
       - Scaling Reads: patterns/scaling-reads.md
       - Handling Large Blobs: patterns/large-blobs.md
       - Long-Running Tasks: patterns/long-running-tasks.md
+  - Practice Questions:
+      - Overview & Question Ladder: practice-questions/index.md
+      - 1. URL Shortener (Bitly): practice-questions/url-shortener.md
+      - 2. Pastebin: practice-questions/pastebin.md
+      - 3. Rate Limiter: practice-questions/rate-limiter.md
+      - 4. Web Crawler: practice-questions/web-crawler.md
+      - 5. News Feed (Twitter): practice-questions/news-feed.md
+      - 6. WhatsApp / Chat: practice-questions/whatsapp.md
+      - 7. YouTube / Video Streaming: practice-questions/youtube.md
+      - 8. Uber / Lyft: practice-questions/uber.md
+      - 9. Google Drive / Dropbox: practice-questions/google-drive.md
+      - 10. Ticketmaster: practice-questions/ticketmaster.md

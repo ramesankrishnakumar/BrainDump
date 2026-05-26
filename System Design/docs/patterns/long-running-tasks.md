@@ -8,9 +8,9 @@ Goal: recognize when a task is too slow for synchronous processing and apply the
 
 1. [Mental Model](#1-mental-model)
 2. [The Problem: Synchronous Processing Fails](#2-the-problem-synchronous-processing-fails)
-3. [The Pattern: Queue + Worker + Job ID](#3-the-pattern-queue--worker--job-id)
+3. [The Pattern: Queue + Worker + Job ID](#3-the-pattern-queue-worker-job-id)
 4. [Client Notification Strategies](#4-client-notification-strategies)
-5. [Failure Handling & Idempotency](#5-failure-handling--idempotency)
+5. [Failure Handling & Idempotency](#5-failure-handling-idempotency)
 6. [Interview Playbook](#6-interview-playbook)
 
 <!-- SECTION: mental-model -->

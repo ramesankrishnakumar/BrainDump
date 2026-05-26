@@ -25,7 +25,13 @@ _Use this when an interviewer asks you to "tell me more" about a bullet. Raw det
 - We didn't have a validated throughput number before GA — I built datagen scripts to simulate production-like load.
 - The pipeline has a dependency chain: products → variants → fulfillments. I had to wait for upstream ingestion to complete, then run fulfillment ingestion, and compare published vs consumed event counts to confirm accuracy.
 - Target was 70 TPS based on traffic estimation. We validated 75 TPS and signed off for GA.
-- I configured Kubernetes HPA based on Kafka consumer lag — pods scale up when lag grows, scale down when it clears. This lets the system handle variable load without over-provisioning.
+- **Kafka ingestion autoscaling (HPA on consumer lag):**
+  - At steady/low load we run **fewer consumer group members than partition count** (e.g. 3 pods × concurrency 2 = 6 members on 12 partitions). Each member is assigned **multiple partitions** — the group still consumes **all** partitions; we trade parallelism for cost, not coverage.
+  - When lag rises, **HPA scales pod count up**. We cap `maxReplicas` so **`pods × concurrency` never exceeds partition count** — extra members would sit idle and not increase throughput (Kafka assigns at most one active consumer per partition per group).
+  - When lag clears, HPA scales back down to the lower baseline.
+  - **Rebalance** runs whenever membership changes (scale-up, scale-down, or Spring config/deploy). Expect brief pauses and possible lag spikes during rollout — not one instant shuffle.
+  - **75 TPS** was primarily validated via DB partitioning, sharding, and pipeline design; autoscaling handles **variable load within the partition parallelism ceiling**, not unlimited scale-out on lag alone.
+  - **If interviewer pushes:** A second consumer group on the same topic does **not** share work — each group reads the full stream (fan-out). More pods only help until you hit ~1 member per partition.
 
 ---
 
