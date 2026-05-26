@@ -140,6 +140,9 @@ Even with S3 as the store, we could still proxy bytes through the server. Presig
 
 ### The technical version
 
+!!! note "Presigning is local"
+    `generate_presigned_url` / `getSignedUrl` is **client-side SigV4 signing** in the AWS SDK. The server uses IAM credentials already in memory; **no HTTP call to S3** happens when minting the URL. S3 is contacted only when the **client uses** the URL (PUT/GET). Credential refresh (IMDS, STS) may hit AWS, but that is not S3. Multipart is different: `CreateMultipartUpload` and `CompleteMultipartUpload` are real S3 API calls; only **part** URLs are presigned locally.
+
 **Upload flow:**
 
 ```mermaid
@@ -150,8 +153,7 @@ sequenceDiagram
 
     Client->>API: POST /episodes/upload-url {filename, size, content_type}
     API->>API: validate (auth, file type, size limit)
-    API->>S3: generate presigned PUT URL (key="ep-123/audio.mp3", TTL=15min)
-    S3-->>API: presigned URL
+    API->>API: sign presigned PUT URL locally (SigV4, TTL=15min)
     API-->>Client: {upload_url: "https://s3.amazonaws.com/...?X-Amz-Signature=...&Expires=..."}
     Note over API: Server's job is done. It never touches the bytes.
     Client->>S3: PUT audio.mp3 (200MB, directly to S3)
@@ -170,8 +172,7 @@ sequenceDiagram
 
     Listener->>API: GET /episodes/ep-123/stream-url
     API->>API: check auth, check episode published
-    API->>S3: generate presigned GET URL (TTL=1hr)
-    S3-->>API: presigned URL
+    API->>API: sign presigned GET URL locally (SigV4, TTL=1hr)
     API-->>Listener: {stream_url: "https://s3.amazonaws.com/...?..."}
     Listener->>S3: GET audio.mp3 (200MB directly from S3)
 ```
@@ -180,6 +181,7 @@ sequenceDiagram
 
 | Property | Detail |
 |---|---|
+| Minting | Local SigV4 in the SDK — no round-trip to S3 when generating the URL |
 | Signed | HMAC signature over key, expiry, allowed operation |
 | Time-limited | URL becomes invalid after TTL (e.g. 15 min for upload, 1 hr for download) |
 | Operation-specific | A PUT URL cannot be used for GET; a GET URL cannot be used for DELETE |
@@ -233,6 +235,7 @@ sequenceDiagram
     Client->>API: POST /episodes/upload-init {size: 500MB}
     API->>S3: CreateMultipartUpload(key="ep-456/audio.mp3")
     S3-->>API: upload_id="abc123"
+    API->>API: presign UploadPart URLs locally (one per chunk)
     API-->>Client: {upload_id, presigned_urls: [url1, url2, ...url50]}
     Note over Client: Split 500MB into 50 × 10MB chunks
     par Upload chunks in parallel
@@ -462,8 +465,9 @@ sequenceDiagram
     participant CDN
 
     Creator->>API: POST /episodes/upload-url
-    API->>S3: Initiate multipart upload
-    S3-->>API: upload_id + presigned part URLs
+    API->>S3: CreateMultipartUpload
+    S3-->>API: upload_id
+    API->>API: presign part URLs locally
     API-->>Creator: {upload_id, part_urls, resume_endpoint}
     Note over Creator: Uploads 50 × 10MB chunks in parallel
     loop Each chunk
@@ -615,7 +619,7 @@ flowchart TB
 ```
 
 ```text
-Presigned URL:      Client ↔ S3 directly. Server generates the key, never the bytes.
+Presigned URL:      Client ↔ S3 directly. Server signs URL locally (SigV4), never the bytes.
 Multipart upload:   Chunks + parallel = fast + resumable-per-chunk.
 Resumable upload:   Server tracks byte offset. Mobile-friendly. No restart on reconnect.
 CDN delivery:       Edge-cached streaming. Range requests for audio/video seek.
@@ -625,8 +629,8 @@ Async pipeline:     S3 event → queue → workers. Upload completes in seconds;
 For interviews, the strongest large blob answer sounds like:
 
 ```text
-The file goes directly from client to S3 via a presigned URL — the server generates
-the URL and coordinates, but never handles the bytes.
+The file goes directly from client to S3 via a presigned URL — the server signs
+the URL locally (no S3 call to mint it) and coordinates, but never handles the bytes.
 For large files: multipart upload with parallel chunks.
 For unreliable networks: resumable upload tracking byte offset.
 For delivery: CDN in front of S3 for public files; presigned GET URLs for private.
@@ -642,6 +646,7 @@ Final shortcut: **the server's job with large blobs is to authorize and coordina
 - Can you explain why proxying large files through app servers is a problem?
 - Can you describe when to use blob storage vs. a database for file data?
 - Can you draw the presigned URL upload flow (client → API → S3 URL → client → S3)?
+- Can you explain that minting a presigned URL is local SigV4 signing (no S3 round-trip)?
 - Can you explain what a presigned URL contains (key, TTL, operation, signature)?
 - Can you describe how multipart upload works and why ETags are needed?
 - Can you explain what happens if a multipart upload is never completed and how to clean it up?

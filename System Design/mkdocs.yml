@@ -95,6 +95,7 @@ nav:
       - Scaling Writes: patterns/scaling-writes.md
       - Scaling Reads: patterns/scaling-reads.md
       - Handling Large Blobs: patterns/large-blobs.md
+      - Secure File Upload Service: patterns/file-upload-service.md
       - Long-Running Tasks: patterns/long-running-tasks.md
   - Practice Questions:
       - Overview & Question Ladder: practice-questions/index.md
