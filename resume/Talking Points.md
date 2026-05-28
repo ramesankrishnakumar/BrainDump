@@ -105,7 +105,7 @@ _Use this when an interviewer asks you to "tell me more" about a bullet. Raw det
 **Context / Why:**
 - NTTF = New To The Franchise. New QBO customers in their 30-day trial subscription.
 - QBO has a "Guided Setup" — 7 modules a human expert walks through with the customer (1.5+ hour session). Goal: make this self-serve via AI to improve trial-to-paid conversion and reduce reliance on expensive expert sessions.
-- Inspired by Google AI Studio. Started as a hackathon with a Senior Staff engineer; I drove it forward as primary designer/developer after they moved to other priorities. A Staff IC joined the team later — I was the tech lead throughout.
+- Inspired by Google AI Studio. Started as a hackathon with a Senior Staff engineer. After they moved to other priorities, I drove it forward as primary designer and tech lead, building it together with a Staff engineer who joined the team.
 
 **System Architecture — 4 components:**
 
