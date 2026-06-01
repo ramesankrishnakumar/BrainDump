@@ -115,9 +115,35 @@ nav:
           - 10. Ticketmaster: system-design/practice-questions/ticketmaster.md
   - Coding Patterns:
       - Overview: coding-patterns/index.md
+      - Cheat Sheet (All Patterns): coding-patterns/cheatsheet.md
+      - Java Quick Hacks: coding-patterns/java-quick-hacks.md
+      - Solve by Negation: coding-patterns/solve-by-negation.md
       - Sliding Window:
           - Overview: coding-patterns/sliding-window/index.md
           - Max Points From Cards: coding-patterns/sliding-window/max-points-from-cards.md
           - Max Sum of Distinct Subarrays: coding-patterns/sliding-window/max-sum-distinct-subarrays.md
+          - Fruits Into Baskets: coding-patterns/sliding-window/fruits-into-baskets.md
+      - Intervals:
+          - Overview: coding-patterns/intervals/index.md
+          - Can Attend Meetings: coding-patterns/intervals/can-attend-meetings.md
+          - Merge Intervals: coding-patterns/intervals/merge-intervals.md
+          - Insert Interval: coding-patterns/intervals/insert-interval.md
+          - Non-Overlapping Intervals: coding-patterns/intervals/non-overlapping-intervals.md
+          - Employee Free Time: coding-patterns/intervals/employee-free-time.md
+      - Stack:
+          - Overview: coding-patterns/stack/index.md
+          - Valid Parentheses: coding-patterns/stack/valid-parentheses.md
+      - Linked List:
+          - Overview: coding-patterns/linked-list/index.md
+          - Reverse Linked List: coding-patterns/linked-list/reverse-linked-list.md
+          - Fast & Slow Pointers: coding-patterns/linked-list/fast-slow-pointers.md
+          - Middle of the Linked List: coding-patterns/linked-list/middle-of-linked-list.md
+          - Linked List Cycle: coding-patterns/linked-list/linked-list-cycle.md
+          - Linked List Cycle II: coding-patterns/linked-list/linked-list-cycle-ii.md
+          - Remove Nth Node From End: coding-patterns/linked-list/remove-nth-node-from-end.md
+          - Find the Duplicate Number: coding-patterns/linked-list/find-the-duplicate-number.md
+      - Binary Search:
+          - Overview: coding-patterns/binary-search/index.md
+          - Binary Search on Sorted Array: coding-patterns/binary-search/binary-search.md
   - Behavioral:
       - Overview: behavioral/index.md

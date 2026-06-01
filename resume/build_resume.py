@@ -133,9 +133,10 @@ body { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 h2 { font-size: 9pt; font-weight: 700; text-transform: uppercase; letter-spacing: 1.6px;
      border-bottom: 0.75px solid #999; padding-bottom: 2.5pt;
      margin-top: 8pt; margin-bottom: 4pt; page-break-after: avoid; }
-.role-row { overflow: hidden; margin-top: 5pt; margin-bottom: 1pt; page-break-after: avoid; }
-.role-left { float: left; font-weight: 700; font-size: 9.8pt; }
-.role-right { float: right; font-weight: 400; font-size: 9pt; color: #444; padding-top: 0.5pt; }
+.role-row { display: flex; justify-content: space-between; align-items: baseline;
+            gap: 12pt; margin-top: 5pt; margin-bottom: 1pt; page-break-after: avoid; }
+.role-left { font-weight: 700; font-size: 9.8pt; }
+.role-right { font-weight: 400; font-size: 9pt; color: #444; white-space: nowrap; }
 ul { padding-left: 13pt; margin: 1pt 0 2pt; }
 li { margin-bottom: 2.5pt; line-height: 1.3; page-break-inside: avoid; }
 p { margin-bottom: 1.5pt; }
@@ -178,7 +179,9 @@ def build_html(model):
                     p += [f'<li>{runs_to_html(b)}</li>' for b in blk["bullets"]]
                     p.append("</ul>")
     body = "\n".join(p)
+    title = model["name"] or "Resume"
     return (f'<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8">'
+            f'<title>{title} — Resume</title>'
             f'<style>{CSS}</style></head><body>{body}</body></html>')
 
 
@@ -289,6 +292,7 @@ def render_docx(model, out_docx):
     p.alignment = WD_ALIGN_PARAGRAPH.CENTER
     p.paragraph_format.space_after = Pt(2)
     r = p.add_run(model["name"]); r.bold = True; r.font.size = Pt(22); r.font.color.rgb = DARK
+    ol = OxmlElement("w:outlineLvl"); ol.set(qn("w:val"), "0"); p._p.get_or_add_pPr().append(ol)
 
     # ── Contact
     p = doc.add_paragraph(); p.alignment = WD_ALIGN_PARAGRAPH.CENTER
@@ -313,6 +317,8 @@ def render_docx(model, out_docx):
         r.font.color.rgb = DARK
         rpr = r._element.get_or_add_rPr()
         spc = OxmlElement("w:spacing"); spc.set(qn("w:val"), "30"); rpr.append(spc)
+        ol = OxmlElement("w:outlineLvl"); ol.set(qn("w:val"), "1")
+        h._p.get_or_add_pPr().append(ol)
         bottom_border(h)
 
         for blk in sec["blocks"]:

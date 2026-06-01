@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
-"""Build a PDF cover letter from a markdown file.
+"""Build a PDF + DOCX cover letter from a markdown file.
 
-PDF -> headless Chrome (Playwright).
+PDF  -> headless Chrome (Playwright).
+DOCX -> python-docx, single-column, no tables -> maximal ATS parseability.
 
 Run:
-    python3 build_cover_letter.py MyLetter.md            # outputs MyLetter.pdf
+    python3 build_cover_letter.py MyLetter.md            # outputs MyLetter.pdf + MyLetter.docx
     python3 build_cover_letter.py MyLetter.md --preview  # also writes MyLetter-preview.png
 """
 
@@ -153,7 +154,7 @@ hr {
 }
 .body p {
     margin-bottom: 9pt;
-    text-align: justify;
+    text-align: left;
 }
 """
 
@@ -219,6 +220,92 @@ def render_preview(html, out_png):
     print(f"PNG  -> {out_png}  (~{pages:.2f} page(s) — READ this file to validate)")
 
 
+# ──────────────────────────────────────────────────────────────────────────
+# DOCX RENDERER (python-docx) — ATS-clean, single column, no tables
+# ──────────────────────────────────────────────────────────────────────────
+def render_docx(model, out_docx):
+    from docx import Document
+    from docx.shared import Pt, RGBColor, Inches
+    from docx.oxml.ns import qn
+    from docx.oxml import OxmlElement
+
+    FONT = "Calibri"
+    DARK = RGBColor(0x1A, 0x1A, 0x1A)
+    GRAY = RGBColor(0x44, 0x44, 0x44)
+
+    doc = Document()
+    for sec in doc.sections:
+        sec.top_margin = sec.bottom_margin = Inches(0.9)
+        sec.left_margin = sec.right_margin = Inches(1.0)
+    normal = doc.styles["Normal"]
+    normal.font.name = FONT
+    normal.font.size = Pt(10.5)
+    normal.paragraph_format.space_after = Pt(0)
+    normal.paragraph_format.line_spacing = 1.15
+
+    def add_hyperlink(paragraph, url, text):
+        part = paragraph.part
+        r_id = part.relate_to(
+            url, "http://schemas.openxmlformats.org/officeDocument/2006/relationships/hyperlink",
+            is_external=True)
+        link = OxmlElement("w:hyperlink")
+        link.set(qn("r:id"), r_id)
+        run = OxmlElement("w:r")
+        rpr = OxmlElement("w:rPr")
+        color = OxmlElement("w:color"); color.set(qn("w:val"), "1A1A1A")
+        rpr.append(color)
+        u = OxmlElement("w:u"); u.set(qn("w:val"), "none"); rpr.append(u)
+        run.append(rpr)
+        t = OxmlElement("w:t"); t.text = text; run.append(t)
+        link.append(run)
+        paragraph._p.append(link)
+
+    def emit_runs(paragraph, runs, size=10.5, color=DARK):
+        for txt, bold, href in runs:
+            if href:
+                add_hyperlink(paragraph, href, txt)
+            else:
+                r = paragraph.add_run(txt)
+                r.bold = bold
+                r.font.size = Pt(size)
+                r.font.color.rgb = color
+
+    # ── Sender name
+    p = doc.add_paragraph()
+    p.paragraph_format.space_after = Pt(2)
+    r = p.add_run(model["sender_name"]); r.bold = True; r.font.size = Pt(14); r.font.color.rgb = DARK
+
+    # ── Sender contact (with hyperlinks)
+    p = doc.add_paragraph()
+    p.paragraph_format.space_after = Pt(14)
+    emit_runs(p, model["sender_contact"], size=9.5, color=GRAY)
+
+    # ── Date
+    if model["date"]:
+        p = doc.add_paragraph()
+        p.paragraph_format.space_after = Pt(12)
+        r = p.add_run(model["date"]); r.font.size = Pt(10.5); r.font.color.rgb = DARK
+
+    # ── Recipient block
+    for line in model["recipient"]:
+        p = doc.add_paragraph()
+        r = p.add_run(line); r.font.size = Pt(10.5); r.font.color.rgb = DARK
+    if model["recipient"]:
+        doc.paragraphs[-1].paragraph_format.space_after = Pt(14)
+
+    # ── Body paragraphs (split <br>-joined closing lines into line breaks)
+    for para in model["body"]:
+        p = doc.add_paragraph()
+        p.paragraph_format.space_after = Pt(9)
+        for idx, seg in enumerate(para.split("<br>")):
+            if idx > 0:
+                p.add_run().add_break()
+            r = p.add_run(seg); r.font.size = Pt(10.5); r.font.color.rgb = DARK
+
+    doc.save(str(out_docx))
+    print(f"DOCX -> {out_docx}")
+
+
 def main():
     ap = argparse.ArgumentParser(description="Build a PDF cover letter from markdown.")
     ap.add_argument("input", help="markdown cover letter file")
@@ -233,10 +320,12 @@ def main():
 
     base = args.out if args.out else in_md.stem
     out_pdf = in_md.parent / f"{base}.pdf"
+    out_docx = in_md.parent / f"{base}.docx"
 
     model = parse_letter(in_md.read_text(encoding="utf-8"))
     html = build_html(model)
     render_pdf(html, out_pdf)
+    render_docx(model, out_docx)
     if args.preview:
         render_preview(html, in_md.parent / f"{base}-preview.png")
 

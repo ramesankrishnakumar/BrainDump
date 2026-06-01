@@ -81,11 +81,17 @@ Name the file to match the script default if convenient (`<Company>_CoverLetter.
 
 ## Step 5 — Render and spot-check (do not skip)
 
-Run from the folder containing the script:
+The script lives at `Jobs/build_cover_letter.py`, while each letter lives in its own company
+subfolder (`Jobs/<Company>/<Company>_CoverLetter.md`). Run the script from the `Jobs/` folder and
+pass the letter's relative path:
 
 ```
-python3 build_cover_letter.py <Company>_CoverLetter.md
+cd Jobs
+python3 build_cover_letter.py <Company>/<Company>_CoverLetter.md
 ```
+
+The PDF is written next to the `.md`. The verification commands below assume you `cd` into
+`Jobs/<Company>/` first (or adjust the paths accordingly).
 
 Then **verify two things against the real PDF**, not the HTML preview:
 

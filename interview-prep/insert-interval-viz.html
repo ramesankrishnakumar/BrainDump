@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Insert Interval — Visual Walkthrough</title>
+<style>
+  :root {
+    --before: #6aa9ff;
+    --merge:  #ff8c42;
+    --after:  #9ccc65;
+    --new:    #e040fb;
+    --bg:     #0f1320;
+    --panel:  #1a2030;
+    --ink:    #e8ecf3;
+    --muted:  #8b94a7;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; padding: 24px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background: var(--bg); color: var(--ink);
+  }
+  h1 { font-size: 20px; margin: 0 0 4px; }
+  .sub { color: var(--muted); margin: 0 0 20px; font-size: 14px; }
+  .wrap { max-width: 920px; margin: 0 auto; }
+
+  .scenario-tabs { display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; }
+  .scenario-tabs button {
+    background: var(--panel); color: var(--ink); border: 1px solid #2c3447;
+    padding: 8px 12px; border-radius: 8px; cursor: pointer; font-size: 13px;
+  }
+  .scenario-tabs button.active { border-color: var(--new); color: var(--new); }
+
+  .stage {
+    background: var(--panel); border-radius: 12px; padding: 24px 24px 12px;
+    position: relative; overflow-x: auto;
+  }
+  svg { display: block; width: 100%; min-width: 640px; height: 260px; }
+
+  .legend { display: flex; gap: 18px; flex-wrap: wrap; margin: 14px 0; font-size: 13px; }
+  .legend span { display: inline-flex; align-items: center; gap: 6px; }
+  .swatch { width: 14px; height: 14px; border-radius: 3px; display: inline-block; }
+
+  .controls { display: flex; gap: 10px; margin: 16px 0; align-items: center; flex-wrap: wrap; }
+  .controls button {
+    background: var(--new); color: #fff; border: none; padding: 10px 18px;
+    border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: 600;
+  }
+  .controls button.ghost { background: transparent; border: 1px solid #2c3447; color: var(--ink); }
+  .controls button:disabled { opacity: 0.4; cursor: default; }
+
+  .narrate {
+    background: var(--panel); border-radius: 12px; padding: 18px 20px; margin-top: 8px;
+    min-height: 90px; font-size: 15px; line-height: 1.5;
+  }
+  .narrate .phase { font-weight: 700; letter-spacing: 0.3px; }
+  .narrate code {
+    background: #0f1320; padding: 2px 6px; border-radius: 4px; font-size: 14px;
+  }
+  .result {
+    margin-top: 12px; font-family: ui-monospace, Menlo, monospace; font-size: 14px;
+    color: var(--after);
+  }
+  .phase-before { color: var(--before); }
+  .phase-merge  { color: var(--merge); }
+  .phase-after  { color: var(--after); }
+  .phase-done   { color: var(--new); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Insert Interval — step through it</h1>
+  <p class="sub">Existing intervals are sorted &amp; non-overlapping. Drop in the new one (pink) and keep the list clean.</p>
+
+  <div class="scenario-tabs" id="tabs"></div>
+
+  <div class="stage">
+    <svg id="svg" viewBox="0 0 680 260" preserveAspectRatio="xMidYMid meet"></svg>
+  </div>
+
+  <div class="legend">
+    <span><i class="swatch" style="background:var(--before)"></i> Zone 1: entirely before</span>
+    <span><i class="swatch" style="background:var(--merge)"></i> Zone 2: overlaps → merge</span>
+    <span><i class="swatch" style="background:var(--after)"></i> Zone 3: entirely after</span>
+    <span><i class="swatch" style="background:var(--new)"></i> new interval (the "sponge")</span>
+  </div>
+
+  <div class="controls">
+    <button id="prev" class="ghost">&larr; Back</button>
+    <button id="next">Next step &rarr;</button>
+    <button id="reset" class="ghost">Reset</button>
+    <span id="stepcount" class="sub" style="margin:0"></span>
+  </div>
+
+  <div class="narrate" id="narrate"></div>
+  <div class="result" id="result"></div>
+</div>
+
+<script>
+// ---- Scenarios -------------------------------------------------------------
+const SCENARIOS = [
+  { name: "Example 1: [2,5] into [[1,3],[6,9]]",
+    intervals: [[1,3],[6,9]], newInterval: [2,5] },
+  { name: "Example 2: [5,6] into [[1,2],[3,5],[6,7],[8,10]]",
+    intervals: [[1,2],[3,5],[6,7],[8,10]], newInterval: [5,6] },
+  { name: "Gap: [4,4] into [[1,2],[6,9]] (fits, no merge)",
+    intervals: [[1,2],[6,9]], newInterval: [4,4] },
+  { name: "Swallow all: [0,12] into [[1,2],[3,5],[6,7]]",
+    intervals: [[1,2],[3,5],[6,7]], newInterval: [0,12] },
+];
+
+// ---- Build the list of steps for a scenario (mirrors the 3-loop algorithm) -
+function buildSteps(scn) {
+  const intervals = scn.intervals.map(x => x.slice());
+  const ni = scn.newInterval.slice();
+  const steps = [];
+  const result = [];
+  let i = 0;
+  const n = intervals.length;
+
+  steps.push({ phase: "start", i: -1, ni: ni.slice(), result: result.map(x=>x.slice()),
+    text: `We have ${fmt(intervals)} and new interval <b>[${ni}]</b>. Walk left to right. Frame: <b>new</b> on the left of every compare.` });
+
+  // LOOP 1 — entirely before
+  while (i < n && intervals[i][1] < ni[0]) {
+    result.push(intervals[i].slice());
+    steps.push({ phase: "before", i, ni: ni.slice(), result: result.map(x=>x.slice()),
+      text: `<span class="phase phase-before">ZONE 1 (before)</span> — check <code>ns &le; ce</code> &rarr; <code>${ni[0]} &le; ${intervals[i][1]}</code>? <b>No.</b> This interval ends before new starts, so it can never touch new. Copy <code>[${intervals[i]}]</code> straight to the result.` });
+    i++;
+  }
+  // boundary note: why loop 1 stopped
+  if (i < n) {
+    steps.push({ phase: "before-stop", i, ni: ni.slice(), result: result.map(x=>x.slice()),
+      text: `<span class="phase phase-before">ZONE 1 ends</span> — check <code>ns &le; ce</code> &rarr; <code>${ni[0]} &le; ${intervals[i][1]}</code>? <b>Yes.</b> So <code>[${intervals[i]}]</code> reaches at least up to new's start. We've now <i>banked</i> half the overlap test. Switch to merging.` });
+  }
+
+  // LOOP 2 — overlap / merge (the sponge soaks them up)
+  while (i < n && intervals[i][0] <= ni[1]) {
+    const before = ni.slice();
+    ni[0] = Math.min(ni[0], intervals[i][0]);
+    ni[1] = Math.max(ni[1], intervals[i][1]);
+    steps.push({ phase: "merge", i, ni: ni.slice(), result: result.map(x=>x.slice()),
+      text: `<span class="phase phase-merge">ZONE 2 (merge)</span> — check <code>ne &ge; cs</code> &rarr; <code>${before[1]} &ge; ${intervals[i][0]}</code>? <b>Yes, overlap!</b> The sponge soaks up <code>[${intervals[i]}]</code>: start = min(${before[0]}, ${intervals[i][0]}) = ${ni[0]}, end = max(${before[1]}, ${intervals[i][1]}) = ${ni[1]}. Sponge is now <b>[${ni}]</b>. Nothing added to result yet.` });
+    i++;
+  }
+  // boundary note: why loop 2 stopped, then place sponge
+  let stopMsg;
+  if (i < n) stopMsg = `<code>ne &ge; cs</code> &rarr; <code>${ni[1]} &ge; ${intervals[i][0]}</code>? <b>No.</b> Next interval starts after the sponge ends — no more overlap.`;
+  else stopMsg = `No intervals left to check.`;
+  result.push(ni.slice());
+  steps.push({ phase: "place", i, ni: ni.slice(), result: result.map(x=>x.slice()),
+    text: `<span class="phase phase-merge">Drop the sponge in</span> — ${stopMsg} Now add the fully-grown sponge <b>[${ni}]</b> to the result.` });
+
+  // LOOP 3 — entirely after
+  while (i < n) {
+    result.push(intervals[i].slice());
+    steps.push({ phase: "after", i, ni: ni.slice(), result: result.map(x=>x.slice()),
+      text: `<span class="phase phase-after">ZONE 3 (after)</span> — everything from here starts after the sponge. Copy <code>[${intervals[i]}]</code> as-is.` });
+    i++;
+  }
+
+  steps.push({ phase: "done", i, ni: ni.slice(), result: result.map(x=>x.slice()),
+    text: `<span class="phase phase-done">Done.</span> Result = ${fmt(result)}.` });
+  return steps;
+}
+
+function fmt(arr) { return "[" + arr.map(x => "[" + x.join(",") + "]").join(",") + "]"; }
+
+// ---- Rendering -------------------------------------------------------------
+const svg = document.getElementById("svg");
+const NS = "http://www.w3.org/2000/svg";
+const PAD = 40, W = 680, MAXX = 12;
+function sx(v) { return PAD + (v / MAXX) * (W - 2 * PAD); }
+
+let curScn = 0, steps = [], stepIdx = 0;
+
+function colorFor(phase) {
+  if (phase === "before" || phase === "before-stop") return getCss("--before");
+  if (phase === "merge" || phase === "place") return getCss("--merge");
+  if (phase === "after") return getCss("--after");
+  return getCss("--muted");
+}
+function getCss(v){ return getComputedStyle(document.documentElement).getPropertyValue(v).trim(); }
+
+function render() {
+  const scn = SCENARIOS[curScn];
+  const st = steps[stepIdx];
+  svg.innerHTML = "";
+
+  // axis
+  const axisY = 200;
+  line(PAD, axisY, W - PAD, axisY, "#3a4258", 2);
+  for (let t = 0; t <= MAXX; t++) {
+    const x = sx(t);
+    line(x, axisY - 4, x, axisY + 4, "#3a4258", 1);
+    text(x, axisY + 20, t, "#8b94a7", 11, "middle");
+  }
+
+  // existing intervals (top rows) — highlight the one being considered
+  const rowY = 70, barH = 22, gap = 34;
+  scn.intervals.forEach((iv, idx) => {
+    const y = rowY + Math.min(idx, 0) * gap; // keep on one band, stagger via x only
+    const yy = rowY + (idx % 2) * gap;       // two bands so they don't collide
+    const x1 = sx(iv[0]), x2 = sx(iv[1]);
+    const active = idx === st.i && st.phase !== "done" && st.phase !== "after" || (idx === st.i);
+    const isConsidered = idx === st.i;
+    const inResult = st.result.some(r => r[0] === iv[0] && r[1] === iv[1]) &&
+                     (st.phase === "before" || st.phase === "after");
+    let fill = "#3a4258";
+    if (st.phase === "before" && idx <= st.i) fill = getCss("--before");
+    if ((st.phase === "merge" || st.phase === "place") && isConsidered) fill = getCss("--merge");
+    if (st.phase === "after" && idx === st.i) fill = getCss("--after");
+    rect(x1, yy, Math.max(x2 - x1, 3), barH, fill, isConsidered ? "#fff" : "none", isConsidered ? 2.5 : 0);
+    text((x1 + x2) / 2, yy + 15, `${iv[0]},${iv[1]}`, "#0f1320", 11, "middle", 700);
+    if (isConsidered) text((x1 + x2) / 2, yy - 6, "i", "#fff", 11, "middle", 700);
+  });
+
+  // the sponge / new interval (bottom, animated growth)
+  const ny = 150;
+  const nx1 = sx(st.ni[0]), nx2 = sx(st.ni[1]);
+  rect(nx1, ny, Math.max(nx2 - nx1, 3), barH, getCss("--new"), "#fff", 1.5);
+  text((nx1 + nx2) / 2, ny + 15, `${st.ni[0]},${st.ni[1]}`, "#fff", 11, "middle", 700);
+  text(PAD - 6, ny + 15, "new", "#e040fb", 11, "end", 700);
+
+  // narration
+  const nar = document.getElementById("narrate");
+  nar.innerHTML = st.text;
+  document.getElementById("result").textContent = "result so far = " + fmt(st.result);
+  document.getElementById("stepcount").textContent = `step ${stepIdx + 1} / ${steps.length}`;
+  document.getElementById("prev").disabled = stepIdx === 0;
+  document.getElementById("next").disabled = stepIdx === steps.length - 1;
+}
+
+function line(x1,y1,x2,y2,stroke,w){ const l=el("line",{x1,y1,x2,y2,stroke,"stroke-width":w}); svg.appendChild(l);}
+function rect(x,y,w,h,fill,stroke,sw){ const r=el("rect",{x,y,width:w,height:h,rx:5,fill,stroke:stroke||"none","stroke-width":sw||0}); svg.appendChild(r);}
+function text(x,y,t,fill,size,anchor,weight){ const e=el("text",{x,y,fill,"font-size":size,"text-anchor":anchor||"start","font-weight":weight||400}); e.textContent=t; svg.appendChild(e);}
+function el(name,attrs){ const e=document.createElementNS(NS,name); for(const k in attrs) e.setAttribute(k,attrs[k]); return e;}
+
+// ---- Tabs & controls -------------------------------------------------------
+const tabs = document.getElementById("tabs");
+SCENARIOS.forEach((s, idx) => {
+  const b = document.createElement("button");
+  b.textContent = s.name;
+  b.onclick = () => { curScn = idx; loadScenario(); };
+  tabs.appendChild(b);
+});
+function loadScenario() {
+  steps = buildSteps(SCENARIOS[curScn]);
+  stepIdx = 0;
+  [...tabs.children].forEach((c, idx) => c.classList.toggle("active", idx === curScn));
+  render();
+}
+document.getElementById("next").onclick = () => { if (stepIdx < steps.length - 1) { stepIdx++; render(); } };
+document.getElementById("prev").onclick = () => { if (stepIdx > 0) { stepIdx--; render(); } };
+document.getElementById("reset").onclick = () => { stepIdx = 0; render(); };
+
+loadScenario();
+</script>
+</body>
+</html>
