@@ -57,6 +57,7 @@ extra_javascript:
 
 nav:
   - Home: index.md
+  - ⚡ 7-Day Fast-Track Plan: fast-track-study-plan.md
   - System Design:
       - Overview: system-design/index.md
       - Interview Playbook:
@@ -145,5 +146,9 @@ nav:
       - Binary Search:
           - Overview: coding-patterns/binary-search/index.md
           - Binary Search on Sorted Array: coding-patterns/binary-search/binary-search.md
+      - Graphs & Topological Sort:
+          - Overview: coding-patterns/graphs/index.md
+      - Custom Data Structure Design:
+          - Overview: coding-patterns/data-structures/index.md
   - Behavioral:
       - Overview: behavioral/index.md
