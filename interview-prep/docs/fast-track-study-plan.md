@@ -89,10 +89,12 @@ graph TD
 
 ## 🛠️ Testing Your Code Locally
 
-You have a local setup under `interview-prep/` using Poetry/uv and Python, alongside standard Java capabilities.
+You have Java compiling capabilities locally to test your templates.
 
 To run quick scratch code validations:
 1.  Navigate to your scratch folder `/Users/kramesan/Scratchpad/BrainDump/interview-prep/scratch/`.
 2.  Write a simple class with a `public static void main(String[] args)` method to trace your Java templates.
-3.  Compile and execute using `javac Scratch.java && java Scratch`.
-4.  Alternatively, you can test Python scripts using the python virtual environment: `.venv/bin/python scratch.py`.
+3.  Compile and execute using:
+    ```bash
+    javac Scratch.java && java Scratch
+    ```

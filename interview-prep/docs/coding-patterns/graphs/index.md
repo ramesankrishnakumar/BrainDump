@@ -23,14 +23,12 @@ Strong signals you're in graph territory:
 
 ---
 
-## Core Techniques & Skeletons (Java & Python)
+## Core Techniques & Skeletons (Java)
 
 ### 1. Standard Graph BFS (Shortest Path / Level Traversal)
 BFS traverses a graph level-by-level using a Queue. To avoid infinite loops in cyclic graphs, always keep a `visited` set.
 
-```carousel
 ```java
-// Java BFS Template
 import java.util.*;
 
 public int bfsShortestPath(int start, int target, Map<Integer, List<Integer>> adj) {
@@ -60,31 +58,6 @@ public int bfsShortestPath(int start, int target, Map<Integer, List<Integer>> ad
     return -1; // path not found
 }
 ```
-<!-- slide -->
-```python
-# Python BFS Template
-from collections import deque
-
-def bfs_shortest_path(start, target, adj):
-    q = deque([start])
-    visited = {start}
-    steps = 0
-    
-    while q:
-        level_size = len(q)
-        for _ in range(level_size):
-            curr = q.popleft()
-            if curr == target:
-                return steps
-            
-            for neighbor in adj.get(curr, []):
-                if neighbor not in visited:
-                    visited.add(neighbor)
-                    q.append(neighbor)
-        steps += 1
-    return -1
-```
-```
 
 ### 2. Topological Sort (Kahn's Algorithm)
 Used for task scheduling (e.g. Course Schedule / Package Build Order). It calculates the "in-degree" (number of incoming dependency arrows) for each node, pushes nodes with in-degree `0` into a Queue, and pops them while decrementing their neighbors' in-degrees.
@@ -92,9 +65,7 @@ Used for task scheduling (e.g. Course Schedule / Package Build Order). It calcul
 > [!TIP]
 > In-degree `0` represents a node that has **no dependencies** and is safe to execute immediately!
 
-```carousel
 ```java
-// Java Kahn's Algorithm
 import java.util.*;
 
 public List<Integer> topologicalSort(int numNodes, int[][] prerequisites) {
@@ -132,33 +103,6 @@ public List<Integer> topologicalSort(int numNodes, int[][] prerequisites) {
     return order.size() == numNodes ? order : new ArrayList<>();
 }
 ```
-<!-- slide -->
-```python
-# Python Kahn's Algorithm
-from collections import deque, defaultdict
-
-def topological_sort(num_nodes, prerequisites):
-    adj = defaultdict(list)
-    in_degree = [0] * num_nodes
-    
-    for dest, src in prerequisites:
-        adj[src].append(dest)
-        in_degree[dest] += 1
-        
-    q = deque([i for i in range(num_nodes) if in_degree[i] == 0])
-    order = []
-    
-    while q:
-        curr = q.popleft()
-        order.append(curr)
-        for neighbor in adj[curr]:
-            in_degree[neighbor] -= 1
-            if in_degree[neighbor] == 0:
-                q.append(neighbor)
-                
-    return order if len(order) == num_nodes else []
-```
-```
 
 ### 3. Cycle Detection in Directed Graph (DFS-based Coloring)
 Used to find if a workflow contains a loop. Relies on tracing three states:
@@ -169,9 +113,7 @@ Used to find if a workflow contains a loop. Relies on tracing three states:
 > [!WARNING]
 > If you encounter a neighbor that is in the `Visiting` state (`1`), you have found a **back-edge**, which means a cycle exists!
 
-```carousel
 ```java
-// Java DFS Cycle Detection
 import java.util.*;
 
 public boolean hasCycle(int numNodes, int[][] prerequisites) {
@@ -202,36 +144,6 @@ private boolean dfsCycle(int curr, Map<Integer, List<Integer>> adj, int[] state)
     state[curr] = 2; // Mark as Visited
     return false;
 }
-```
-<!-- slide -->
-```python
-# Python DFS Cycle Detection
-from collections import defaultdict
-
-def has_cycle(num_nodes, prerequisites):
-    adj = defaultdict(list)
-    for dest, src in prerequisites:
-        adj[src].append(dest)
-        
-    state = [0] * num_nodes # 0=Unvisited, 1=Visiting, 2=Visited
-    
-    def dfs(curr):
-        state[curr] = 1 # Visiting
-        for neighbor in adj[curr]:
-            if state[neighbor] == 1:
-                return True
-            if state[neighbor] == 0:
-                if dfs(neighbor):
-                    return True
-        state[curr] = 2 # Visited
-        return False
-        
-    for i in range(num_nodes):
-        if state[i] == 0:
-            if dfs(i):
-                return True
-    return False
-```
 ```
 
 ---

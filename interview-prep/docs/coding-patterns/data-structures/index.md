@@ -18,7 +18,7 @@ For **Salesforce** and **ServiceNow**, custom caches and index trees are standar
 
 ---
 
-## Core Techniques & Skeletons (Java & Python)
+## Core Techniques & Skeletons (Java)
 
 ### 1. Hand-Rolled LRU Cache (HashMap + DLL)
 Many interviewers *explicitly ban* standard language utilities like Java's `LinkedHashMap` to force you to manage the pointers yourself. The clean recipe for a hand-rolled LRU cache uses:
@@ -26,9 +26,7 @@ Many interviewers *explicitly ban* standard language utilities like Java's `Link
 2.  A **HashMap** mapping keys to Doubly Linked List nodes for $O(1)$ lookup.
 3.  **Dummy Head and Tail** sentinel nodes in the list to eliminate boundary null-checks.
 
-```carousel
 ```java
-// Java Hand-Rolled LRU Cache
 import java.util.*;
 
 public class LRUCache {
@@ -95,68 +93,11 @@ public class LRUCache {
     }
 }
 ```
-<!-- slide -->
-```python
-# Python Hand-Rolled LRU Cache
-class Node:
-    def __init__(self, key=0, val=0):
-        self.key = key
-        self.val = val
-        self.prev = None
-        self.next = None
-
-class LRUCache:
-    def __init__(self, capacity: int):
-        self.capacity = capacity
-        self.map = {}
-        self.head = Node() # Dummy Head
-        self.tail = Node() # Dummy Tail
-        self.head.next = self.tail
-        self.tail.prev = self.head
-
-    def get(self, key: int) -> int:
-        if key not in self.map:
-            return -1
-        node = self.map[key]
-        self._move_to_head(node)
-        return node.val
-
-    def put(self, key: int, value: int) -> None:
-        if key in self.map:
-            node = self.map[key]
-            node.val = value
-            self._move_to_head(node)
-        else:
-            if len(self.map) >= self.capacity:
-                lru = self.tail.prev
-                self._remove(lru)
-                del self.map[lru.key]
-            new_node = Node(key, value)
-            self._add(new_node)
-            self.map[key] = new_node
-
-    def _add(self, node):
-        node.next = self.head.next
-        node.prev = self.head
-        self.head.next.prev = node
-        self.head.next = node
-
-    def _remove(self, node):
-        node.prev.next = node.next
-        node.next.prev = node.prev
-
-    def _move_to_head(self, node):
-        self._remove(node)
-        self._add(node)
-```
-```
 
 ### 2. Trie / Prefix Tree
 A **Trie** is a specialized tree used to store associative arrays where keys are strings. It allows $O(L)$ search, insertions, and prefix matchings, where $L$ is the length of the string.
 
-```carousel
 ```java
-// Java Trie Implementation
 import java.util.*;
 
 public class Trie {
@@ -198,42 +139,6 @@ public class Trie {
         return curr;
     }
 }
-```
-<!-- slide -->
-```python
-# Python Trie Implementation
-class TrieNode:
-    def __init__(self):
-        self.children = {}
-        self.is_word = False
-
-class Trie:
-    def __init__(self):
-        self.root = TrieNode()
-
-    def insert(self, word: str) -> None:
-        curr = self.root
-        for char in word:
-            if char not in curr.children:
-                curr.children[char] = TrieNode()
-            curr = curr.children[char]
-        curr.is_word = True
-
-    def search(self, word: str) -> bool:
-        node = self._find(word)
-        return node is not None and node.is_word
-
-    def startsWith(self, prefix: str) -> bool:
-        return self._find(prefix) is not None
-
-    def _find(self, prefix: str) -> TrieNode:
-        curr = self.root
-        for char in prefix:
-            if char not in curr.children:
-                return None
-            curr = curr.children[char]
-        return curr
-```
 ```
 
 ---
