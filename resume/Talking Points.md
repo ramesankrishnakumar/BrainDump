@@ -133,23 +133,27 @@ _Use this when an interviewer asks you to "tell me more" about a bullet. Raw det
 - V2: LangGraph orchestrating agent — delegates to sub-agents, session-history aware. Enabled natural conversation patterns (customers could jump between topics).
 - V3: Slim, focused workflows with defined levels — reduced complexity after data showed customers were overwhelmed by the 7-module scope.
 
-**Model:**
-- OpenAI throughout the experiment.
-- Intuit Film (internal platform LLM) and Gemini were evaluated as alternatives but not implemented before the experiment was shut down.
+**Model / Stack:**
+- Built on **LangGraph** for multi-agent orchestration; **GPT-4.1** as the underlying LLM.
+- OpenAI throughout the experiment. **Evaluated Intuit Film (internal platform LLM) and Gemini as alternatives** — a deliberate model choice, not a default. (Not implemented before the experiment wound down.)
+- Framing in interview: "Built on LangGraph for orchestration, with GPT-4.1 as the underlying LLM; we evaluated Gemini and Intuit's internal LLM as alternatives." Tools named, but the design (orchestration architecture + context engine) is the headline.
 
-**Results & Experiment:**
-- Ramped from 5% → 50% of NTTF customers during the 30-day trial window.
-- **Single-module phase** (Reporting only, custom CUI): ~50% module completion rate; multi-session engagement (customers returned across multiple sessions). Even though we advertised "Reporting onboarding only," customers started asking general QBO questions — strong signal of engagement and trust.
-- **7-module phase** (shared Intuit CUI): lower completion rate, customers completing modules out of order (actually a positive signal — shows natural conversation flow, not rigid script-following), customers felt overwhelmed by scope.
-- **Pivot**: moved to smaller "high journey" modules — focused on fewer, high-value tasks like setting up bank connection and generating first report.
-- **Key business metric passed**: did NOT cannibalize human expert tier — AI agent users continued interacting with human experts at normal rates.
-- **Unproven metric**: Larger Ecosystem Revenue (LER) — could not prove AI onboarding drove higher product adoption/revenue within the trial window.
-- Experiment shut down, agent decommissioned.
+**Results — lead with these wins:**
+- **Shipped to production as tech lead** — drove it from a hackathon prototype to a production rollout after the founding Senior Staff engineer moved on.
+- **Used by real new-trial (NTTF) customers** during their 30-day guided onboarding — progressively rolled out across the NTTF cohort (5% → 50% exposure ramp; this is reach, not a conversion/success rate).
+- **~50% module-completion rate** in the single-module phase (Reporting, custom CUI).
+- **Multi-session engagement** — customers returned across sessions, and even though we advertised "Reporting onboarding only," they started asking general QBO questions: a strong signal of engagement and trust.
+- **Passed the key business guardrail**: did **NOT** cannibalize the human-expert tier — AI users kept interacting with human experts at normal rates.
 
-**How to frame the shutdown:**
-- This was a data-driven decision, not an engineering failure. The system performed well technically — 50% completion, multi-session engagement, natural conversation flow.
-- The hard part was the business attribution problem: proving AI onboarding drove LER within a 30-day trial window. That's a difficult measurement challenge, not a product flaw.
-- The pivot to smaller modules and the eventual shutdown reflects mature product/engineering judgment: don't scale what you can't prove converts, especially when you're competing for product investment.
+**Nuance / iteration (shows judgment):**
+- **7-module phase** (shared Intuit CUI): lower completion rate; customers completed modules out of order (a positive signal — natural conversation flow, not rigid script-following) but felt overwhelmed by scope.
+- **Pivot**: moved to smaller "high-journey" modules — fewer, high-value tasks like setting up a bank connection and generating a first report.
+
+### If asked: is it still live / what happened
+_Don't volunteer this — lead with the wins. Have this ready as an honest, confident answer if an interviewer asks whether it's in production today or how it ended._
+- The experiment was eventually **sunset and the agent decommissioned**. This was a **data-driven business decision, not an engineering failure** — technically it performed well (~50% completion, multi-session engagement, natural conversation flow).
+- The hard part was the **business attribution problem**: proving AI onboarding drove **Larger Ecosystem Revenue (LER)** within a 30-day trial window — a difficult measurement challenge, not a product flaw.
+- ~15-sec soundbite: _"Technically and on engagement it succeeded and it shipped to real trial customers. We sunset it as a data-driven call when we couldn't attribute larger-ecosystem revenue inside the 30-day trial window — mature judgment about not scaling what you can't yet prove converts, especially when competing for product investment."_
 
 ---
 

@@ -249,7 +249,7 @@ def render_docx(model, out_docx):
     normal.paragraph_format.space_after = Pt(0)
     normal.paragraph_format.line_spacing = 1.08
 
-    def add_hyperlink(paragraph, url, text):
+    def add_hyperlink(paragraph, url, text, size=10):
         part = paragraph.part
         r_id = part.relate_to(
             url, "http://schemas.openxmlformats.org/officeDocument/2006/relationships/hyperlink",
@@ -260,16 +260,22 @@ def render_docx(model, out_docx):
         rpr = OxmlElement("w:rPr")
         color = OxmlElement("w:color"); color.set(qn("w:val"), "1A1A1A")
         rpr.append(color)
+        if size:
+            sz = OxmlElement("w:sz"); sz.set(qn("w:val"), str(size * 2))
+            rpr.append(sz)
         u = OxmlElement("w:u"); u.set(qn("w:val"), "none"); rpr.append(u)
         run.append(rpr)
         t = OxmlElement("w:t"); t.text = text; run.append(t)
         link.append(run)
         paragraph._p.append(link)
 
-    def emit_runs(paragraph, runs, size=10, color=DARK):
+    def emit_runs(paragraph, runs, size=10, color=DARK, plain=False):
+        # plain=True renders linked text as a normal <w:r> run instead of a
+        # <w:hyperlink>. Resume parsers that iterate only top-level runs skip
+        # text nested inside <w:hyperlink>, so contact email/URLs must be plain.
         for txt, bold, href in runs:
-            if href:
-                add_hyperlink(paragraph, href, txt)
+            if href and not plain:
+                add_hyperlink(paragraph, href, txt, size=size)
             else:
                 r = paragraph.add_run(txt)
                 r.bold = bold
@@ -292,12 +298,13 @@ def render_docx(model, out_docx):
     p.alignment = WD_ALIGN_PARAGRAPH.CENTER
     p.paragraph_format.space_after = Pt(2)
     r = p.add_run(model["name"]); r.bold = True; r.font.size = Pt(22); r.font.color.rgb = DARK
-    ol = OxmlElement("w:outlineLvl"); ol.set(qn("w:val"), "0"); p._p.get_or_add_pPr().append(ol)
+    # No outlineLvl on the name: parsers that read outline-0 as a document title
+    # (rather than body content) can fail to extract it as the candidate name.
 
     # ── Contact
     p = doc.add_paragraph(); p.alignment = WD_ALIGN_PARAGRAPH.CENTER
     p.paragraph_format.space_after = Pt(2)
-    emit_runs(p, model["contact"], size=9, color=RGBColor(0x33, 0x33, 0x33))
+    emit_runs(p, model["contact"], size=9, color=RGBColor(0x33, 0x33, 0x33), plain=True)
 
     # ── Tagline
     p = doc.add_paragraph(); p.alignment = WD_ALIGN_PARAGRAPH.CENTER
@@ -334,10 +341,10 @@ def render_docx(model, out_docx):
                     tab_stops = p.paragraph_format.tab_stops
                     tab_stops.add_tab_stop(page_w, WD_TAB_ALIGNMENT.RIGHT)
                     for txt, _b, href in blk["left"]:
-                        rr = p.add_run(txt); rr.bold = True; rr.font.size = Pt(10.5)
+                        rr = p.add_run(txt); rr.bold = True; rr.font.size = Pt(10)
                     if blk["right"]:
-                        rr = p.add_run("\t" + blk["right"])
-                        rr.font.size = Pt(9); rr.font.color.rgb = RGBColor(0x44, 0x44, 0x44)
+                        rr = p.add_run(" \t" + blk["right"])
+                        rr.font.size = Pt(10); rr.font.color.rgb = RGBColor(0x44, 0x44, 0x44)
                 for bullet in blk["bullets"]:
                     p = doc.add_paragraph(style="List Bullet")
                     p.paragraph_format.space_after = Pt(2)
